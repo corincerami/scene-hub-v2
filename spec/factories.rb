@@ -3,23 +3,12 @@ require 'date'
 FactoryGirl.define do
 
   factory :band do
-    sequence(:band) do |n|
-      "Screaming Females#{n}"
-    end
+    sequence(:name) { |n| "Screaming Females#{n}" }
   end
 
-  factory :show do
-    details  "A cool show"
-    show_date DateTime.now
-
-    factory :show_with_bands do
-      transient do
-        band_count 2
-      end
-      after(:create) do |show, evaluator|
-        create_list(:band, evaluator.band_count, show: show)
-      end
-    end
+  factory :gig do
+    band
+    show
   end
 
   factory :venue do
@@ -28,15 +17,11 @@ FactoryGirl.define do
     city     "Allston"
     state    "MA"
     zip_code "07110"
+  end
 
-    factory :venue_with_shows do
-      transient do
-        show_count 3
-      end
-
-      after(:create) do |venue, evaluator|
-        create_list(:show, evaluator.show_count, venue: venue)
-      end
-    end
+  factory :show do
+    show_date DateTime.now
+    details   "A cool show"
+    venue
   end
 end
