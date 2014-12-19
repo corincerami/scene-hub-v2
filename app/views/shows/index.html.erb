@@ -1,0 +1,26 @@
+<% @shows.each do |show| %>
+  <div>
+    <%= show.venue.name %>
+  </div>
+  <div>
+    <%= show.venue.street_1 %>
+  </div>
+  <div>
+    <%= show.venue.street_2 %>
+  </div>
+  <div>
+    <%= show.venue.city %>
+  </div>
+  <div>
+    <%= show.venue.state %>
+  </div>
+  <div>
+    <%= show.venue.zip_code %>
+  </div>
+  <div>
+    <%= show.details %>
+  </div>
+  <div>
+    <%= show.show_date %>
+  </div>
+<% end %>
