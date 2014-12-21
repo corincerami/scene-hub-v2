@@ -1,4 +1,13 @@
+<form action='/shows' method='get'>
+  <label>Zip code<input type="text" id="user_zip" name="Zip Code" /></label>
+  <label>Distance<input type="text" id="distance" name="Distance" /></label>
+  <input type='submit' value='Search'>
+</form>
+
 <% @shows.each do |show| %>
+  <% show.bands.each do |band| %>
+    <%= band.name %>
+  <% end%>
   <div>
     <%= show.venue.name %>
   </div>

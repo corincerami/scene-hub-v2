@@ -25,38 +25,50 @@
 <%= form_for @show do |f| %>
 
   <%= fields_for :bands do |band_field| %>
-    <%= band_field.label :name, "Band name" %>
-    <%= band_field.text_field :name %>
+    <div>
+      <%= band_field.label :name, "Band name" %>
+      <%= band_field.text_field :name %>
+    </div>
   <% end %>
 
   <%= fields_for :venue do |venue_field| %>
-    <%= venue_field.label :name, "Venue name" %>
-    <%= venue_field.text_field :name %>
-
-    <%= venue_field.label :street_1 %>
-    <%= venue_field.text_field :street_1 %>
-
-    <%= venue_field.label :street_2 %>
-    <%= venue_field.text_field :street_2 %>
-
-    <%= venue_field.label :city %>
-    <%= venue_field.text_field :city %>
-
-    <%= venue_field.label :state %>
-    <%= venue_field.text_field :state %>
-
-    <%= venue_field.label :zip_code %>
-    <%= venue_field.text_field :zip_code %>
-
-    <%= venue_field.label :details, "Venue details" %>
-    <%= venue_field.text_field :details %>
+    <div>
+      <%= venue_field.label :name, "Venue name" %>
+      <%= venue_field.text_field :name %>
+    </div>
+    <div>
+      <%= venue_field.label :street_1 %>
+      <%= venue_field.text_field :street_1 %>
+    </div>
+    <div>
+      <%= venue_field.label :street_2 %>
+      <%= venue_field.text_field :street_2 %>
+    </div>
+    <div>
+      <%= venue_field.label :city %>
+      <%= venue_field.text_field :city %>
+    </div>
+    <div>
+      <%= venue_field.label :state %>
+      <%= venue_field.text_field :state %>
+    </div>
+    <div>
+      <%= venue_field.label :zip_code %>
+      <%= venue_field.text_field :zip_code %>
+    </div>
+    <div>
+      <%= venue_field.label :details, "Venue details" %>
+      <%= venue_field.text_field :details %>
+    </div>
   <% end %>
-
-  <%= f.label :details, "Show details" %>
-  <%= f.text_field :details %>
-
-  <%= f.label :show_date %>
-  <%= f.datetime_local_field :show_date %>
+  <div>
+    <%= f.label :details, "Show details" %>
+    <%= f.text_field :details %>
+  </div>
+  <div>
+    <%= f.label :show_date %>
+    <%= f.datetime_local_field :show_date %>
+  </div>
 
   <%= f.submit "Post show" %>
 <% end %>

@@ -16,12 +16,15 @@ FactoryGirl.define do
     street_1 "1222 Commonwealth Ave"
     city     "Allston"
     state    "MA"
-    zip_code "07110"
+    zip_code "02134"
   end
 
   factory :show do
     show_date DateTime.now
     details   "A cool show"
     venue
+    after(:create) do |show|
+      show.bands << FactoryGirl.create(:band)
+    end
   end
 end

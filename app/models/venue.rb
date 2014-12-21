@@ -6,4 +6,6 @@ class Venue < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :zip_code, presence: true
+
+  acts_as_mappable
 end

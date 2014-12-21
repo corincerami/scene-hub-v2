@@ -6,4 +6,6 @@ class Show < ActiveRecord::Base
   accepts_nested_attributes_for :bands, :venue
 
   validates :show_date, presence: true
+
+  acts_as_mappable through: :venue
 end

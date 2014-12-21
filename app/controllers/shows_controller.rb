@@ -1,6 +1,11 @@
 class ShowsController < ApplicationController
   def index
-    @shows = Show.all
+    zip_code = params[:zip_code]
+    if zip_code
+
+    else
+      @shows = Show.all
+    end
   end
 
   def new
