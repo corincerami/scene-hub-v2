@@ -1,8 +1,14 @@
 <form action='/shows' method='get'>
-  <label>Zip code<input type="text" id="user_zip" name="Zip Code" /></label>
-  <label>Distance<input type="text" id="distance" name="Distance" /></label>
+  <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
+  <label>Distance<input type="text" id="distance" name="radius" /></label>
   <input type='submit' value='Search'>
 </form>
+
+<% if @shows.empty? %>
+  <div>
+    No shows found
+  </div>
+<% end %>
 
 <% @shows.each do |show| %>
   <% show.bands.each do |band| %>

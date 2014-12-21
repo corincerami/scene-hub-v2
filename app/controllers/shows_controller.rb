@@ -1,8 +1,11 @@
 class ShowsController < ApplicationController
-  def index
-    zip_code = params[:zip_code]
-    if zip_code
+  include Geokit::Geocoders
 
+  def index
+    @zip_code = params[:zip_code]
+    @radius = params[:radius] || 25
+    if @zip_code
+      @shows = Show.joins(:venue).within(@radius.to_i, origin: @zip_code)
     else
       @shows = Show.all
     end
@@ -44,6 +47,13 @@ class ShowsController < ApplicationController
   end
 
   def venue_params
-    params.require(:venue).permit(:name, :street_1, :street_2, :city, :state, :zip_code, :details)
+    venue_params = params.require(:venue).permit(:name, :street_1, :street_2, :city, :state, :zip_code, :details)
+    address = "#{params[:venue][:street_1]}, #{params[:venue][:city]}, #{params[:venue][:state]}"
+    loc = MultiGeocoder.geocode(address)
+    if loc.success
+      venue_params[:lat] = loc.lat
+      venue_params[:lng] = loc.lng
+    end
+    venue_params
   end
 end

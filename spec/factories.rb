@@ -1,4 +1,5 @@
 require 'date'
+include Geokit::Geocoders
 
 FactoryGirl.define do
 
@@ -17,6 +18,14 @@ FactoryGirl.define do
     city     "Allston"
     state    "MA"
     zip_code "02134"
+    address = "1222 Commonwealth Ave, Allston, MA"
+    loc = MultiGeocoder.geocode(address)
+    if loc.success
+      latitude = loc.lat
+      longitude = loc.lng
+    end
+    lat      latitude
+    lng      longitude
   end
 
   factory :show do
