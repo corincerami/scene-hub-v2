@@ -1,41 +1,56 @@
-<form action='/shows' method='get'>
-  <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
-  <label>Distance<input type="text" id="distance" name="radius" /></label>
-  <input type='submit' value='Search'>
-</form>
+<div class='row'>
+  <div class='zip-code-form small-12 medium-4 columns'>
+    <div>Find a show near you!</div>
+    <form action='/shows' method='get'>
+      <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
+      <label>Distance<input type="text" id="distance" name="radius" /></label>
+      <input type='submit' value='Search'>
+    </form>
+  </div>
+</div>
 
 <% if @shows.empty? %>
-  <div>
+  <div class='flash-notice'>
     No shows found
   </div>
 <% end %>
 
+<div class='row'>
+  <div class='post-button small-12 medium-3 columns'>
+    <%= link_to("Tell us about your show!", new_show_path) %>
+  </div>
+</div>
+
 <% @shows.each do |show| %>
-  <% show.bands.each do |band| %>
-    <%= band.name %>
-  <% end%>
-  <div>
-    <%= show.venue.name %>
-  </div>
-  <div>
-    <%= show.venue.street_1 %>
-  </div>
-  <div>
-    <%= show.venue.street_2 %>
-  </div>
-  <div>
-    <%= show.venue.city %>
-  </div>
-  <div>
-    <%= show.venue.state %>
-  </div>
-  <div>
-    <%= show.venue.zip_code %>
-  </div>
-  <div>
-    <%= show.details %>
-  </div>
-  <div>
-    <%= show.show_date %>
+  <div class='row'>
+    <div class='border small-12 medium-8 columns'>
+      <% show.bands.each do |band| %>
+        <%= band.name %>
+      <% end%>
+      <div>
+        <%= show.venue.name %>
+      </div>
+      <div>
+        <%= show.venue.street_1 %>
+      </div>
+      <div>
+        <%= show.venue.street_2 %>
+      </div>
+      <div>
+        <%= show.venue.city %>
+      </div>
+      <div>
+        <%= show.venue.state %>
+      </div>
+      <div>
+        <%= show.venue.zip_code %>
+      </div>
+      <div>
+        <%= show.details %>
+      </div>
+      <div>
+        <%= show.show_date %>
+      </div>
+    </div>
   </div>
 <% end %>

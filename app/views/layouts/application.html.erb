@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>SceneHub</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<h1>Scene Hub</h1>
-<h2>Listen Locally</h2>
+    <title>SceneHub</title>
 
-<%= yield %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-</body>
+  <body>
+
+    <div class='row'>
+      <div class='small-12 medium-9 columns'>
+        <h1><%= link_to("Scene Hub", '/') %></h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-12 medium-6 columns'>
+        <h2>Listen Locally</h2>
+      </div>
+    </div>
+
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

@@ -1,15 +1,68 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/*= require foundation */
+
+.post-button {
+  padding: 10px;
+  background-color: rgba(250,158,249,0.5);
+  color: #000;
+  margin-bottom: 10px;
+  border: 4px solid #000;
+  font-weight: bold;
+  font-family: sans-serif;
+  display: inline-block;
+}
+
+.border {
+  border: 4px solid #FF389C;
+  font-family: sans-serif;
+  background-color: rgba(250,158,249,0.5);
+}
+
+a {
+  color: #FF389C;
+
+}
+
+a:visited {
+  color: #E5267E;
+}
+
+.zip-code-form {
+  border: 4px solid #FF389C;
+  display: inline-block;
+  background-color: rgba(250,158,249,0.5);
+  padding: 5px;
+}
+
+.flash-error {
+  background-color: rgba(255, 0, 0, 0.5);
+  width: 100px;
+  padding: 4px;
+}
+
+.flash-notice {
+  background-color: rgba(52, 250, 111, 0.5);
+  width: 100px;
+  padding: 4px;
+}
+
+.sign-in-box {
+  float: right;
+}
+
+h1 a {
+  font-family: Impact;
+  font-size: 150px;
+}
+
+h2 {
+  font-size: 50px;
+  font-style: italic;
+  color: #FF389C
+}
+
+body {
+  background-image: url("/assets/marissa.jpg");
+  background-repeat:repeat;
+  background-position:center;
+  background-size: cover;
+}
