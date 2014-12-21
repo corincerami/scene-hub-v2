@@ -1,35 +1,35 @@
-<%= flash[:notice] %>
+<div class='flash-notice'>
+  <%= flash[:notice] %>
+</div>
 
-<p>Bands:</p>
-<% @show.bands.each do |band| %>
-  <div>
-    <%= band.name %>
+<div class='row'>
+  <div class='border small-12 medium-8 columns'>
+    <p>Bands:</p>
+    <% @show.bands.each do |band| %>
+      <div>
+        <%= band.name %>
+      </div>
+    <% end %>
+    <div>
+      <%= @show.venue.name %>
+    </div>
+    <div>
+      <%= @show.venue.street_1 %>
+    </div>
+    <div>
+      <%= @show.venue.street_2 %>
+    </div>
+    <div>
+      <%= "#{@show.venue.city}, #{@show.venue.state} #{@show.venue.zip_code} " %>
+    </div>
+    <div>
+      <%= @show.venue.details %>
+    </div>
+    <div>
+      <%= @show.details %>
+    </div>
+    <div>
+      <%= @show.show_date %>
+    </div>
   </div>
-<% end %>
-<div>
-  <%= @show.venue.name %>
-</div>
-<div>
-  <%= @show.venue.street_1 %>
-</div>
-<div>
-  <%= @show.venue.street_2 %>
-</div>
-<div>
-  <%= @show.venue.city %>
-</div>
-<div>
-  <%= @show.venue.state %>
-</div>
-<div>
-  <%= @show.venue.zip_code %>
-</div>
-<div>
-  <%= @show.venue.details %>
-</div>
-<div>
-  <%= @show.details %>
-</div>
-<div>
-  <%= @show.show_date %>
 </div>

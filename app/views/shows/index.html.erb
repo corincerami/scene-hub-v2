@@ -10,8 +10,10 @@
 </div>
 
 <% if @shows.empty? %>
-  <div class='flash-notice'>
-    No shows found
+  <div class='row'>
+    <div class='flash-notice small-12 medium-3 columns'>
+      No shows found
+    </div>
   </div>
 <% end %>
 
@@ -23,12 +25,14 @@
 
 <% @shows.each do |show| %>
   <div class='row'>
+  <a href="/shows/<%= show.id %>">
     <div class='border small-12 medium-8 columns'>
+      Bands:
       <% show.bands.each do |band| %>
         <%= band.name %>
       <% end%>
       <div>
-        <%= show.venue.name %>
+        Venue: <%= show.venue.name %>
       </div>
       <div>
         <%= show.venue.street_1 %>
@@ -37,13 +41,7 @@
         <%= show.venue.street_2 %>
       </div>
       <div>
-        <%= show.venue.city %>
-      </div>
-      <div>
-        <%= show.venue.state %>
-      </div>
-      <div>
-        <%= show.venue.zip_code %>
+        <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
       </div>
       <div>
         <%= show.details %>
@@ -51,6 +49,7 @@
       <div>
         <%= show.show_date %>
       </div>
+      </a>
     </div>
   </div>
 <% end %>
