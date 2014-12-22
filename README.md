@@ -21,6 +21,15 @@
 - [x] Users can select a distance radius
 - [x] Users can see all shows within the chosen radius
 
+### As a musician
+  I want to be able to edit shows I've posted
+  So I can keep my fans up to date
+
+#### Acceptance Criteria
+- [ ] Clicking on an Edit Show button should bring me to an edit form
+- [ ] Submitting a valid form should bring me back to the show page
+- [ ] Submitting an invalid form should re-render the form with an error
+
 ### As a User
   I want to comment on shows
   So I can communicate with other people who are going

@@ -1,0 +1,82 @@
+<div class='row'>
+  <div class='flash-error small-12 medium-3 columns'>
+    <% if @show.errors.any? %>
+      <% @show.errors.full_messages.each do |msg| %>
+        <div>
+          <%= msg %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @band.errors.any? %>
+      <% @band.errors.full_messages.each do |msg| %>
+        <div>
+          <%= msg %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @venue.errors.any? %>
+      <% @venue.errors.full_messages.each do |msg| %>
+        <div>
+          <%= msg %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='border small-12 medium-9 large-6 columns'>
+    <%= form_for @show do |f| %>
+
+      <%= fields_for :bands do |band_field| %>
+        <div>
+          <%= band_field.label :name, "Band name" %>
+          <%= band_field.text_field :name %>
+        </div>
+      <% end %>
+
+      <%= fields_for :venue do |venue_field| %>
+        <div>
+          <%= venue_field.label :name, "Venue name" %>
+          <%= venue_field.text_field :name %>
+        </div>
+        <div>
+          <%= venue_field.label :street_1 %>
+          <%= venue_field.text_field :street_1 %>
+        </div>
+        <div>
+          <%= venue_field.label :street_2 %>
+          <%= venue_field.text_field :street_2 %>
+        </div>
+        <div>
+          <%= venue_field.label :city %>
+          <%= venue_field.text_field :city %>
+        </div>
+        <div>
+          <%= venue_field.label :state %>
+          <%= venue_field.text_field :state %>
+        </div>
+        <div>
+          <%= venue_field.label :zip_code %>
+          <%= venue_field.text_field :zip_code %>
+        </div>
+        <div>
+          <%= venue_field.label :details, "Venue details" %>
+          <%= venue_field.text_field :details %>
+        </div>
+      <% end %>
+      <div>
+        <%= f.label :details, "Show details" %>
+        <%= f.text_field :details %>
+      </div>
+      <div>
+        <%= f.label :show_date %>
+        <%= f.datetime_local_field :show_date %>
+      </div>
+
+      <%= f.submit "Save changes" %>
+    <% end %>
+  </div>
+</div>

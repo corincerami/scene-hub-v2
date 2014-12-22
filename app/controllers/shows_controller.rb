@@ -11,6 +11,10 @@ class ShowsController < ApplicationController
     end
   end
 
+  def show
+    @show = Show.find(params[:id])
+  end
+
   def new
     @show = Show.new
     @venue = Venue.new
@@ -30,8 +34,25 @@ class ShowsController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @show = Show.find(params[:id])
+    @venue = @show.venue
+    @band = @show.bands.first
+  end
+
+  def update
+    @show = Show.find(params[:id])
+    @venue = @show.venue
+    @venue.update(venue_params)
+    @band = @show.bands.first
+    @band.update(band_params)
+    @show.update(show_params)
+    if @show.save
+      flash[:notice] = "Show updated!"
+      redirect_to show_path(@show)
+    else
+      render "edit"
+    end
   end
 
   private

@@ -12,8 +12,8 @@ require 'rails_helper'
 
 feature 'User searches for a show' do
   it "sees nearby shows when a valid zip code is entered" do
-    show_1 = FactoryGirl.create(:show)
-    show_2 = FactoryGirl.create(:show)
+    show_1 = create(:show)
+    show_2 = create(:show)
     visit '/'
 
     fill_in "Zip code", with: "02145"
@@ -29,8 +29,8 @@ feature 'User searches for a show' do
   end
 
   it "doesn't see shows that aren't within range" do
-    show_1 = FactoryGirl.create(:show)
-    show_2 = FactoryGirl.create(:show)
+    show_1 = create(:show)
+    show_2 = create(:show)
     visit '/'
 
     fill_in "Zip code", with: "07110"
