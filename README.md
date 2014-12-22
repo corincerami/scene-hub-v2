@@ -26,9 +26,17 @@
   So I can keep my fans up to date
 
 #### Acceptance Criteria
-- [ ] Clicking on an Edit Show button should bring me to an edit form
-- [ ] Submitting a valid form should bring me back to the show page
-- [ ] Submitting an invalid form should re-render the form with an error
+- [x] Clicking on an Edit Show button should bring me to an edit form
+- [x] Submitting a valid form should bring me back to the show page
+- [x] Submitting an invalid form should re-render the form with an error
+
+### As a musician
+  I want to be able to delete shows I've posted
+  So I can remove shows that are cancelled
+
+#### Acceptance Criteria
+- [ ] Click on a Delete Show button should show a confirmation dialog
+- [ ] Confirming should delete the show and redirect to the index
 
 ### As a User
   I want to comment on shows

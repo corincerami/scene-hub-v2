@@ -29,7 +29,6 @@ feature "User edits a show" do
     fill_in "Band", with: ""
     fill_in "Venue name", with: ""
     click_on "Save changes"
-    save_and_open_page
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Venue name can't be blank"
   end

@@ -55,6 +55,16 @@ class ShowsController < ApplicationController
     end
   end
 
+  def destroy
+    @show = Show.find(params[:id])
+    if @show.destroy
+      flash[:notice] = "Show deleted!"
+      redirect_to shows_path
+    else
+      render "show"
+    end
+  end
+
   private
 
   def show_params
