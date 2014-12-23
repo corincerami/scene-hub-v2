@@ -3,6 +3,10 @@ include Geokit::Geocoders
 
 FactoryGirl.define do
 
+  factory :user do
+  end
+
+
   factory :band do
     sequence(:name) { |n| "Screaming Females#{n}" }
   end

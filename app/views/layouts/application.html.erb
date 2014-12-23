@@ -13,6 +13,19 @@
 
   <body>
 
+  <div class='row'>
+    <div class='small-12 columns border'>
+      <% if !user_signed_in? %>
+        <%= link_to("Sign in", new_user_session_path) %><br/>
+        <%= link_to("Sign up", new_user_registration_path) %>
+      <% end %>
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %><br/>
+        <%= link_to("Sign out", destroy_user_session_path) %>
+      <% end %>
+    </div>
+  </div>
+
     <div class='row'>
       <div class='medium-12 large-9 columns'>
         <h1><%= link_to("Scene Hub", '/') %></h1>
