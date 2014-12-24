@@ -1,3 +1,7 @@
+Nice work so far. Take a look at my comments, and you can probably (if you haven't already) think about how you want to present all your data. You could probably have some
+interesting visualization (maps, which bands have the most
+shows, which venues have the most bands, etc.)
+
 ## User Stories
 
 ### As a musician

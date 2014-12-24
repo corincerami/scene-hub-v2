@@ -1,3 +1,25 @@
+# Take a look at https://github.com/stympy/faker
+# It's a pretty good gem to create giant amounts of fake
+# names and data. You could use it to create 100s of
+# bands and venues and shows
+
+# 100.times do
+# 	email = Faker::Internet.email
+# 	password = Faker::Lorem.word
+# 	User.create(email: email, password: password)
+
+# 100.times do
+# 	band_name = Faker::App.name
+# 	user = rand(1..100)
+# 	band = Band.create(name: band_name, user_id: user)
+# end
+
+# Faker also has fake addresses you can create venues with.
+# It's nice to have a lot of fake data to play with so you
+# can see how a real user would interact with the site.
+# Also, anyone that clones your app will want to see how it
+# works, which having a lot of fake data will help with.
+
 include Geokit::Geocoders
 
 user_1 = User.create(email: "user_1@example.com", password: "password123")

@@ -1,3 +1,11 @@
+# There's a good argument out there for having one class
+# deal with objects of that class. It's especially important
+# when you will have large apps and knowing what links to
+# what becomes more important. You might want to think about
+# stripping out Venue into its own controller to allow for
+# that. In case you want to hear Thoughtbot people talk about
+# it, check out this podcast: http://bikeshed.fm/1
+
 class ShowsController < ApplicationController
   include Geokit::Geocoders
 
@@ -60,6 +68,9 @@ class ShowsController < ApplicationController
   end
 
   def destroy
+    # right now, as a random user I was able to destroy
+    # shows. You want to add a limit that only allows
+    # the creator of a show to be able to delete it
     @show = Show.find(params[:id])
     if @show.destroy
       flash[:notice] = "Show deleted!"
