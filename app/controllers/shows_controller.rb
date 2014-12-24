@@ -26,9 +26,9 @@ class ShowsController < ApplicationController
 
   def create
     @venue = Venue.find_or_create_by(venue_params)
-    @band = Band.find(params[:user][:bands])
     @show = Show.new(show_params)
-    if @show.save
+    if @show.save && !params[:user][:bands].empty?
+      @band = Band.find(params[:user][:bands])
       @gig = Gig.create(band_id: @band.id, show_id: @show.id)
       flash[:notice] = "Show created!"
       redirect_to show_path(@show)
@@ -47,7 +47,6 @@ class ShowsController < ApplicationController
     @show = Show.find(params[:id])
     @band = @show.bands.first
     gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
-    binding.pry
     gig.update(band_id: params[:user][:bands])
     @venue = @show.venue
     @venue.update(venue_params)

@@ -33,6 +33,7 @@ feature "User posts a show" do
     visit new_show_path
 
     click_on "Post show"
+    save_and_open_page
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Street 1 can't be blank"
