@@ -3,20 +3,19 @@ require 'date'
 
 feature "User posts a show" do
   it "sees the show on the page" do
-    user = create(:user)
+    user = FactoryGirl.create(:user_with_bands)
     visit new_user_session_path
     fill_in "Emai", with: user.email
     fill_in "Password", with: user.password
     click_on "Log in"
     visit new_show_path
-    fill_in "Band name", with: "Screaming Females"
+    select  user.bands.first.name, from: "Band"
     fill_in "Venue name", with: "Great Scott"
     fill_in "Street 1", with: "1222 Commonwealth Ave"
     fill_in "City", with: "Allston"
     fill_in "State", with: "MA"
     fill_in "Zip code", with: "02134"
     fill_in "Show date", with: DateTime.now
-    # page.execute_script("$('#show_show_date').val('21/12/2014')")
     click_on "Post show"
 
     expect(page).to have_content "Show created!"

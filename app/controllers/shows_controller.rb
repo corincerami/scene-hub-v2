@@ -21,12 +21,12 @@ class ShowsController < ApplicationController
   def new
     @show = Show.new
     @venue = Venue.new
-    @band = Band.new
+    @user = current_user
   end
 
   def create
     @venue = Venue.find_or_create_by(venue_params)
-    @band = Band.find_or_create_by(band_params)
+    @band = Band.find(params[:user][:bands])
     @show = Show.new(show_params)
     if @show.save
       @gig = Gig.create(band_id: @band.id, show_id: @show.id)
@@ -45,10 +45,12 @@ class ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
+    @band = @show.bands.first
+    gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
+    binding.pry
+    gig.update(band_id: params[:user][:bands])
     @venue = @show.venue
     @venue.update(venue_params)
-    @band = @show.bands.first
-    @band.update(band_params)
     @show.update(show_params)
     if @show.save
       flash[:notice] = "Show updated!"
@@ -74,10 +76,6 @@ class ShowsController < ApplicationController
     show_params = params.require(:show).permit(:show_date, :details)
     show_params[:venue_id] = @venue.id
     show_params
-  end
-
-  def band_params
-    params.require(:bands).permit(:name)
   end
 
   def venue_params

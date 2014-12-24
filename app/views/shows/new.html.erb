@@ -8,16 +8,6 @@
   <% end %>
 <% end %>
 
-<% if @band.errors.any? %>
-  <% @band.errors.full_messages.each do |msg| %>
-    <div class='row'>
-      <div class='flash-error small-12 medium-3 columns'>
-        <%= msg %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
 <% if @venue.errors.any? %>
   <% @venue.errors.full_messages.each do |msg| %>
     <div class='row'>
@@ -28,57 +18,63 @@
   <% end %>
 <% end %>
 
-<div class='row'>
-  <div class='border small-12 medium-9 large-6 columns'>
-    <%= form_for @show do |f| %>
+<% if current_user.bands %>
+  <div class='row'>
+    <div class='border small-12 medium-9 large-6 columns'>
+      <%= form_for @show do |f| %>
 
-      <%= fields_for :bands do |band_field| %>
+        <%= fields_for :user do |band_field| %>
+          <%= band_field.label :bands, "Band" %>
+          <%= band_field.select :bands, current_user.bands.collect { |band| [ band.name, band.id ] }, include_blank: true %>
+        <% end %>
+
+        <%= fields_for :venue do |venue_field| %>
+          <div>
+            <%= venue_field.label :name, "Venue name" %>
+            <%= venue_field.text_field :name %>
+          </div>
+          <div>
+            <%= venue_field.label :street_1 %>
+            <%= venue_field.text_field :street_1 %>
+          </div>
+          <div>
+            <%= venue_field.label :street_2 %>
+            <%= venue_field.text_field :street_2 %>
+          </div>
+          <div>
+            <%= venue_field.label :city %>
+            <%= venue_field.text_field :city %>
+          </div>
+          <div>
+            <%= venue_field.label :state %>
+            <%= venue_field.text_field :state %>
+          </div>
+          <div>
+            <%= venue_field.label :zip_code %>
+            <%= venue_field.text_field :zip_code %>
+          </div>
+          <div>
+            <%= venue_field.label :details, "Venue details" %>
+            <%= venue_field.text_field :details %>
+          </div>
+        <% end %>
         <div>
-          <%= band_field.label :name, "Band name" %>
-          <%= band_field.text_field :name %>
+          <%= f.label :details, "Show details" %>
+          <%= f.text_field :details %>
         </div>
+        <div>
+          <%= f.label :show_date %>
+          <%= f.datetime_local_field :show_date %>
+        </div>
+
+        <%= f.submit "Post show" %>
       <% end %>
-
-      <%= fields_for :venue do |venue_field| %>
-        <div>
-          <%= venue_field.label :name, "Venue name" %>
-          <%= venue_field.text_field :name %>
-        </div>
-        <div>
-          <%= venue_field.label :street_1 %>
-          <%= venue_field.text_field :street_1 %>
-        </div>
-        <div>
-          <%= venue_field.label :street_2 %>
-          <%= venue_field.text_field :street_2 %>
-        </div>
-        <div>
-          <%= venue_field.label :city %>
-          <%= venue_field.text_field :city %>
-        </div>
-        <div>
-          <%= venue_field.label :state %>
-          <%= venue_field.text_field :state %>
-        </div>
-        <div>
-          <%= venue_field.label :zip_code %>
-          <%= venue_field.text_field :zip_code %>
-        </div>
-        <div>
-          <%= venue_field.label :details, "Venue details" %>
-          <%= venue_field.text_field :details %>
-        </div>
-      <% end %>
-      <div>
-        <%= f.label :details, "Show details" %>
-        <%= f.text_field :details %>
-      </div>
-      <div>
-        <%= f.label :show_date %>
-        <%= f.datetime_local_field :show_date %>
-      </div>
-
-      <%= f.submit "Post show" %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class='row'>
+    <div class='small-12 columns border'>
+    <p>You haven't added any bands. Go to <%= link_to("your profile", user_path(current_user)) %> to add your band.</p>
+    </div>
+  </div>
+<% end %>
