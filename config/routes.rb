@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root 'shows#index'
   resources :venues
   resources :shows
-
+  resources :users, only: [:show]
   resources :bands
 end

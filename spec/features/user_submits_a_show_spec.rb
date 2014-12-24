@@ -3,6 +3,11 @@ require 'date'
 
 feature "User posts a show" do
   it "sees the show on the page" do
+    user = create(:user)
+    visit new_user_session_path
+    fill_in "Emai", with: user.email
+    fill_in "Password", with: user.password
+    click_on "Log in"
     visit new_show_path
     fill_in "Band name", with: "Screaming Females"
     fill_in "Venue name", with: "Great Scott"
@@ -21,6 +26,11 @@ feature "User posts a show" do
   end
 
   it "submits a blank form" do
+    user = create(:user)
+    visit new_user_session_path
+    fill_in "Emai", with: user.email
+    fill_in "Password", with: user.password
+    click_on "Log in"
     visit new_show_path
 
     click_on "Post show"

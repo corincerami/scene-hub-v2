@@ -38,6 +38,13 @@
 - [x] Click on a Delete Show button should show a confirmation dialog
 - [x] Confirming should delete the show and redirect to the index
 
+### As a musician
+  I want to create bands I belong to on my profile page
+  So that I can post about shows for my band
+
+#### Acceptance Criteria
+- [ ]
+
 ### As a User
   I want to comment on shows
   So I can communicate with other people who are going

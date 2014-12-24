@@ -1,0 +1,6 @@
+<%= @user.email %>
+<% if @user.bands %>
+  <% @user.bands.each do |band| %>
+    <%= band.name %>
+  <% end %>
+<% end %>

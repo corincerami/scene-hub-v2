@@ -4,11 +4,17 @@ include Geokit::Geocoders
 FactoryGirl.define do
 
   factory :user do
+    sequence(:email) { |n| "#{n}user@example.com" }
+    password "password123"
   end
 
 
   factory :band do
     sequence(:name) { |n| "Screaming Females#{n}" }
+    user
+    after(:create) do |band|
+      band.user = FactoryGirl.create(:user)
+    end
   end
 
   factory :gig do
