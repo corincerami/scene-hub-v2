@@ -1,3 +1,8 @@
+<!-- You can probably put all your error messages
+into the application.html.erb file. That will clean things
+up here quite a bit and let each view focus on it's sole
+purpose -->
+
 <% if @show.errors.any? %>
   <% @show.errors.full_messages.each do |msg| %>
     <div class='row'>
