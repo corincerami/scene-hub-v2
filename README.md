@@ -35,8 +35,8 @@
   So I can remove shows that are cancelled
 
 #### Acceptance Criteria
-- [ ] Click on a Delete Show button should show a confirmation dialog
-- [ ] Confirming should delete the show and redirect to the index
+- [x] Click on a Delete Show button should show a confirmation dialog
+- [x] Confirming should delete the show and redirect to the index
 
 ### As a User
   I want to comment on shows

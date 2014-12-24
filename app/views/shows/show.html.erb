@@ -29,5 +29,14 @@
     </div>
   </div>
 </div>
-<%= link_to("Edit show", edit_show_path) %>
-<%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
+
+<div class='row'>
+  <div class='small-6 medium-2 columns border'>
+    <%= link_to("Edit show", edit_show_path) %>
+  </div>
+</div>
+<div class='row'>
+  <div class='small-6 medium-2 columns border'>
+    <%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
+  </div>
+</div>
