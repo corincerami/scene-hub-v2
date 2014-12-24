@@ -3,7 +3,7 @@ require 'date'
 
 feature "User posts a show" do
   it "sees the show on the page" do
-    user = FactoryGirl.create(:user_with_bands)
+    user = create(:user_with_bands)
     visit new_user_session_path
     fill_in "Emai", with: user.email
     fill_in "Password", with: user.password
@@ -25,7 +25,7 @@ feature "User posts a show" do
   end
 
   it "submits a blank form" do
-    user = create(:user)
+    user = create(:user_with_bands)
     visit new_user_session_path
     fill_in "Emai", with: user.email
     fill_in "Password", with: user.password
@@ -33,7 +33,6 @@ feature "User posts a show" do
     visit new_show_path
 
     click_on "Post show"
-    save_and_open_page
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Street 1 can't be blank"
