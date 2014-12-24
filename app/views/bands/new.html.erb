@@ -1,12 +1,20 @@
 <% if @band.errors.any? %>
-  <% @band.errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
+  <div class='row'>
+    <div class='small-12 medium-3 columns flash-error'>
+      <% @band.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
-<%= form_for @band do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<div class='row'>
+<div class='small-12 medium-4 columns border'>
+    <%= form_for @band do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
 
-  <%= f.submit "Create band" %>
-<% end %>
+      <%= f.submit "Create band" %>
+    <% end %>
+  </div>
+</div>
