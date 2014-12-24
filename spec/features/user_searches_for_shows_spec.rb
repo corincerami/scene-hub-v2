@@ -14,7 +14,7 @@ feature 'User searches for a show' do
   it "sees nearby shows when a valid zip code is entered" do
     show_1 = create(:show)
     show_2 = create(:show)
-    visit '/'
+    visit root_path
 
     fill_in "Zip code", with: "02145"
     fill_in "Distance", with: "10"
@@ -31,7 +31,7 @@ feature 'User searches for a show' do
   it "doesn't see shows that aren't within range" do
     show_1 = create(:show)
     show_2 = create(:show)
-    visit '/'
+    visit root_path
 
     fill_in "Zip code", with: "07110"
     fill_in "Distance", with: "10"
