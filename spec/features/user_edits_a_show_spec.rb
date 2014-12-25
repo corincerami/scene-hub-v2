@@ -11,8 +11,9 @@ require 'rails_helper'
 
 feature "User edits a show" do
   it "fills in valid information" do
-    show = create(:show)
     user = create(:user_with_bands)
+    show = create(:show)
+    show.bands << user.bands.first
     visit new_user_session_path
     fill_in "Emai", with: user.email
     fill_in "Password", with: user.password
@@ -28,8 +29,9 @@ feature "User edits a show" do
   end
 
   it "fill in invalid information" do
+    user = create(:user_with_bands)
     show = create(:show)
-    user = create(:user)
+    show.bands << user.bands.first
     visit new_user_session_path
     fill_in "Emai", with: user.email
     fill_in "Password", with: user.password

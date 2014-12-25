@@ -43,7 +43,9 @@
   So that I can post about shows for my band
 
 #### Acceptance Criteria
-- [ ]
+- [x] Visiting my profile should give me the option to create a new band
+- [x] Creating a new show should have a dropdown menu of bands I belong to
+- [x] Trying to create a show when I don't have any bands should direct me to my profile
 
 ### As a User
   I want to comment on shows

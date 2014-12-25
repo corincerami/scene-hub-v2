@@ -10,8 +10,9 @@ require 'rails_helper'
 
 feature "User deletes a show" do
   it "removes the show from the index page" do
+    user = create(:user_with_bands)
     show = create(:show)
-    user = create(:user)
+    show.bands << user.bands.first
     visit new_user_session_path
     fill_in "Emai", with: user.email
     fill_in "Password", with: user.password

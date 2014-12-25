@@ -38,34 +38,49 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    @show = Show.find(params[:id])
-    @venue = @show.venue
-    @band = @show.bands.first
+    if !correct_user?
+      flash[:error] = "You don't have permission to do that."
+      redirect_to "show"
+    else
+      @show = Show.find(params[:id])
+      @venue = @show.venue
+      @band = @show.bands.first
+    end
   end
 
   def update
-    @show = Show.find(params[:id])
-    @band = @show.bands.first
-    gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
-    gig.update(band_id: params[:user][:bands])
-    @venue = @show.venue
-    @venue.update(venue_params)
-    @show.update(show_params)
-    if @show.save
-      flash[:notice] = "Show updated!"
-      redirect_to show_path(@show)
+    if !correct_user?
+      flash[:error] = "You don't have permission to do that."
+      redirect_to "show"
     else
-      render "edit"
+      @show = Show.find(params[:id])
+      @band = @show.bands.first
+      gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
+      gig.update(band_id: params[:user][:bands])
+      @venue = @show.venue
+      @venue.update(venue_params)
+      @show.update(show_params)
+      if @show.save
+        flash[:notice] = "Show updated!"
+        redirect_to show_path(@show)
+      else
+        render "edit"
+      end
     end
   end
 
   def destroy
-    @show = Show.find(params[:id])
-    if @show.destroy
-      flash[:notice] = "Show deleted!"
-      redirect_to shows_path
+    if !correct_user?
+      flash[:error] = "You don't have permission to do that."
+      redirect_to "show"
     else
-      render "show"
+      @show = Show.find(params[:id])
+      if @show.destroy
+        flash[:notice] = "Show deleted!"
+        redirect_to shows_path
+      else
+        render "show"
+      end
     end
   end
 
@@ -86,5 +101,10 @@ class ShowsController < ApplicationController
       venue_params[:lng] = loc.lng
     end
     venue_params
+  end
+
+  def correct_user?
+    @show = Show.find(params[:id])
+    current_user == @show.bands.first.user
   end
 end
