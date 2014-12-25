@@ -27,7 +27,7 @@ class ShowsController < ApplicationController
   def create
     @venue = Venue.find_or_create_by(venue_params)
     @show = Show.new(show_params)
-    if @show.save && !params[:user][:bands].empty?
+    if !params[:user][:bands].empty? && @show.save
       @band = Band.find(params[:user][:bands])
       @gig = Gig.create(band_id: @band.id, show_id: @show.id)
       flash[:notice] = "Show created!"
@@ -38,50 +38,44 @@ class ShowsController < ApplicationController
   end
 
   def edit
+    @show = Show.find(params[:id])
+    @venue = @show.venue
+    @band = @show.bands.first
     if !correct_user?
       flash[:error] = "You don't have permission to do that."
-      redirect_to "show"
-    else
-      @show = Show.find(params[:id])
-      @venue = @show.venue
-      @band = @show.bands.first
+      redirect_to show_path(@show)
     end
   end
 
   def update
+    @show = Show.find(params[:id])
     if !correct_user?
       flash[:error] = "You don't have permission to do that."
-      redirect_to "show"
+      redirect_to show_path(@show)
+    end
+    @band = @show.bands.first
+    gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
+    gig.update(band_id: params[:user][:bands])
+    @venue = @show.venue
+    @venue.update(venue_params)
+    @show.update(show_params)
+    if @show.save
+      flash[:notice] = "Show updated!"
+      redirect_to show_path(@show)
     else
-      @show = Show.find(params[:id])
-      @band = @show.bands.first
-      gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
-      gig.update(band_id: params[:user][:bands])
-      @venue = @show.venue
-      @venue.update(venue_params)
-      @show.update(show_params)
-      if @show.save
-        flash[:notice] = "Show updated!"
-        redirect_to show_path(@show)
-      else
-        render "edit"
-      end
+      render "edit"
     end
   end
 
   def destroy
+    @show = Show.find(params[:id])
     if !correct_user?
       flash[:error] = "You don't have permission to do that."
-      redirect_to "show"
-    else
-      @show = Show.find(params[:id])
-      if @show.destroy
-        flash[:notice] = "Show deleted!"
-        redirect_to shows_path
-      else
-        render "show"
-      end
+    elsif @show.destroy
+      flash[:notice] = "Show deleted!"
+      redirect_to shows_path and return
     end
+    render show_path(@show)
   end
 
   private

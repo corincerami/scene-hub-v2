@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'date'
 
-feature "User posts a show" do
+feature "User submits a show" do
   it "sees the show on the page" do
     user = create(:user_with_bands)
     visit new_user_session_path
@@ -31,7 +31,7 @@ feature "User posts a show" do
     fill_in "Password", with: user.password
     click_on "Log in"
     visit new_show_path
-
+    select user.bands.first.name, from: "Band"
     click_on "Post show"
 
     expect(page).to have_content "Name can't be blank"

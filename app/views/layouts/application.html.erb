@@ -44,6 +44,13 @@
         </div>
       </div>
     <% end %>
+    <% if flash[:error] %>
+      <div class='row'>
+        <div class='flash-error small-12 medium-4 columns'>
+          <%= flash[:error] %>
+        </div>
+      </div>
+    <% end %>
 
     <%= yield %>
     <%= javascript_include_tag "application" %>
