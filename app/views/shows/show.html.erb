@@ -66,7 +66,8 @@
           <%= comment.body %>
         </div>
         <div>
-          <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %>
+          <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %> |
+          <%= link_to("Delete comment", show_comment_path(@show, comment), method: :delete, data: { confirm: "Are you sure?" }) %>
         </div>
       <% end %>
     </div>

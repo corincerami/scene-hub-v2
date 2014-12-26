@@ -39,6 +39,21 @@ class CommentsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@show = Show.find(params[:show_id])
+		@comment = Comment.find(params[:id])
+		if !correct_user?
+			flash[:error] = "You don't have permission to do that"
+			redirect_to show_path(@show) and return
+		end
+		if @comment.destroy
+			flash[:notice] = "Comment deleted!"
+			redirect_to show_path(@show)
+		else
+			render show_path(@show)
+		end
+	end
+
 	private
 
 	def comment_params
