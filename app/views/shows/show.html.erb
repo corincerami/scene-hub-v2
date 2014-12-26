@@ -40,3 +40,32 @@
     <%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
   </div>
 </div>
+
+<div class='row'>
+  <div class='small-12 medium-4 columns border'>
+    <%= form_for [@show, @comment] do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+
+      <%= f.submit "Submit comment" %>
+    <% end %>
+  </div>
+</div>
+
+<% if !@show.comments.empty? %>
+  <div class='row'>
+    <div class='small-12 medium-8 columns border'>
+      <% @show.comments.each do |comment| %>
+        <div>
+          <%= comment.title %>
+        </div>
+        <div>
+          <%= comment.body %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

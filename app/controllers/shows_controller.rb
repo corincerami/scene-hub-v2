@@ -6,7 +6,7 @@ class ShowsController < ApplicationController
   def index
     @zip_code = params[:zip_code]
     @radius = params[:radius]
-    @radius = 25 if @raidus.nil? || @radius.empty?
+    @radius = 25 if @radius.nil? || @radius.empty?
     if @zip_code
       @shows = Show.joins(:venue).within(@radius.to_i, origin: @zip_code)
     else
@@ -16,6 +16,7 @@ class ShowsController < ApplicationController
 
   def show
     @show = Show.find(params[:id])
+    @comment = Comment.new
   end
 
   def new

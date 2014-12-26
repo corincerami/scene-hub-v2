@@ -47,7 +47,8 @@ FactoryGirl.define do
     details   "A cool show"
     venue
     after(:create) do |show|
-      show.bands << FactoryGirl.create(:band)
+      user = FactoryGirl.create(:user_with_bands)
+      show.bands << user.bands.first
     end
   end
 end
