@@ -54,8 +54,10 @@ FactoryGirl.define do
     after(:create) do |show|
       user = FactoryGirl.create(:user_with_bands)
       show.bands << user.bands.first
-      comment = FactoryGirl.create(:comment)
+      comment = FactoryGirl.build(:comment)
       comment.user_id = user.id
+      comment.show_id = show.id
+      comment.save
       show.comments << comment
     end
   end

@@ -59,8 +59,7 @@ class ShowsController < ApplicationController
     gig.update(band_id: params[:user][:bands])
     @venue = @show.venue
     @venue.update(venue_params)
-    @show.update(show_params)
-    if @show.save
+    if @show.update(show_params)
       flash[:notice] = "Show updated!"
       redirect_to show_path(@show)
     else
