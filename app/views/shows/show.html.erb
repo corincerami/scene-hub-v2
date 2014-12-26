@@ -60,6 +60,7 @@
 <% if !@show.comments.empty? %>
   <div class='row'>
     <div class='small-12 medium-8 columns border'>
+    <h4>Comments</h4>
       <% @show.comments.each do |comment| %>
         <div>
           <%= comment.title %>
@@ -67,12 +68,16 @@
         <div>
           <%= comment.body %>
         </div>
+        <div>
+          Posted by: <%= comment.user.email %> at <%= comment.created_at %>
+        </div>
         <% if current_user == comment.user %>
           <div>
             <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %> |
             <%= link_to("Delete comment", show_comment_path(@show, comment), method: :delete, data: { confirm: "Are you sure?" }) %>
           </div>
         <% end %>
+        ____________________________
       <% end %>
     </div>
   </div>

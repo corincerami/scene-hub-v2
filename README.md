@@ -68,5 +68,3 @@
   I want to be able to view a band's profile
   So that I can follow what they're doing
 
-Bugs list
-- Currently if a user tries to create a band on another user's profile it allows them to, although the band still belongs to the signed in user. Instead it should not show that link on other users' profiles.
