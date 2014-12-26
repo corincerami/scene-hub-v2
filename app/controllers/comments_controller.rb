@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+	def new
+	end
+
 	def create
 		@show = Show.find(params[:show_id])
 		@comment = Comment.create(comment_params)
@@ -6,7 +9,7 @@ class CommentsController < ApplicationController
 			flash[:notice] = "Comment posted!"
 			redirect_to show_path(@show)
 		else
-			render show_path(@show)
+			render "new"
 		end
 	end
 

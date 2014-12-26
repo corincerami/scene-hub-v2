@@ -10,7 +10,7 @@ require 'rails_helper'
 # - [ ] Upon submitting my comment, I should see it on the show page
 
 feature "User submits a comment" do
-	it "appears on the show page" do
+	it "posts a comment with a title and body" do
 		show = create(:show)
 		user = show.bands.first.user
 		band = show.bands.first
@@ -28,5 +28,21 @@ feature "User submits a comment" do
 		expect(page).to have_content "Comment posted!"
 		expect(page).to have_content "Comment title"
 		expect(page).to have_content "This is a comment"
+	end
+
+	it "doesn't provide a body" do
+		show = create(:show)
+		user = show.bands.first.user
+		band = show.bands.first
+
+	    visit new_user_session_path
+	    fill_in "Emai", with: user.email
+	    fill_in "Password", with: user.password
+	    click_on "Log in"
+
+	    visit show_path(show)
+	    click_on "Submit comment"
+
+	    expect(page).to have_content "Body can't be blank"
 	end
 end

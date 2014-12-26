@@ -1,0 +1,21 @@
+<% if @comment.errors.any? %>
+	<% @comment.errors.full_messages.each do |msg| %>
+		<div>
+			<%= msg %>
+		</div>
+	<% end %>
+<% end %>
+
+<div class='row'>
+  <div class='small-12 medium-4 columns border'>
+    <%= form_for [@show, @comment] do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+
+      <%= f.submit "Submit comment" %>
+    <% end %>
+  </div>
+</div>
