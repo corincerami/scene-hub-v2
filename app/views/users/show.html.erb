@@ -1,13 +1,19 @@
 <div class='row'>
-  <div class='small-12 medium-4 columns border'>
+  <div class='small-12 medium-6 columns border'>
     <%= @user.email %>
     <% if @user.bands %>
       <% @user.bands.each do |band| %>
         <div><%= band.name %></div>
       <% end %>
     <% end %>
-    <div>
-      <%= link_to("Add a band", new_band_path) %>
-    </div>
+    <% if current_user == @user %>
+      <div>
+        <%= link_to("Add a band", new_band_path) %>
+      </div>
+    <% end %>
+  </div>
+  <div class='small-12 medium-3 columns border'>
+    <p>Is your band performing soon? Looking to spread the word?</p>
+    <%= link_to("Post about an upcoming show!", new_show_path) %>
   </div>
 </div>
