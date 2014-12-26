@@ -65,6 +65,9 @@
         <div>
           <%= comment.body %>
         </div>
+        <div>
+          <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %>
+        </div>
       <% end %>
     </div>
   </div>

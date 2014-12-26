@@ -8,6 +8,11 @@ FactoryGirl.define do
     user
   end
 
+  factory :comment do
+    sequence(:title) { |n| "#{n}comment" }
+    sequence(:body) { |n| "#{n}body" }
+  end
+
   factory :user do
     sequence(:email) { |n| "#{n}user@example.com" }
     password "password123"
@@ -49,6 +54,8 @@ FactoryGirl.define do
     after(:create) do |show|
       user = FactoryGirl.create(:user_with_bands)
       show.bands << user.bands.first
+      comment = FactoryGirl.create(:comment)
+      show.comments << comment
     end
   end
 end
