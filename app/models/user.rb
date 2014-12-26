@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
          :lockable
 
   has_many :bands
+  has_many :comments
 end

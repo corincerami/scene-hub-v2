@@ -16,11 +16,19 @@ class CommentsController < ApplicationController
 	def edit
 		@show = Show.find(params[:show_id])
 		@comment = Comment.find(params[:id])
+		if !correct_user?
+			flash[:error] = "You don't have permission to do that"
+			redirect_to show_path(@show)
+		end
 	end
 
 	def update
 		@show = Show.find(params[:show_id])
 		@comment = Comment.find(params[:id])
+		if !correct_user?
+			flash[:error] = "You don't have permission to do that"
+			redirect_to show_path(@show)
+		end
 		@comment.update(comment_params)
 		if @comment.save
 			flash[:notice] = 'Comment updated!'
@@ -37,4 +45,9 @@ class CommentsController < ApplicationController
 		comment_params[:show_id] = params[:show_id]
 		comment_params
 	end
+
+	def correct_user?
+    @comment = Comment.find(params[:id])
+    current_user == @comment.user
+  end
 end

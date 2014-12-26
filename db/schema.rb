@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141226011938) do
     t.string   "title"
     t.text     "body",       null: false
     t.integer  "show_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
