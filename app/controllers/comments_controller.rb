@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+	
 	def new
 	end
 
@@ -29,8 +31,7 @@ class CommentsController < ApplicationController
 			flash[:error] = "You don't have permission to do that"
 			redirect_to show_path(@show)
 		end
-		@comment.update(comment_params)
-		if @comment.save
+		if @comment.update(comment_params)
 			flash[:notice] = 'Comment updated!'
 			redirect_to show_path(@show)
 		else
@@ -43,6 +44,7 @@ class CommentsController < ApplicationController
 	def comment_params
 		comment_params = params.require(:comment).permit(:body, :title)
 		comment_params[:show_id] = params[:show_id]
+		comment_params[:user_id] = current_user.id
 		comment_params
 	end
 

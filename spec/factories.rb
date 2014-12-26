@@ -55,6 +55,7 @@ FactoryGirl.define do
       user = FactoryGirl.create(:user_with_bands)
       show.bands << user.bands.first
       comment = FactoryGirl.create(:comment)
+      comment.user_id = user.id
       show.comments << comment
     end
   end

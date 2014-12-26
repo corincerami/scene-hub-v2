@@ -17,7 +17,7 @@ feature "User submits a comment" do
 
 	    visit new_user_session_path
 	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: user.password
+	    fill_in "Password", with: "password123"
 	    click_on "Log in"
 
 	    visit show_path(show)
@@ -37,7 +37,7 @@ feature "User submits a comment" do
 
 	    visit new_user_session_path
 	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: user.password
+	    fill_in "Password", with: "password123"
 	    click_on "Log in"
 
 	    visit show_path(show)
