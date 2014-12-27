@@ -8,9 +8,9 @@ class ShowsController < ApplicationController
     @radius = params[:radius]
     @radius = 25 if @radius.nil? || @radius.empty?
     if @zip_code
-      @shows = Show.joins(:venue).within(@radius.to_i, origin: @zip_code)
+      @shows = Show.joins(:venue).within(@radius.to_i, origin: @zip_code).where("show_date > ?", DateTime.now)
     else
-      @shows = Show.all
+      @shows = Show.where("show_date > ?", DateTime.now)
     end
   end
 

@@ -52,9 +52,9 @@
   So I can communicate with other people who are going
 
 #### Acceptance Criteria
-- [ ] Clicking on the comment button should take me to a comments form
-- [ ] Comments should have a body and an optional title
-- [ ] Upon submitting my comment, I should see it on the show page
+- [x] Clicking on the comment button should take me to a comments form
+- [x] Comments should have a body and an optional title
+- [x] Upon submitting my comment, I should see it on the show page
 
 ### As a User
   I want to search for shows based on genre
@@ -68,3 +68,10 @@
   I want to be able to view a band's profile
   So that I can follow what they're doing
 
+### As a user
+  I want to be able to upload photos of shows I've been to/performed at
+  So other users can check them out
+
+### As a user
+  I want to be able to add favorite bands to my profile
+  So I can more easily follow them and share my tastes with friends

@@ -58,6 +58,11 @@ h2 {
   color: #FF389C
 }
 
+h3 {
+  font-style: italic;
+  color: #FF389C
+}
+
 body {
   background-image: url("/assets/marissa.jpg");
   background-repeat:repeat;
