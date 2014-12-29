@@ -1,14 +1,17 @@
 class BandPostsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
+	def new
+	end
+
 	def create
 		@band = Band.find(params[:band_id])
-		@post = BandPost.new(band_posts_params)
-		if @post.save
+		@band_post = BandPost.new(band_posts_params)
+		if @band_post.save
 			flash[:notice] = "Status update posted!"
 			redirect_to band_path(@band)
 		else
-			render band_path(@band)
+			render "new"
 		end
 	end
 

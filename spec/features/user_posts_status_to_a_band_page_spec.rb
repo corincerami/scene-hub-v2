@@ -34,4 +34,20 @@ feature "User posts a status update to their band's profile" do
 		expect(page).to have_content "And...we broke up"
 		expect(post_2).to appear_before(post_1)
 	end
+
+	it "posts without a title/content are not saved" do
+		user = create(:user_with_bands)
+		band = user.bands.first
+
+		visit new_user_session_path
+		fill_in "Email",    with: user.email
+		fill_in "Password", with: user.password
+		click_on "Log in"
+
+		visit band_path(band)
+		click_on "Post status update"
+
+		expect(page).to have_content "Title can't be blank"
+		expect(page).to have_content "Content can't be blank"
+	end
 end

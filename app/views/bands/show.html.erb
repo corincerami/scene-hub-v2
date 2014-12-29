@@ -1,21 +1,37 @@
-<%= form_for [@band, @band_post] do |f| %>
+<div class='row'>
+	<div class='small-12 medium-4 columns border'>
+		<%= form_for [@band, @band_post] do |f| %>
 
-	<%= f.label :title %>
-	<%= f.text_field :title %>
+			<%= f.label :title %>
+			<%= f.text_field :title %>
 
-	<%= f.label :content %>
-	<%= f.text_field :content %>
+			<%= f.label :content %>
+			<%= f.text_field :content %>
 
-	<%= f.submit "Post status update" %>
-<% end %>
+			<%= f.submit "Post status update" %>
+		<% end %>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='small-12 medium-6 columns'>
+		<h3>Band News:</h3>
+	</div>
+</div>
+
 
 <% if @band.band_posts %>
 	<% @band.band_posts.sort_by { |post| post.created_at }.reverse.each do |post| %>
-		<div>
-			<%= post.title %>
-		</div>
-		<div>
-			<%= post.content %>
+		<div class='row'>
+			<div class='small-12 medium-6 columns border'>	
+				<div>
+					<%= post.title %>
+				</div>
+				________________________________
+				<div>
+					<%= post.content %>
+				</div>
+			</div>
 		</div>
 	<% end %>
 <% end %>

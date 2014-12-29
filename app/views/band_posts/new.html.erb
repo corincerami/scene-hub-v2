@@ -1,0 +1,24 @@
+<% if @band_post.errors.any? %>
+	<% @band_post.errors.full_messages.each do |msg| %>
+		<div class='row'>
+			<div class='flash-error small-12 medium-3 columns'>
+				<%= msg %>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<div class='row'>
+	<div class='small-12 medium-4 columns border'>
+		<%= form_for [@band, @band_post] do |f| %>
+
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+
+			<%= f.label :content %>
+			<%= f.text_field :content %>
+
+			<%= f.submit "Post status update" %>
+		<% end %>
+	</div>
+</div>
