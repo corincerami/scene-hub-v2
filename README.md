@@ -61,8 +61,14 @@
   So I can find bands that fit my style
 
 ### As a musician
-  I want to post status alerts to my profile
+  I want to post status alerts to my band profile
   So that I can share news with my fans
+
+#### Acceptance Criteria
+- [ ] Visiting the band show page should have a form for updates
+- [ ] Posts should appear on the band profile, newest first
+- [ ] Only the user who created the band can post to the profile
+- [ ] An invalid form should render the band page and flash an error
 
 ### As a fan
   I want to be able to view a band's profile

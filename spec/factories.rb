@@ -48,7 +48,7 @@ FactoryGirl.define do
   end
 
   factory :show do
-    show_date DateTime.now
+    show_date "2100-02-03T04:05:06+07:00"
     details   "A cool show"
     venue
     after(:create) do |show|

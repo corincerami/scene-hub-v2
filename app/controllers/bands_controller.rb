@@ -1,13 +1,15 @@
 class BandsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
+  def show
+  end
+
   def new
     @band = Band.new
   end
 
   def create
     @user = User.find(current_user.id)
-    binding.pry
     @band = Band.create(band_params)
     if @band.save
       flash[:notice] = "Band created!"
@@ -22,7 +24,6 @@ class BandsController < ApplicationController
   def band_params
     band_params = params.require(:band).permit(:name)
     band_params[:user_id] = current_user.id
-    binding.pry
     band_params
   end
 end

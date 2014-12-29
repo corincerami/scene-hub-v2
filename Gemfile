@@ -45,6 +45,7 @@ group :development, :test do
   gem 'pry'
   # for capybara js
   gem 'selenium-webdriver'
+  gem 'orderly'
 end
 
 group :production do

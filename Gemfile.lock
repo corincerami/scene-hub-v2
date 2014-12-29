@@ -95,6 +95,7 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    orderly (0.0.2)
     orm_adapter (0.5.0)
     pg (0.17.1)
     pry (0.10.1)
@@ -204,6 +205,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  orderly
   pg
   pry
   rails (= 4.1.8)
