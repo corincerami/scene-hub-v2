@@ -6,6 +6,15 @@ FactoryGirl.define do
   factory :band do
     sequence(:name) { |n| "Screaming Females#{n}" }
     user
+    # after(:create) do |band|  
+    #   band.band_posts << FactoryGirl.create(:band_post)
+    # end
+  end
+
+  factory :band_post do
+    title   "News post"
+    content "News post content"
+    band
   end
 
   factory :comment do

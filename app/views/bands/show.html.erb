@@ -38,6 +38,9 @@
 				<div>
 					<%= post.content %>
 				</div>
+				<div>
+					<%= link_to("Edit status", edit_band_band_post_path(@band, post)) %>
+				</div>
 			</div>
 		</div>
 	<% end %>

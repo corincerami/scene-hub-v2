@@ -5,10 +5,10 @@ require 'rails_helper'
 #   So that I can share news with my fans
 
 # #### Acceptance Criteria
-# - [ ] Visiting the band show page should have a form for updates
-# - [ ] Posts should appear on the band profile, newest first
-# - [ ] Only the user who created the band can post to the profile
-# - [ ] An invalid form should render the band page and flash an error
+# - [x] Visiting the band show page should have a form for updates
+# - [x] Posts should appear on the band profile, newest first
+# - [x] Only the user who created the band can post to the profile
+# - [x] An invalid form should render the band page and flash an error
 
 feature "User posts a status update to their band's profile" do
 	it "valid posts appear on the band page" do
