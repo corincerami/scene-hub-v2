@@ -32,6 +32,6 @@ feature "User posts a status update to their band's profile" do
 
 		expect(page).to have_content "Our new album is out!"
 		expect(page).to have_content "And...we broke up"
-		post_1.should appear_before(post_2)
+		expect(post_2).to appear_before(post_1)
 	end
 end

@@ -9,8 +9,8 @@
 	<%= f.submit "Post status update" %>
 <% end %>
 
-<% if @posts %>
-	<% @posts.each do |post| %>
+<% if @band.band_posts %>
+	<% @band.band_posts.sort_by { |post| post.created_at }.reverse.each do |post| %>
 		<div>
 			<%= post.title %>
 		</div>
