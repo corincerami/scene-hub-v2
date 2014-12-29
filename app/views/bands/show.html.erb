@@ -41,6 +41,9 @@
 				<div>
 					<%= link_to("Edit status", edit_band_band_post_path(@band, post)) %>
 				</div>
+				<div>
+					<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete) %>
+				</div>
 			</div>
 		</div>
 	<% end %>

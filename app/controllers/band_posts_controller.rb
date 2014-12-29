@@ -39,6 +39,21 @@ class BandPostsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@band = Band.find(params[:band_id])
+		@band_post = BandPost.find(params[:id])
+		if !correct_user?
+			flash[:error] = "You don't have permission to do that"
+			redirect_to band_path(@band) and return
+		end
+		if @band_post.destroy
+			flash[:notice] = "Status deleted!"
+			redirect_to band_path(@band)
+		else
+			render "new"
+		end
+	end
+
 	private
 
 	def band_post_params
