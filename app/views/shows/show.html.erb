@@ -3,7 +3,7 @@
     Bands:
     <% @show.bands.each do |band| %>
       <div>
-        <%= band.name %>
+        <%= link_to(band.name, band_path(band)) %>
       </div>
     <% end %>
     <div>
