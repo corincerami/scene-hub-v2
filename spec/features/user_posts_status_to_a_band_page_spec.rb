@@ -22,14 +22,16 @@ feature "User posts a status update to their band's profile" do
 
 		visit band_path(band)
 		post_1 = "Our new album is out!"
-		fill_in "News",     with: post_1
-		click_on "Submit"
+		fill_in "Title",    with: "Album news"
+		fill_in "Content",  with: post_1
+		click_on "Post status update"
 		post_2 = "And...we broke up"
-		fill_in "News",     with: post_2
-		click_on "Submit"
+		fill_in "Title",    with: "Sad news"
+		fill_in "Content",     with: post_2
+		click_on "Post status update"
 
 		expect(page).to have_content "Our new album is out!"
 		expect(page).to have_content "And...we broke up"
-		post_1.appears_before(post_2)
+		post_1.should appear_before(post_2)
 	end
 end

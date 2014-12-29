@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   	resources :comments, only: [:new, :create, :destroy, :edit, :update]
   end
   resources :users, only: [:show]
-  resources :bands
+  resources :bands do
+  	resources :band_posts, only: [:new, :create, :destroy, :edit, :update]
+  end
+  
 end

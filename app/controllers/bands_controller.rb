@@ -2,6 +2,9 @@ class BandsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def show
+    @band = Band.find(params[:id])
+    @band_post = BandPost.new
+    @posts = BandPost.where(band_id: @band.id)
   end
 
   def new

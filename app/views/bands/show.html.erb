@@ -1,0 +1,21 @@
+<%= form_for [@band, @band_post] do |f| %>
+
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+
+	<%= f.label :content %>
+	<%= f.text_field :content %>
+
+	<%= f.submit "Post status update" %>
+<% end %>
+
+<% if @posts %>
+	<% @posts.each do |post| %>
+		<div>
+			<%= post.title %>
+		</div>
+		<div>
+			<%= post.content %>
+		</div>
+	<% end %>
+<% end %>
