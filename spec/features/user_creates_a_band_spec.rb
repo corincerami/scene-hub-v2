@@ -42,5 +42,6 @@ feature "User creates a band on their profile" do
     click_on "Create band"
 
     expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Genres can't be blank"
   end
 end

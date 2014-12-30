@@ -9,17 +9,22 @@ class BandsController < ApplicationController
 
   def new
     @band = Band.new
-    @genre_list = GenreList.new
+    @genres = GenreList.new
   end
 
   def create
     @user = User.find(current_user.id)
-    @band = Band.create(band_params)
+    @band = Band.new(band_params)
     if @band.save
-      @genres = GenreList.create(genre_list_params)
-      flash[:notice] = "Band created!"
-      redirect_to band_path(@band)
+      @genres = GenreList.new(genre_list_params)
+      if @genres.save
+        flash[:notice] = "Band created!"
+        redirect_to band_path(@band)
+      else
+        render "new"
+      end
     else
+      @genres = GenreList.create(genre_list_params)
       render "new"
     end
   end
