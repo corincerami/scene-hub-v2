@@ -21,13 +21,12 @@ feature "User creates a band on their profile" do
     visit user_path(user)
     click_on "Add a band"
     fill_in  "Name", with: "Screaming Females"
-    check "Punk"
-    check "Rock"
+    fill_in "Genres", with: "punk, rock, indie"
     click_on "Create band"
-
     expect(page).to have_content user.bands.first.name
-    expect(page).to have_content "Punk"
-    expect(page).to have_content "Rock"
+    expect(page).to have_content "punk"
+    expect(page).to have_content "rock"
+    expect(page).to have_content "indie"
     expect(page).to have_content "Band created!"
   end
 

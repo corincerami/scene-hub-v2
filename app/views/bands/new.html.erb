@@ -15,14 +15,12 @@
       <%= f.text_field :name %>
 
       <%= fields_for :genre_list do |field| %>
-        <%= field.label :genres, :punk %>
-        <%= field.check_box :genres, {}, :punk %>
-
-        <%= field.label :genres, :rock %>
-        <%= field.check_box :genres, {}, :rock %>
-      <% end %>
+        <%= field.label :genres %>
+        <%= field.text_field :genres %>
+      <% end %> 
 
       <%= f.submit "Create band" %>
     <% end %>
   </div>
 </div>
+
