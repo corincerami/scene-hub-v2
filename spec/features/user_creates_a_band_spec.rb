@@ -5,10 +5,8 @@ require 'rails_helper'
 #   So people can find us more easily
 
 # #### Acceptance Criteria
-# - [ ] When creating a new band I should be given the option to select genres
-# - [ ] On the form, genres should appear as a series of checkboxes
-# - [ ] I must select at least one genre, or as many as I like
-# - [ ] My band's genre should appear on the band's show page
+# - [ ] When creating a new band I must enter at least one genre
+# - [ ] My band's genres should appear on the band's show page
 
 feature "User creates a band on their profile" do
   it "enters valid information" do
@@ -56,7 +54,25 @@ feature "User creates a band on their profile" do
     click_on "Add a band"
     fill_in "Name", with: "Screaming Females"
     click_on "Create band"
-
     expect(page).to have_content "Genres can't be blank"
+
+    visit user_path(user)
+    expect(page).not_to have_content "Screaming Females"
+  end
+
+  it 'enters invalid input for genres' do
+    user = create(:user)
+    visit new_user_session_path
+    fill_in "Emai", with: user.email
+    fill_in "Password", with: user.password
+    click_on "Log in"
+
+    visit user_path(user)
+    click_on "Add a band"
+    fill_in  "Name", with: "Screaming Females"
+    fill_in "Genres", with: "what is a genre?"
+    click_on "Create band"
+
+    expect(page).to have_content "Genres must be entered as a comma separated list"
   end
 end
