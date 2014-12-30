@@ -8,6 +8,10 @@ FactoryGirl.define do
     user
   end
 
+  factory :genre_list do
+    genres ["Punk", "Rock"]
+  end
+
   factory :band_post do
     title   "News post"
     content "News post content"

@@ -1,5 +1,15 @@
 require 'rails_helper'
 
+# ### As a musician
+#   I want to add genres to my band
+#   So people can find us more easily
+
+# #### Acceptance Criteria
+# - [ ] When creating a new band I should be given the option to select genres
+# - [ ] On the form, genres should appear as a series of checkboxes
+# - [ ] I must select at least one genre, or as many as I like
+# - [ ] My band's genre should appear on the band's show page
+
 feature "User creates a band on their profile" do
   it "enters valid information" do
     user = create(:user)
@@ -11,9 +21,13 @@ feature "User creates a band on their profile" do
     visit user_path(user)
     click_on "Add a band"
     fill_in  "Name", with: "Screaming Females"
+    check "Punk"
+    check "Rock"
     click_on "Create band"
 
     expect(page).to have_content user.bands.first.name
+    expect(page).to have_content "Punk"
+    expect(page).to have_content "Rock"
     expect(page).to have_content "Band created!"
   end
 

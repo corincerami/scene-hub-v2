@@ -8,9 +8,11 @@ class BandsController < ApplicationController
 
   def new
     @band = Band.new
+    @genre_list = GenreList.new
   end
 
   def create
+    binding.pry
     @user = User.find(current_user.id)
     @band = Band.create(band_params)
     if @band.save
