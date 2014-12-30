@@ -21,6 +21,7 @@ class BandsController < ApplicationController
         flash[:notice] = "Band created!"
         redirect_to band_path(@band)
       else
+        @band.destroy
         render "new"
       end
     else

@@ -30,7 +30,7 @@ feature "User creates a band on their profile" do
     expect(page).to have_content "Band created!"
   end
 
-  it "enters invalid information" do
+  it "submits a blank form" do
     user = create(:user)
     visit new_user_session_path
     fill_in "Emai", with: user.email
@@ -42,6 +42,21 @@ feature "User creates a band on their profile" do
     click_on "Create band"
 
     expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Genres can't be blank"
+  end
+
+  it "enters a band without genres" do
+    user = create(:user)
+    visit new_user_session_path
+    fill_in "Emai", with: user.email
+    fill_in "Password", with: user.password
+    click_on "Log in"
+
+    visit user_path(user)
+    click_on "Add a band"
+    fill_in "Name", with: "Screaming Females"
+    click_on "Create band"
+
     expect(page).to have_content "Genres can't be blank"
   end
 end
