@@ -5,8 +5,8 @@ require 'rails_helper'
 #   So people can find us more easily
 
 # #### Acceptance Criteria
-# - [ ] When creating a new band I must enter at least one genre
-# - [ ] My band's genres should appear on the band's show page
+# - [x] When creating a new band I must enter at least one genre
+# - [x] My band's genres should appear on the band's show page
 
 feature "User creates a band on their profile" do
   it "enters valid information" do
@@ -21,6 +21,7 @@ feature "User creates a band on their profile" do
     fill_in  "Name", with: "Screaming Females"
     fill_in "Genres", with: "punk, rock, indie"
     click_on "Create band"
+    
     expect(page).to have_content user.bands.first.name
     expect(page).to have_content "punk"
     expect(page).to have_content "rock"

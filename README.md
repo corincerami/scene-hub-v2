@@ -19,6 +19,7 @@
 - [x] Shows must be geocoded in the database
 - [x] Users can search by zip code
 - [x] Users can select a distance radius
+- [x] Users can optionally supply a genre
 - [x] Users can see all shows within the chosen radius
 
 ### As a musician
@@ -71,14 +72,8 @@
   So people can find us more easily
 
 #### Acceptance Criteria
-- [ ] When creating a new band I should be given the option to select genres
-- [ ] On the form, genres should appear as a series of checkboxes
-- [ ] I must select at least one genre, or as many as I like
-- [ ] My band's genre should appear on the band's show page
-
-### As a user
-  I want to search for shows based on genre
-  So I can find bands that fit my style
+- [x] When creating a new band I must enter at least one genre
+- [x] My band's genre should appear on the band's show page
 
 ### As a fan
   I want to be able to view a band's profile

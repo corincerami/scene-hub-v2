@@ -40,6 +40,7 @@ class BandsController < ApplicationController
 
   def genre_list_params
     genres = params.require(:genre_list)[:genres].split(", ")
+    genres.map! { |genre| genre.downcase }
     genre_params = Hash.new
     genre_params[:genres] = genres
     genre_params[:band_id] = @band.id

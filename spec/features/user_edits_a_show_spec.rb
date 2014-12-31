@@ -5,9 +5,9 @@ require 'rails_helper'
 #   So I can keep my fans up to date
 
 # #### Acceptance Criteria
-# - [ ] Clicking on an Edit Show button should bring me to an edit form
-# - [ ] Submitting a valid form should bring me back to the show page
-# - [ ] Submitting an invalid form should re-render the form with an error
+# - [x] Clicking on an Edit Show button should bring me to an edit form
+# - [x] Submitting a valid form should bring me back to the show page
+# - [x] Submitting an invalid form should re-render the form with an error
 
 feature "User edits a show" do
   it "fills in valid information" do
