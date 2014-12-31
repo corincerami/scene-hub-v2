@@ -3,7 +3,7 @@
     <%= @user.email %>
     <% if @user.bands %>
       <% @user.bands.each do |band| %>
-        <div><%= band.name %></div>
+        <div><%= link_to band.name, band_path(band) %></div>
       <% end %>
     <% end %>
     <% if current_user == @user %>

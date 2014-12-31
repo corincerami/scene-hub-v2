@@ -5,9 +5,9 @@ require 'rails_helper'
 #   So I can communicate with other people who are going
 
 # #### Acceptance Criteria
-# - [ ] Clicking on the comment button should take me to a comments form
-# - [ ] Comments should have a body and an optional title
-# - [ ] Upon submitting my comment, I should see it on the show page
+# - [x] Clicking on the comment button should take me to a comments form
+# - [x] Comments should have a body and an optional title
+# - [x] Upon submitting my comment, I should see it on the show page
 
 feature "User submits a comment" do
 	it "posts a comment with a title and body" do

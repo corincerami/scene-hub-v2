@@ -6,6 +6,13 @@ FactoryGirl.define do
   factory :band do
     sequence(:name) { |n| "Screaming Females#{n}" }
     user
+    after(:create) do |band|
+      band.genre_list = FactoryGirl.build(:genre_list)
+    end
+  end
+
+  factory :genre_list do
+    genres ["Punk", "Rock"]
   end
 
   factory :band_post do

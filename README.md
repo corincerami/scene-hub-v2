@@ -19,6 +19,7 @@
 - [x] Shows must be geocoded in the database
 - [x] Users can search by zip code
 - [x] Users can select a distance radius
+- [x] Users can optionally supply a genre
 - [x] Users can see all shows within the chosen radius
 
 ### As a musician
@@ -56,19 +57,23 @@
 - [x] Comments should have a body and an optional title
 - [x] Upon submitting my comment, I should see it on the show page
 
-### As a User
-  I want to search for shows based on genre
-  So I can find bands that fit my style
-
 ### As a musician
   I want to post status alerts to my band profile
   So that I can share news with my fans
 
 #### Acceptance Criteria
-- [ ] Visiting the band show page should have a form for updates
-- [ ] Posts should appear on the band profile, newest first
-- [ ] Only the user who created the band can post to the profile
-- [ ] An invalid form should render the band page and flash an error
+- [x] Visiting the band show page should have a form for updates
+- [x] Posts should appear on the band profile, newest first
+- [x] Only the user who created the band can post to the profile
+- [x] An invalid form should render the band page and flash an error
+
+### As a musician
+  I want to add genres to my band
+  So people can find us more easily
+
+#### Acceptance Criteria
+- [x] When creating a new band I must enter at least one genre
+- [x] My band's genre should appear on the band's show page
 
 ### As a fan
   I want to be able to view a band's profile

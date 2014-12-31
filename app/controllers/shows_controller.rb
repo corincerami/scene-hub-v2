@@ -7,8 +7,14 @@ class ShowsController < ApplicationController
     @zip_code = params[:zip_code]
     @radius = params[:radius]
     @radius = 25 if @radius.nil? || @radius.empty?
+    @genre = params[:genre]
     if @zip_code
-      @shows = Show.joins(:venue).within(@radius.to_i, origin: @zip_code).where("show_date > ?", DateTime.now)
+      # only return shows whose venue is within range of the zip code
+      @shows = Show.joins(:venue).joins(:bands).within(@radius.to_i, origin: @zip_code).where("show_date > ?", DateTime.now)
+      if !@genre.empty? && !@genre.nil?
+        # only return shows whose bands match the supplied genre
+        @shows.to_a.select! {|show| show.bands.first.genre_list.genres.include?(@genre)}
+      end
     else
       @shows = Show.where("show_date > ?", DateTime.now)
     end
@@ -87,7 +93,8 @@ class ShowsController < ApplicationController
   end
 
   def venue_params
-    venue_params = params.require(:venue).permit(:name, :street_1, :street_2, :city, :state, :zip_code, :details)
+    venue_params = params.require(:venue).permit(:name, :street_1, :street_2, 
+                                                 :city, :state, :zip_code, :details)
     address = "#{params[:venue][:street_1]}, #{params[:venue][:city]}, #{params[:venue][:state]}"
     loc = MultiGeocoder.geocode(address)
     if loc.success
