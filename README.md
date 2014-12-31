@@ -75,13 +75,13 @@
 - [x] When creating a new band I must enter at least one genre
 - [x] My band's genre should appear on the band's show page
 
-### As a fan
-  I want to be able to view a band's profile
-  So that I can follow what they're doing
-
 ### As a user
   I want to be able to upload photos of shows I've been to/performed at
   So other users can check them out
+
+### As a fan
+  I want to be able to view a band's profile
+  So that I can follow what they're doing
 
 ### As a user
   I want to be able to add favorite bands to my profile

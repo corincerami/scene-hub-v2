@@ -13,6 +13,8 @@ gem 'geokit-rails'
 # gem for authentication
 gem 'devise'
 gem 'foundation-rails'
+# paperclip for image upoad
+gem 'paperclip'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use SCSS for stylesheets
