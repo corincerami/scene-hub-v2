@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :bands do
   	resources :band_posts, only: [:new, :create, :destroy, :edit, :update]
+    resources :photos, only: [:new, :create]
   end
   
 end

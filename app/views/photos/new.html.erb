@@ -1,0 +1,5 @@
+<%= form_for [@band, @photo] do |f| %>
+  <%= f.file_field :image %>
+
+  <%= f.submit "Submit Photo" %>
+<% end %>

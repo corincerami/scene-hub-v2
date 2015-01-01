@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pezcore343/scene-hub-v2.svg?branch=master)](https://travis-ci.org/pezcore343/scene-hub-v2)[![Coverage Status](https://coveralls.io/repos/pezcore343/scene-hub-v2/badge.png)](https://coveralls.io/r/pezcore343/scene-hub-v2)
+
 ## User Stories
 
 ### As a musician

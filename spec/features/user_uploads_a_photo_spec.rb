@@ -1,0 +1,17 @@
+require "rails_helper"
+
+feature "User uploads a photo for their band" do
+  it "shows the photo on the band's profile" do
+    user = create(:user_with_bands)
+    band = user.bands.first
+
+    visit band_path(band)
+
+    click_on "Upload photo"
+    attach_file("photo_image", "app/assets/images/marissa.jpg")
+    click_on "Submit Photo"
+
+    expect(page).to have_content "Photo uploaded"
+    page.find('#band-photo')['src'].should have_content 'marissa.jpg'
+  end
+end
