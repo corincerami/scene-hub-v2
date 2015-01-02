@@ -15,13 +15,10 @@ feature "User submits a comment" do
 		user = show.bands.first.user
 		band = show.bands.first
 
-	    visit new_user_session_path
-	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: "password123"
-	    click_on "Log in"
+    sign_in(user)
 
-	    visit show_path(show)
-	    fill_in "Title", with: "Comment title"
+    visit show_path(show)
+    fill_in "Title", with: "Comment title"
 		fill_in "Body", with: "This is a comment."
 		click_on "Submit comment"
 
@@ -35,14 +32,11 @@ feature "User submits a comment" do
 		user = show.bands.first.user
 		band = show.bands.first
 
-	    visit new_user_session_path
-	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: "password123"
-	    click_on "Log in"
+    sign_in(user)
 
-	    visit show_path(show)
-	    click_on "Submit comment"
+    visit show_path(show)
+    click_on "Submit comment"
 
-	    expect(page).to have_content "Body can't be blank"
+    expect(page).to have_content "Body can't be blank"
 	end
 end

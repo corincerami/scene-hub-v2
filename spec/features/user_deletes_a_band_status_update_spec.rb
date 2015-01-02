@@ -7,10 +7,7 @@ feature "User deletes a band status update" do
 		band.band_posts << create(:band_post)
 		post = band.band_posts.first
 
-		visit new_user_session_path
-		fill_in "Email",    with: user.email
-		fill_in "Password", with: user.password
-		click_on "Log in"
+		sign_in(user)
 
 		visit band_path(band)
 		click_on "Delete status"
@@ -18,5 +15,20 @@ feature "User deletes a band status update" do
 		expect(page).to have_content "Status deleted!"
 		expect(page).not_to have_content post.title
 		expect(page).not_to have_content post.content
+	end
+
+	it "attempts to delete a post from a band it didn't create" do
+		user = create(:user_with_bands)
+		user_2 = create(:user)
+		band = user.bands.first
+		band.band_posts << create(:band_post)
+		post = band.band_posts.first
+
+		sign_in(user_2)
+
+		visit band_path(band)
+		click_on "Delete status"
+
+		expect(page).to have_content "You don't have permission to do that"
 	end
 end

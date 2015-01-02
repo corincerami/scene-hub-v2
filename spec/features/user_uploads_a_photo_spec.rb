@@ -5,6 +5,8 @@ feature "User uploads a photo for their band" do
     user = create(:user_with_bands)
     band = user.bands.first
 
+    sign_in(user)
+
     visit band_path(band)
 
     click_on "Upload photo"
@@ -19,6 +21,8 @@ feature "User uploads a photo for their band" do
     user = create(:user_with_bands)
     band = user.bands.first
 
+    sign_in(user)
+
     visit band_path(band)
 
     click_on "Upload photo"
@@ -31,6 +35,8 @@ feature "User uploads a photo for their band" do
     user = create(:user_with_bands)
     band = user.bands.first
 
+    sign_in(user)
+
     visit band_path(band)
 
     click_on "Upload photo"
@@ -38,5 +44,31 @@ feature "User uploads a photo for their band" do
     click_on "Submit Photo"
 
     expect(page).to have_content "Image content type is invalid"
+  end
+
+  it "attempts to upload a photo without signing in" do
+    user = create(:user_with_bands)
+    band = user.bands.first
+
+    visit band_path(band)
+
+    click_on "Upload photo"
+
+    expect(page).to have_content "You need to sign in or sign up before continuing"
+    expect(page).not_to have_content "Submit Photo"
+  end
+
+  it "attempts to delete a photo for a band the user didn't create" do 
+    user = create(:user_with_bands)
+    user_2 = create(:user)
+    band = user.bands.first
+
+    sign_in(user_2)
+
+    visit band_path(band)
+
+    click_on "Upload photo"
+
+    expect(page).to have_content "You don't have permission to do that"
   end
 end

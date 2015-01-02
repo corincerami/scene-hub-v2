@@ -6,10 +6,7 @@ feature "User edits a band status update" do
 		band = user.bands.first
 		band.band_posts << create(:band_post)
 
-		visit new_user_session_path
-		fill_in "Email",    with: user.email
-		fill_in "Password", with: user.password
-		click_on "Log in"
+		sign_in(user)
 
 		visit band_path(band)
 		click_on "Edit status"
@@ -27,10 +24,7 @@ feature "User edits a band status update" do
 		band = user.bands.first
 		band.band_posts << create(:band_post)
 
-		visit new_user_session_path
-		fill_in "Email",    with: user.email
-		fill_in "Password", with: user.password
-		click_on "Log in"
+		sign_in(user)
 
 		visit band_path(band)
 		click_on "Edit status"

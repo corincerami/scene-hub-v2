@@ -7,15 +7,12 @@ feature "User edits a comment" do
 		band = show.bands.first
 		comment = show.comments.first
 
-	    visit new_user_session_path
-	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: "password123"
-	    click_on "Log in"
+    sign_in(user)
 
-	    visit show_path(show)
-	    click_on "Edit comment"
-	    fill_in "Title", with: "New title"
-	    fill_in "Body", with: "New body"
+    visit show_path(show)
+    click_on "Edit comment"
+    fill_in "Title", with: "New title"
+    fill_in "Body", with: "New body"
 		click_on "Submit comment"
 
 		expect(page).to have_content "Comment updated!"
@@ -29,14 +26,11 @@ feature "User edits a comment" do
 		band = show.bands.first
 		comment = show.comments.first
 
-	    visit new_user_session_path
-	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: "password123"
-	    click_on "Log in"
+    sign_in(user)
 
-	    visit show_path(show)
-	    click_on "Edit comment"
-	    fill_in "Body", with: ""
+    visit show_path(show)
+    click_on "Edit comment"
+    fill_in "Body", with: ""
 		click_on "Submit comment"
 
 		expect(page).to have_content "Body can't be blank"
