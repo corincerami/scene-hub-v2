@@ -1,6 +1,14 @@
 <div class='row'>
 	<div class='small-12 medium-6 columns border'>
 		<div><h4><%= @band.name %></h4></div>
+		<% @band.photos.each do |photo| %>
+			<div>
+				<%= image_tag photo.image.url(:thumb), id: "band-photo" %>
+			</div>
+			<div>
+				<%= link_to("Delete photo", photo_path(photo), method: :delete, confirm: true) %>
+			</div>
+		<% end %>
 		Genres:
 		<% @genre_list.genres.each do |genre| %>
 			<div><%= genre %></div>
@@ -8,6 +16,8 @@
 		</div>
 	</div>
 </div>
+
+<%= link_to("Upload photo", new_band_photo_path(@band)) %>
 
 <% if current_user == @band.user %>
 	<div class='row'>

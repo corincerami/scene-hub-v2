@@ -11,10 +11,8 @@ require 'rails_helper'
 feature "User creates a band on their profile" do
   it "enters valid information" do
     user = create(:user)
-    visit new_user_session_path
-    fill_in "Emai", with: user.email
-    fill_in "Password", with: user.password
-    click_on "Log in"
+    
+    sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"
@@ -31,10 +29,8 @@ feature "User creates a band on their profile" do
 
   it "submits a blank form" do
     user = create(:user)
-    visit new_user_session_path
-    fill_in "Emai", with: user.email
-    fill_in "Password", with: user.password
-    click_on "Log in"
+    
+    sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"
@@ -46,10 +42,8 @@ feature "User creates a band on their profile" do
 
   it "enters a band without genres" do
     user = create(:user)
-    visit new_user_session_path
-    fill_in "Emai", with: user.email
-    fill_in "Password", with: user.password
-    click_on "Log in"
+    
+    sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"
@@ -63,10 +57,8 @@ feature "User creates a band on their profile" do
 
   it 'enters invalid input for genres' do
     user = create(:user)
-    visit new_user_session_path
-    fill_in "Emai", with: user.email
-    fill_in "Password", with: user.password
-    click_on "Log in"
+    
+    sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"

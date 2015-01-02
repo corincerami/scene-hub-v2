@@ -37,17 +37,10 @@
       </div>
     </div>
 
-    <% if flash[:notice] %>
-      <div class='row'>
-        <div class='flash-notice small-12 medium-4 columns'>
-          <%= flash[:notice] %>
-        </div>
-      </div>
-    <% end %>
-    <% if flash[:error] %>
-      <div class='row'>
-        <div class='flash-error small-12 medium-4 columns'>
-          <%= flash[:error] %>
+    <% flash.each do |key, value| %>
+      <div class="row">
+        <div class=" small-12 medium-4 columns flash flash-<%= key %>">
+          <%= value %>
         </div>
       </div>
     <% end %>

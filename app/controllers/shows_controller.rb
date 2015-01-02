@@ -105,7 +105,6 @@ class ShowsController < ApplicationController
   end
 
   def correct_user?
-    @show = Show.find(params[:id])
     current_user == @show.bands.first.user
   end
 end
