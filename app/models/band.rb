@@ -4,6 +4,8 @@ class Band < ActiveRecord::Base
 
   has_many :band_posts
 
+  has_many :photos
+
   has_one :genre_list
 
   validates :name, presence: true

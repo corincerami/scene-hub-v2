@@ -11,6 +11,8 @@ gem 'geokit-rails'
 # gem for authentication
 gem 'devise'
 gem 'foundation-rails'
+# paperclip for image upoad
+gem 'paperclip'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use SCSS for stylesheets
@@ -44,6 +46,10 @@ group :development, :test do
   # for capybara js
   gem 'selenium-webdriver'
   gem 'orderly'
+end
+
+group :test do
+  gem 'coveralls', require: false
 end
 
 group :production do

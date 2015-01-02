@@ -9,15 +9,12 @@ feature "User delete a comment" do
 		title = comment.title
 		body = comment.body
 
-	    visit new_user_session_path
-	    fill_in "Emai", with: user.email
-	    fill_in "Password", with: "password123"
-	    click_on "Log in"
+	  sign_in(user)
 
-	    visit show_path(show)
-	    click_on "Delete comment"
-	    expect(page).to have_content "Comment deleted"
-	    expect(page).not_to have_content title
-	    expect(page).not_to have_content body
+	  visit show_path(show)
+	  click_on "Delete comment"
+	  expect(page).to have_content "Comment deleted"
+	  expect(page).not_to have_content title
+	  expect(page).not_to have_content body
 	end
 end

@@ -4,10 +4,8 @@ require 'date'
 feature "User submits a show" do
   it "sees the show on the page" do
     user = create(:user_with_bands)
-    visit new_user_session_path
-    fill_in "Emai", with: user.email
-    fill_in "Password", with: user.password
-    click_on "Log in"
+    sign_in(user)
+
     visit new_show_path
     select  user.bands.first.name, from: "Band"
     fill_in "Venue name", with: "Great Scott"
@@ -26,10 +24,8 @@ feature "User submits a show" do
 
   it "submits a blank form" do
     user = create(:user_with_bands)
-    visit new_user_session_path
-    fill_in "Emai", with: user.email
-    fill_in "Password", with: user.password
-    click_on "Log in"
+    sign_in(user)
+    
     visit new_show_path
     select user.bands.first.name, from: "Band"
     click_on "Post show"

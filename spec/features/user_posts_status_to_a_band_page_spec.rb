@@ -15,10 +15,7 @@ feature "User posts a status update to their band's profile" do
 		user = create(:user_with_bands)
 		band = user.bands.first
 
-		visit new_user_session_path
-		fill_in "Email",    with: user.email
-		fill_in "Password", with: user.password
-		click_on "Log in"
+		sign_in(user)
 
 		visit band_path(band)
 		post_1 = "Our new album is out!"
@@ -39,10 +36,7 @@ feature "User posts a status update to their band's profile" do
 		user = create(:user_with_bands)
 		band = user.bands.first
 
-		visit new_user_session_path
-		fill_in "Email",    with: user.email
-		fill_in "Password", with: user.password
-		click_on "Log in"
+		sign_in(user)
 
 		visit band_path(band)
 		click_on "Post status update"

@@ -1,0 +1,20 @@
+<% if @photo.errors.any? %>
+  <div class="row">
+    <div class="small-12 medium-3 columns">
+    <% @photo.errors.full_messages.each do |msg| %>
+      <div class='flash flash-error'>
+        <%= msg %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="border small-12 medium-9 large-6 columns">
+    <%= form_for [@band, @photo] do |f| %>
+      <%= f.file_field :image %>
+
+      <%= f.submit "Submit Photo" %>
+    <% end %>
+  </div>
+</div>
