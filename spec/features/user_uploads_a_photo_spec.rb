@@ -12,6 +12,18 @@ feature "User uploads a photo for their band" do
     click_on "Submit Photo"
 
     expect(page).to have_content "Photo uploaded"
-    page.find('#band-photo')['src'].should have_content 'marissa.jpg'
+    expect(page.find('#band-photo')['src']).to have_content 'marissa.jpg'
+  end
+
+  it "doesn't select a file to submit" do
+    user = create(:user_with_bands)
+    band = user.bands.first
+
+    visit band_path(band)
+
+    click_on "Upload photo"
+    click_on "Submit Photo"
+
+    expect(page).to have_content "Image file name can't be blank"
   end
 end

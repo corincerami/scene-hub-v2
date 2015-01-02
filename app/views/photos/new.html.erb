@@ -1,3 +1,11 @@
+<% if @photo.errors.any? %>
+  <% @photo.errors.full_messages.each do |msg| %>
+    <div class='flash-error'>
+      <%= msg %>
+    </div>
+  <% end %>
+<% end %>
+
 <%= form_for [@band, @photo] do |f| %>
   <%= f.file_field :image %>
 
