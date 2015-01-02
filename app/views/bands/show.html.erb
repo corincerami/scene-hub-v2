@@ -5,6 +5,9 @@
 			<div>
 				<%= image_tag photo.image.url(:thumb), id: "band-photo" %>
 			</div>
+			<div>
+				<%= link_to("Delete photo", photo_path(photo), method: :delete, confirm: true) %>
+			</div>
 		<% end %>
 		Genres:
 		<% @genre_list.genres.each do |genre| %>

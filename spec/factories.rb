@@ -74,4 +74,12 @@ FactoryGirl.define do
       show.comments << comment
     end
   end
+
+  factory :photo do
+    image_file_name    "photo.jpg"
+    image_content_type "image/jpeg"
+    image_file_size    "30000"
+    image_updated_at   DateTime.now
+    band
+  end
 end
