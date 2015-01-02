@@ -26,4 +26,17 @@ feature "User uploads a photo for their band" do
 
     expect(page).to have_content "Image file name can't be blank"
   end
+
+  it "selects a file of an invalid format" do
+    user = create(:user_with_bands)
+    band = user.bands.first
+
+    visit band_path(band)
+
+    click_on "Upload photo"
+    attach_file("photo_image", "README.md")
+    click_on "Submit Photo"
+
+    expect(page).to have_content "Image content type is invalid"
+  end
 end
