@@ -63,12 +63,14 @@
 				<div>
 					<%= post.content %>
 				</div>
-				<div>
-					<%= link_to("Edit status", edit_band_band_post_path(@band, post)) %>
-				</div>
-				<div>
-					<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete, data: { confirm: "Are you sure?" }) %>
-				</div>
+				<% if current_user == @band.user %>
+					<div>
+						<%= link_to("Edit status", edit_band_band_post_path(@band, post)) %>
+					</div>
+					<div>
+						<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete, data: { confirm: "Are you sure?" }) %>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	<% end %>
