@@ -34,6 +34,14 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :access_key_id  => ENV["AWS_TEST_ACCESS_KEY_ID"],
+      :secret_access_key => ENV["AWS_TEST_SECRET_ACCESS_KEY"],
+        :bucket => ENV["AWS_TEST_BUCKET"]
+      }
+    }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
