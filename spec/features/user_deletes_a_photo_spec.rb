@@ -25,8 +25,6 @@ feature "User deletes a photo" do
 
     visit band_path(band)
 
-    click_on "Delete photo"
-
-    expect(page).to have_content "You don't have permission to do that"
+    expect(page).not_to have_content "Delete photo"
   end
 end

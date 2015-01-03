@@ -1,0 +1,35 @@
+<% if @genres.errors.any? %>
+  <div class='row'>
+    <div class='small-12 medium-3 columns flash-error'>
+      <% @genres.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @band.errors.any? %>
+  <div class='row'>
+    <div class='small-12 medium-3 columns flash-error'>
+      <% @band.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class='row'>
+<div class='small-12 medium-4 columns border'>
+    <%= form_for @band do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= fields_for :genre_list do |field| %>
+        <%= field.label :genres %>
+        <%= field.text_field :genres %>
+      <% end %> 
+
+      <%= f.submit "Update band", class: "button alert" %>
+    <% end %>
+  </div>
+</div>

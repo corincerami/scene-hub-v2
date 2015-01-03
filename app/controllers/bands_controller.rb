@@ -22,11 +22,31 @@ class BandsController < ApplicationController
         redirect_to band_path(@band)
       else
         @band.destroy
-        render "new"
+        render :new
       end
     else
       @genres = GenreList.create(genre_list_params)
-      render "new"
+      render :new
+    end
+  end
+
+  def edit
+    @band = Band.find(params[:id])
+    @genres = @band.genre_list
+  end
+
+  def update
+    @band = Band.find(params[:id])
+    @genres = @band.genre_list
+    if @band.update(band_params)
+      if @genres.update(genre_list_params)
+        flash[:notice] = "Band updated!"
+        redirect_to band_path(@band)
+      else
+        render :edit
+      end
+    else
+      render :edit
     end
   end
 

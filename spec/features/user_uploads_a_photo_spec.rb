@@ -52,13 +52,10 @@ feature "User uploads a photo for their band" do
 
     visit band_path(band)
 
-    click_on "Upload photo"
-
-    expect(page).to have_content "You need to sign in or sign up before continuing"
-    expect(page).not_to have_content "Submit Photo"
+    expect(page).not_to have_content "Upload photo"
   end
 
-  it "attempts to delete a photo for a band the user didn't create" do 
+  it "attempts to upload a photo for a band the user didn't create" do 
     user = create(:user_with_bands)
     user_2 = create(:user)
     band = user.bands.first
@@ -67,8 +64,6 @@ feature "User uploads a photo for their band" do
 
     visit band_path(band)
 
-    click_on "Upload photo"
-
-    expect(page).to have_content "You don't have permission to do that"
+    expect(page).not_to have_content "Upload photo"
   end
 end
