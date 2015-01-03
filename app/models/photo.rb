@@ -1,7 +1,14 @@
 class Photo < ActiveRecord::Base
   belongs_to :band
 
-  has_attached_file :image, :styles => { :medium => "500x500>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :image, 
+  					:styles => { :medium => "500x500>", :thumb => "200x200>" }, 
+  					:default_url => "/images/:style/missing.png",
+  					:storage => :s3,
+            :s3_credentials => { :access_key_id  => ENV["AWS_ACCESS_KEY_ID"],
+                                 :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"],
+                                 :bucket => ENV["AWS_BUCKET"] }
+
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates :image_file_name, presence: true
   validates :image_content_type, presence: true

@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'pg'
 gem 'rake'
-gem 'dotenv'
+gem 'dotenv-rails'
 # pagination
 gem 'kaminari'
 # location services
@@ -13,6 +13,7 @@ gem 'devise'
 gem 'foundation-rails'
 # paperclip for image upoad
 gem 'paperclip'
+gem 'aws-sdk-v1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use SCSS for stylesheets

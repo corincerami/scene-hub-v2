@@ -29,6 +29,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    aws-sdk-v1 (1.60.2)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
     builder (3.2.2)
     capybara (2.4.4)
@@ -67,6 +70,8 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -220,11 +225,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-v1
   capybara
   coffee-rails (~> 4.0.0)
   coveralls
   devise
-  dotenv
+  dotenv-rails
   factory_girl
   factory_girl_rails (~> 4.0)
   foundation-rails
