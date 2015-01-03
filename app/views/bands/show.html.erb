@@ -6,7 +6,7 @@
 				<%= link_to((image_tag photo.image.url(:thumb), id: "band-photo"), photo.image.url) %>
 			</div>
 			<div>
-				<%= link_to("Delete photo", photo_path(photo), method: :delete, confirm: true) %>
+				<%= link_to("Delete photo", photo_path(photo), method: :delete, data: { confirm: "Are you sure?" }) %>
 			</div>
 		<% end %>
 		Genres:
@@ -57,7 +57,7 @@
 					<%= link_to("Edit status", edit_band_band_post_path(@band, post)) %>
 				</div>
 				<div>
-					<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete) %>
+					<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete, data: { confirm: "Are you sure?" }) %>
 				</div>
 			</div>
 		</div>
