@@ -1,11 +1,15 @@
 <div class='row'>
-  <div class='zip-code-form small-12 medium-4 columns'>
+<a href="#" class="post-button" id="zip-code-button">Find a show near you!</a>
+</div>
+
+<div class='row'>
+  <div class='small-12 medium-4 columns' id="zip-code-form">
     <div>Find a show near you!</div>
     <form action='/shows' method='get'>
       <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
       <label>Distance<input type="text" id="distance" name="radius" /></label>
       <label>Genre<input type="text" id="genre" name="genre" /></label>
-      <input type='submit' value='Search'>
+      <input type='submit' value='Search' class="post-button">
     </form>
   </div>
 </div>
