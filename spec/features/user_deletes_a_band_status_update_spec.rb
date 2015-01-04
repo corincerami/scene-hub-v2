@@ -27,8 +27,7 @@ feature "User deletes a band status update" do
 		sign_in(user_2)
 
 		visit band_path(band)
-		click_on "Delete status"
 
-		expect(page).to have_content "You don't have permission to do that"
+		expect(page).not_to have_content "Delete status"
 	end
 end

@@ -20,7 +20,7 @@
       "/Users/chriscerami/Dropbox/scene_hub_v2/app/controllers/users_controller.rb": [
         1,
         1,
-        6,
+        7,
         null,
         null
       ],
@@ -52,9 +52,9 @@
         1,
         null,
         1,
-        26,
-        26,
-        26,
+        27,
+        27,
+        27,
         null,
         null,
         1,
@@ -97,6 +97,16 @@
         null,
         null,
         1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null,
         null,
         null,
@@ -194,11 +204,11 @@
         null,
         null,
         1,
-        2,
-        2,
-        2,
         1,
         1,
+        1,
+        0,
+        0,
         null,
         1,
         1,
@@ -217,8 +227,8 @@
         null,
         null,
         1,
-        7,
-        7,
+        6,
+        6,
         null,
         null
       ],
@@ -505,6 +515,6 @@
         null
       ]
     },
-    "timestamp": 1420323284
+    "timestamp": 1420331163
   }
 }

@@ -2,7 +2,8 @@
 	<div class='small-12 medium-6 columns border'>
 		<div><h4><%= @band.name %></h4></div>
 		<% if current_user == @band.user %>
-			<%= link_to("Edit band", edit_band_path(@band)) %>
+			<%= link_to("Edit band", edit_band_path(@band)) %><br>
+			<%= link_to("Delete band", band_path(@band), method: :delete, data: { confirm: "Are you sure?" }) %>
 		<% end %>
 		<% @band.photos.each do |photo| %>
 			<div>

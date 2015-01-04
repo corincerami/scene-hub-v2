@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "User edits a band" do
-	it "submits a valid form" do
+  it "submits a valid form" do
     user = create(:user_with_bands)
     band = user.bands.first
     
@@ -17,9 +17,9 @@ feature "User edits a band" do
     expect(page).to have_content "classical"
     expect(page).to have_content "mariacchi"
     expect(page).to have_content "Band updated!"
-	end
+  end
 
-	it "leaves the band name blank" do
+  it "leaves the band name blank" do
     user = create(:user_with_bands)
     band = user.bands.first
     
@@ -31,7 +31,7 @@ feature "User edits a band" do
     click_on "Update band"
 
     expect(page).to have_content "Name can't be blank"
-	end
+  end
 
   it "enters genres in an invalid format" do
     user = create(:user_with_bands)
