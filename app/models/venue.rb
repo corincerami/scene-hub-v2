@@ -8,4 +8,8 @@ class Venue < ActiveRecord::Base
   validates :zip_code, presence: true
 
   acts_as_mappable
+
+  def address_2
+    "#{city}, #{state} #{zip_code} "
+  end
 end

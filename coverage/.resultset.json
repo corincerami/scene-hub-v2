@@ -258,6 +258,10 @@
         1,
         null,
         1,
+        null,
+        1,
+        13,
+        null,
         null
       ],
       "/Users/chriscerami/Dropbox/scene_hub_v2/app/models/gig.rb": [
@@ -515,6 +519,6 @@
         null
       ]
     },
-    "timestamp": 1420351084
+    "timestamp": 1420498699
   }
 }
