@@ -45,6 +45,10 @@
         1,
         null,
         1,
+        null,
+        1,
+        2,
+        null,
         null
       ],
       "/Users/chriscerami/Dropbox/scene_hub_v2/app/controllers/bands_controller.rb": [
@@ -106,7 +110,7 @@
         1,
         1,
         null,
-        null,
+        0,
         null,
         null,
         null,
@@ -519,6 +523,6 @@
         null
       ]
     },
-    "timestamp": 1420498699
+    "timestamp": 1420499516
   }
 }

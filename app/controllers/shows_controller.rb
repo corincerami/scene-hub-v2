@@ -13,7 +13,7 @@ class ShowsController < ApplicationController
       @shows = Show.joins(:venue).joins(:bands).within(@radius.to_i, origin: @zip_code).where("show_date > ?", DateTime.now)
       if !@genre.empty? && !@genre.nil?
         # only return shows whose bands match the supplied genre
-        @shows.to_a.select! {|show| show.bands.first.genre_list.genres.include?(@genre)}
+        @shows.to_a.select! { |show| show.bands.first.has_genre?(@genre) }
       end
     else
       @shows = Show.where("show_date > ?", DateTime.now)

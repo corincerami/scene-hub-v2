@@ -56,7 +56,7 @@ class BandsController < ApplicationController
       flash[:notice] = "Band deleted!"
       redirect_to user_path(current_user)
     else
-
+      render :show
     end
   end
 

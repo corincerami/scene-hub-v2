@@ -11,4 +11,8 @@ class Band < ActiveRecord::Base
   validates :name, presence: true
 
   belongs_to :user
+
+  def has_genre?(genre)
+    genre_list.genres.include?(genre)
+  end
 end
