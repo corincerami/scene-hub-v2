@@ -249,6 +249,10 @@
         1,
         null,
         1,
+        null,
+        1,
+        22,
+        null,
         null
       ],
       "/Users/chriscerami/Dropbox/scene_hub_v2/app/models/venue.rb": [
@@ -523,6 +527,6 @@
         null
       ]
     },
-    "timestamp": 1420499516
+    "timestamp": 1420500128
   }
 }

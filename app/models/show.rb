@@ -10,4 +10,8 @@ class Show < ActiveRecord::Base
   validates :show_date, presence: true
 
   acts_as_mappable through: :venue
+
+  def date_and_time
+    show_date.strftime("%B %d, %Y at %I:%M%p")
+  end
 end
