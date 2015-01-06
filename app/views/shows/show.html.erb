@@ -44,7 +44,10 @@
 <% end %>
 
 <div class='row'>
-  <div class='small-12 medium-4 columns border'>
+  <a href="#" class="post-button" id="comment-button">Post a comment</a>
+</div>
+<div class='row'>
+  <div class='small-12 medium-4 columns border' id="comment-form">
     <%= form_for [@show, @comment] do |f| %>
       <%= f.label :title %>
       <%= f.text_field :title %>
@@ -69,7 +72,7 @@
           <%= comment.body %>
         </div>
         <div>
-          Posted by: <%= comment.user.email %> at <%= comment.created_at %>
+          Posted by: <%= comment.user.email %> at <%= comment.time_created %>
         </div>
         <% if current_user == comment.user %>
           <div>

@@ -31,7 +31,7 @@ FactoryGirl.define do
     password "password123"
     factory :user_with_bands do
       transient do
-        bands_count 2
+        bands_count 1
       end
       after(:create) do |user, evaluator|
         create_list(:band, evaluator.bands_count, user: user)
