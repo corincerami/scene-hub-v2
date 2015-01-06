@@ -18,11 +18,6 @@
 
 $(function(){ $(document).foundation(); });
 
-$( document ).ready(function(){
-  $("#zip-code-form").hide();
-  $("#comment-form").hide();
-});
-
 $("#zip-code-button").on('click', function(){
   $("#zip-code-form").toggle();
 });

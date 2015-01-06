@@ -34,6 +34,10 @@ a:visited {
   display: none;
 }
 
+#comment-form {
+  display: none;
+}
+
 .flash-error {
   background-color: rgba(255, 0, 0, 0.7);
   padding: 4px;
