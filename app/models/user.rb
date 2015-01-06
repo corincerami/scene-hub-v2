@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
 
   has_many :bands
   has_many :comments
+  has_many :rsvps
+
+  def rsvped?(show)
+    rsvps.find_by(show: show)
+  end
 end

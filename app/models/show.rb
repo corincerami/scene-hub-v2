@@ -7,6 +7,8 @@ class Show < ActiveRecord::Base
 
   has_many :comments
 
+  has_many :rsvps
+
   validates :show_date, presence: true
 
   acts_as_mappable through: :venue

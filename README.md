@@ -3,3 +3,5 @@
 # Scene Hub
 
 ## A Ruby on Rails app for tracking local music
+
+The most current deployed version of the app can be found at https://www.scene-hub.herokuapp.com
