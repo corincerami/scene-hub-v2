@@ -23,6 +23,7 @@ feature "User RSVPs to a show" do
   it "adds the show to RSVPs from the show page" do
     expect(page).to have_content "RSVPed successfully"
     expect(page).to have_content "You're going to this show!"
+    expect(page).not_to have_link "RSVP"
   end
 
   it "sees RSVPed shows on the user profile" do
