@@ -2,6 +2,7 @@
   <div class='row'>
     <div class='small-12 medium-4 columns border'>
       <p>You're going to this show!</p>
+      <%= button_to("Cancel RSVP", rsvp_path(@rsvp), method: :delete) %>
     </div>
   </div>
 <% end %>
@@ -38,13 +39,15 @@
   </div>
 </div>
 
-<div class='row'>
-  <div class='small-6 medium-2 columns border'>
-    <%= link_to("RSVP", show_rsvps_path(@show), method: :post) %>
+<% if signed_in? && !current_user.rsvped?(@show) %>
+  <div class='row'>
+    <div class='small-6 medium-2 columns border'>
+      <%= link_to("RSVP", show_rsvps_path(@show), method: :post) %>
+    </div>
   </div>
-</div>
+<% end %>
 
-<% if current_user == @show.bands.first.user %>
+ <% if current_user == @show.bands.first.user %>
   <div class='row'>
     <div class='small-6 medium-2 columns border'>
       <%= link_to("Edit show", edit_show_path) %>

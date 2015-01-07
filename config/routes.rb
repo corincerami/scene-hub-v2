@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	resources :comments, only: [:new, :create, :destroy, :edit, :update]
     resources :rsvps, only: [:new, :create]
   end
+  resources :rsvps, only: :destroy
   resources :users, only: [:show]
 
   resources :bands do

@@ -9,4 +9,15 @@ class RsvpsController < ApplicationController
       render show_path(@show)
     end
   end
+
+  def destroy
+    rsvp = Rsvp.find(params[:id])
+    @show = rsvp.show
+    if rsvp.destroy
+      flash[:notice] = "RSVP cancelled"
+      redirect_to show_path(@show)
+    else
+      render show_path(@show)
+    end
+  end
 end
