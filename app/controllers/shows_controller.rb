@@ -23,7 +23,7 @@ class ShowsController < ApplicationController
   def show
     @show = Show.find(params[:id])
     @comment = Comment.new
-    @rsvp = current_user.rsvps.find_by(show: @show)
+    @rsvp = current_user.rsvps.find_by(show: @show) if signed_in?
   end
 
   def new

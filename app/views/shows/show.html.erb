@@ -1,4 +1,4 @@
-<% if current_user.rsvped?(@show) %>
+<% if signed_in? && current_user.rsvped?(@show) %>
   <div class='row'>
     <div class='small-12 medium-4 columns border'>
       <p>You're going to this show!</p>
