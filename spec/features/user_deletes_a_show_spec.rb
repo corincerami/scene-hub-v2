@@ -10,12 +10,11 @@ require 'rails_helper'
 
 feature "User deletes a show" do
   it "removes the show from the index page" do
-    user = create(:user_with_bands)
     show = create(:show)
-    show.bands << user.bands.first
-
-    sign_in(user)
+    user = show.bands.first.user
     
+    sign_in(user)
+
     visit show_path(show)
     click_on "Delete show"
     
