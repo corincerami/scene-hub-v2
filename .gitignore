@@ -18,3 +18,4 @@
 .env
 /coverage
 /public/assets/manifest*
+/public/assets
