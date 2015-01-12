@@ -1,0 +1,28 @@
+<div class='row show'>
+  <a href="/shows/<%= show.id %>">
+    <div class='border small-12 medium-8 columns'>
+      Bands:
+      <% show.bands.each do |band| %>
+        <%= band.name %>
+      <% end%>
+      <div>
+        <%= show.venue.name %>
+      </div>
+      <div>
+        <%= show.venue.street_1 %>
+      </div>
+      <div>
+        <%= show.venue.street_2 %>
+      </div>
+      <div>
+        <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
+      </div>
+      <div>
+        <%= show.details %>
+      </div>
+      <div>
+        <%= show.date_and_time %>
+      </div>
+    </div>
+  </a>
+</div>

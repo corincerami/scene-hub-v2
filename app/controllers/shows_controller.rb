@@ -8,15 +8,11 @@ class ShowsController < ApplicationController
     @radius = params[:radius]
     @radius = 25 if @radius.nil? || @radius.empty?
     @genre = params[:genre]
-    if @zip_code
-      # only return shows whose venue is within range of the zip code
-      @shows = Show.joins(:venue).joins(:bands).within(@radius.to_i, origin: @zip_code).where("show_date > ?", DateTime.now)
-      if !@genre.empty? && !@genre.nil?
-        # only return shows whose bands match the supplied genre
-        @shows.to_a.select! { |show| show.bands.first.has_genre?(@genre) }
-      end
+    if @genre
+      @shows = Show.search(@zip_code, @radius, @genre)
+      @shows = Kaminari.paginate_array(@shows).page(params[:page])
     else
-      @shows = Show.where("show_date > ?", DateTime.now)
+      @shows = Show.search(@zip_code, @radius, @genre).page params[:page]
     end
   end
 
@@ -94,7 +90,7 @@ class ShowsController < ApplicationController
   end
 
   def venue_params
-    venue_params = params.require(:venue).permit(:name, :street_1, :street_2, 
+    venue_params = params.require(:venue).permit(:name, :street_1, :street_2,
                                                  :city, :state, :zip_code, :details)
     address = "#{params[:venue][:street_1]}, #{params[:venue][:city]}, #{params[:venue][:state]}"
     loc = MultiGeocoder.geocode(address)
