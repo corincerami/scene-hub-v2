@@ -1,26 +1,33 @@
 <div class='show panel'>
-  <a href="/shows/<%= show.id %>">
-    Bands:
-    <% show.bands.each do |band| %>
-      <%= band.name %>
-    <% end%>
-    <div>
-      <%= show.venue.name %>
-    </div>
-    <div>
-      <%= show.venue.street_1 %>
-    </div>
-    <div>
-      <%= show.venue.street_2 %>
-    </div>
-    <div>
-      <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
-    </div>
-    <div>
-      <%= show.details %>
-    </div>
-    <div>
-      <%= show.date_and_time %>
-    </div>
-  </a>
+  <div>
+    <a href="/shows/<%= show.id %>">
+      <% if !show.bands.first.photos.empty? %>
+        <div class="band-photo">
+          <%= image_tag show.bands.first.photos.first.image.url(:thumb) %>
+        </div>
+      <% end %>
+      Bands:
+      <% show.bands.each do |band| %>
+        <%= band.name %>
+      <% end%>
+      <div>
+        <%= show.venue.name %>
+      </div>
+      <div>
+        <%= show.venue.street_1 %>
+      </div>
+      <div>
+        <%= show.venue.street_2 %>
+      </div>
+      <div>
+        <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
+      </div>
+      <div>
+        <%= show.details %>
+      </div>
+      <div>
+        <%= show.date_and_time %>
+      </div>
+    </a>
+  </div>
 </div>

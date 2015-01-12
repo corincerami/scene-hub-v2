@@ -1,22 +1,26 @@
 /*= require foundation */
 
 .button {
-  background-color: rgba(250,158,249,1);
+  background-color: #FF389C;
   color: #000;
   font-weight: bold;
   display: inline-block;
 }
 
 .button:hover {
-  background-color: rgba(250,158,249,1);
+  background-color: #FF389C;
 }
 
 .panel {
-  background-color: rgba(250,158,249,1);
+  background-color: #FF389C;
 }
 
 a {
-  color: #A61C5B;
+  color: #000;
+}
+
+.band-photo {
+  float: right;
 }
 
 /*a:visited {
