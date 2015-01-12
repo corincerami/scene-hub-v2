@@ -37,6 +37,6 @@ feature "User RSVPs to a show" do
   it "sees RSVPed shows on the index page" do
     visit shows_path
 
-    expect(page).to have_content "You're seeing #{@show.bands.first.name}"
+    expect(page).to have_content "#{@show.bands.first.name} at #{@show.venue.name}"
   end
 end

@@ -1,0 +1,9 @@
+<div class='small-12 medium-4 columns' id ="rsvps">
+<h3>Your shows</h3>
+  <% current_user.rsvps.each do |rsvp| %>
+    <div class="panel">
+      <%= link_to("#{rsvp.show.bands.first.name} at #{rsvp.show.venue.name}", show_path(rsvp.show)) %><br>
+      <%= rsvp.show.date_and_time %>
+    </div>
+  <% end %>
+</div>
