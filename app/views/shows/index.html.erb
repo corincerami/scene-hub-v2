@@ -1,16 +1,17 @@
-<div class='row'>
-<a href="#" class="post-button" id="zip-code-button">Find a show near you!</a>
-</div>
+<!-- <div class='row'>
+  <a href="#" class="button" id="zip-code-button">Find a show near you!</a>
+</div> -->
 
-<div class='row'>
-  <div class='small-12 medium-4 columns' id="zip-code-form">
-    <div>Find a show near you!</div>
-    <form action='/shows' method='get'>
-      <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
-      <label>Distance<input type="text" id="distance" name="radius" /></label>
-      <label>Genre<input type="text" id="genre" name="genre" /></label>
-      <input type='submit' value='Search' class="post-button">
-    </form>
+<div id="top-section">
+  <div class="row">
+    <div class='small-12 medium-4 columns' id="zip-code-form">
+        <form action='/shows' method='get'>
+          <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
+          <label>Distance<input type="text" id="distance" name="radius" /></label>
+          <label>Genre<input type="text" id="genre" name="genre" /></label>
+          <input type='submit' value='Search' class="button">
+        </form>
+    </div>
   </div>
 </div>
 
@@ -22,45 +23,22 @@
   </div>
 <% end %>
 
-<div class='row'>
-  <div class='post-button small-12 medium-3 columns'>
-    <%= link_to("Tell us about your show!", new_show_path) %>
-  </div>
-</div>
-
-<% if signed_in? %>
-  <div class='row'>
-    <div class='small-12 medium-6 columns border'>
-    Your shows:
-      <% current_user.rsvps.each do |rsvp| %>
-        <div>
-          You're seeing
-          <%= link_to("#{rsvp.show.bands.first.name} at #{rsvp.show.venue.name}", show_path(rsvp.show)) %><br>
-          <%= rsvp.show.date_and_time %>
-        </div>
-      <% end %>
-    </div>
+<% if @shows %>
+  <div id="page-buttons">
+    <%= paginate @shows %>
   </div>
 <% end %>
-
-<div class='row'>
-  <div class='small-12 medium-6 columns'>
-    <h3>Upcoming Shows</h3>
-  </div>
-</div>
 
 <% if @shows %>
   <div class="row">
-    <div class="small-12 medium-8 columns border">
-      <%= paginate @shows %>
-    </div>
-  </div>
-<% end %>
-
-<% if @shows %>
-  <div id="shows">
-    <div class="page">
-      <%= render @shows %>
+    <% if signed_in? %>
+      <%= render "rsvps" %>
+    <% end %>
+    <div id="shows">
+      <div class="page small-12 medium-8 columns">
+        <h3>Upcoming Shows</h3>
+        <%= render @shows %>
+      </div>
     </div>
   </div>
 <% end %>

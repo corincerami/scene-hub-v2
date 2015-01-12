@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SceneHub</title>
+    <title>SceneHub - Listen Locally</title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -13,29 +13,26 @@
 
   <body>
 
-  <div class='row'>
-    <div class='small-12 columns border'>
-      <% if !user_signed_in? %>
-        <%= link_to("Sign in", new_user_session_path) %><br/>
-        <%= link_to("Sign up", new_user_registration_path) %>
-      <% end %>
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %><br/>
-        <%= link_to("My profile", user_path(current_user)) %> | <%= link_to("Sign out", destroy_user_session_path, method: :delete) %>
-      <% end %>
-    </div>
-  </div>
-
-    <div class='row'>
-      <div class='medium-12 large-9 columns'>
-        <h1><%= link_to("Scene Hub", root_path) %></h1>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='small-12 medium-6 columns'>
-        <h2>Listen Locally</h2>
-      </div>
-    </div>
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "Scene Hub | Listen Locally", root_path %></h1>
+        </li>
+      </ul>
+      <section class='top-bar-section'>
+        <ul class='right'>
+          <li><%= link_to("Tell us about your show!", new_show_path) %></li>
+          <% if !user_signed_in? %>
+            <li><%= link_to("Sign in", new_user_session_path) %></li>
+            <li><%= link_to("Sign up", new_user_registration_path) %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li><%= link_to(current_user.email, user_path(current_user)) %></li>
+            <li><%= link_to("Sign out", destroy_user_session_path, method: :delete) %></li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
 
     <% flash.each do |key, value| %>
       <div class="row">
