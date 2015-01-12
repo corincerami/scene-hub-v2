@@ -19,6 +19,10 @@ a {
   color: #A61C5B;
 }
 
+.band-photo {
+  float: right;
+}
+
 /*a:visited {
   color: #961953;
 }*/
