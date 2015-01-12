@@ -14,4 +14,18 @@ class Show < ActiveRecord::Base
   def date_and_time
     show_date.strftime("%B %d, %Y at %I:%M%p")
   end
+
+  def self.search(zip_code, radius, genre)
+    if zip_code
+      shows = self.joins(:venue).joins(:bands).within(radius.to_i, origin: zip_code).where("show_date > ?", DateTime.now)
+      if !genre.empty? && !genre.nil?
+        # only return shows whose bands match the supplied genre
+        shows.to_a.select! { |show| show.bands.first.has_genre?(genre) }
+      else
+        shows
+      end
+    else
+      where("show_date > ?", DateTime.now)
+    end
+  end
 end
