@@ -10,7 +10,7 @@ class ShowsController < ApplicationController
     @genre = params[:genre]
     if @genre
       @shows = Show.search(@zip_code, @radius, @genre)
-      @shows = Kaminari.paginate_array(@shows).page(params[:page])
+      @shows = Kaminari.paginate_array(@shows).page(params[:page]) if @shows
     else
       @shows = Show.search(@zip_code, @radius, @genre).page params[:page]
     end
