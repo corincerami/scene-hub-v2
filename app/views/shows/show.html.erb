@@ -120,10 +120,12 @@
   <% end %>
 </div>
 
-<style>
-  .show-photo {
-    background-image: url(<%= @show.bands.first.photos.first.image.url %>);
-    background-position: center;
-    background-size: cover;
-  }
-</style>
+<% if @show.bands.first.photos.any? %>
+  <style>
+    .show-photo {
+      background-image: url(<%= @show.bands.first.photos.first.image.url %>);
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+<% end %>
