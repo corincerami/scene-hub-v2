@@ -1,31 +1,40 @@
+<div class='show-photo'>
+  <div class="panel" id="band-name">
+    <h2><%= @band.name %></h2>
+  </div>
+</div>
+
 <div class='row'>
-	<div class='small-12 medium-6 columns border'>
-		<div><h4><%= @band.name %></h4></div>
-		<% if current_user == @band.user %>
-			<%= link_to("Edit band", edit_band_path(@band)) %><br>
-			<%= link_to("Delete band", band_path(@band), method: :delete, data: { confirm: "Are you sure?" }) %>
-		<% end %>
-		<% @band.photos.each do |photo| %>
-			<div>
-				<%= link_to((image_tag photo.image.url(:thumb), id: "band-photo"), photo.image.url) %>
-			</div>
-			<% if current_user == @band.user %>
-				<div>
-					<%= link_to("Delete photo", photo_path(photo), method: :delete, data: { confirm: "Are you sure?" }) %>
-				</div>
+	<div class='small-12 columns'>
+		<ul class="panel small-block-grid-2 medium-block-grid-4">
+			<h3>Photos</h3>
+			<% @band.photos.each do |photo| %>
+				<li>
+					<div>
+						<%= link_to((image_tag photo.image.url(:thumb), id: "band-photo"), photo.image.url) %>
+					</div>
+					<% if current_user == @band.user %>
+						<div>
+							<%= link_to("Delete photo", photo_path(photo), method: :delete, data: { confirm: "Are you sure?" }) %>
+						</div>
+					</li>
+				<% end %>
 			<% end %>
-		<% end %>
+		</ul>
 		<% if current_user == @band.user %>
 			<div class="row">
 				<div class="small-6 medium-2 columns">
-					<%= link_to("Upload photo", new_band_photo_path(@band), class: "button alert") %>
+					<%= link_to("Upload photo", new_band_photo_path(@band), class: "button") %>
 				</div>
 			</div>
 		<% end %>
-		Genres:
-		<% @genre_list.genres.each do |genre| %>
-			<div><%= genre %></div>
-		<% end %>
+		<div class="panel">
+			Genres:
+			<ul class="inline-list">
+			<% @band.genre_list.genres.each do |genre| %>
+				<li><%= genre %></li>
+			<% end %>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -33,31 +42,25 @@
 <% if current_user == @band.user %>
 	<div class='row'>
 		<div class='small-12 medium-4 columns border'>
+			<h3>Band News:</h3>
 			<%= form_for [@band, @band_post] do |f| %>
 
 				<%= f.label :title %>
 				<%= f.text_field :title %>
 
 				<%= f.label :content %>
-				<%= f.text_field :content %>
+				<%= f.text_area :content %>
 
-				<%= f.submit "Post status update", class: "button alert" %>
+				<%= f.submit "Post status update", class: "button" %>
 			<% end %>
 		</div>
 	</div>
 <% end %>
 
-<div class='row'>
-	<div class='small-12 medium-6 columns'>
-		<h3>Band News:</h3>
-	</div>
-</div>
-
-
 <% if @band.band_posts %>
 	<% @band.band_posts.sort_by { |post| post.created_at }.reverse.each do |post| %>
 		<div class='row'>
-			<div class='small-12 medium-6 columns border'>	
+			<div class='small-12 medium-6 columns border'>
 				<div>
 					<h4><%= post.title %></h4>
 				</div>
@@ -69,10 +72,29 @@
 						<%= link_to("Edit status", edit_band_band_post_path(@band, post)) %>
 					</div>
 					<div>
-						<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete, data: { confirm: "Are you sure?" }) %>
+						<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete, data: { confirm: "Are you sure?" }, class: "button") %>
 					</div>
 				<% end %>
 			</div>
 		</div>
 	<% end %>
+<% end %>
+
+<div class="row">
+	<div class="columns">
+		<% if current_user == @band.user %>
+			<%= link_to("Edit band", edit_band_path(@band), class: "button") %>
+			<%= link_to("Delete band", band_path(@band), method: :delete, data: { confirm: "Are you sure?" }, class: "button") %>
+		<% end %>
+	</div>
+</div>
+
+<% if @band.photos.any? %>
+  <style>
+    .show-photo {
+      background-image: url(<%= @band.photos.first.image.url %>);
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
 <% end %>
