@@ -57,9 +57,9 @@ a {
   border: 4px solid #FF389C;
 }*/
 
-/*#comment-form {
+#comment-form {
   display: none;
-}*/
+}
 
 .flash-error {
   background-color: rgba(255, 0, 0, 0.7);
@@ -69,6 +69,22 @@ a {
 .flash-notice {
   background-color: rgba(52, 250, 111, 0.7);
   padding: 4px;
+}
+
+.show-photo {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 30px;
+}
+
+#band-name {
+  float: right;
+  margin-right: 10%;
+  margin-top : 300px;
+}
+
+#show-info {
+  float: right;
 }
 
 /*.sign-in-box {

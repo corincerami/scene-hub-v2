@@ -5,12 +5,11 @@ class ShowsController < ApplicationController
 
   def index
     @zip_code = params[:zip_code]
-    @radius = params[:radius]
-    @radius = 25 if @radius.nil? || @radius.empty?
+    params[:radius].nil? || params[:radius].empty? ? @radius = 25 : @radius = params[:radius]
     @genre = params[:genre]
     if @genre
       @shows = Show.search(@zip_code, @radius, @genre)
-      @shows = Kaminari.paginate_array(@shows).page(params[:page]) if @shows
+      @shows = Kaminari.paginate_array(@shows).page params[:page]
     else
       @shows = Show.search(@zip_code, @radius, @genre).page params[:page]
     end

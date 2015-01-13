@@ -1,33 +1,34 @@
-<div class='show panel'>
-  <div>
+<div class='row show panel'>
     <a href="/shows/<%= show.id %>">
-      <% if !show.bands.first.photos.empty? %>
-        <div class="band-photo small-12 medium-5 columns">
-          <%= image_tag show.bands.first.photos.first.image.url(:thumb) %>
+      <div class="page small-12 medium-6 columns">
+        <div id="show-info">
+          Bands:
+          <% show.bands.each do |band| %>
+            <%= band.name %>
+          <% end%>
+          <div>
+            <%= show.venue.name %>
+          </div>
+          <div>
+            <%= show.venue.street_1 %>
+          </div>
+          <div>
+            <%= show.venue.street_2 %>
+          </div>
+          <div>
+            <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
+          </div>
+          <div>
+            <%= show.date_and_time %>
+          </div>
         </div>
-      <% end %>
-      Bands:
-      <% show.bands.each do |band| %>
-        <%= band.name %>
-      <% end%>
-      <div>
-        <%= show.venue.name %>
       </div>
-      <div>
-        <%= show.venue.street_1 %>
-      </div>
-      <div>
-        <%= show.venue.street_2 %>
-      </div>
-      <div>
-        <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
-      </div>
-      <div>
-        <%= show.details %>
-      </div>
-      <div>
-        <%= show.date_and_time %>
+      <div class="page small-12 medium-4 columns">
+        <div>
+          <% if show.bands.first.photos.any? %>
+            <%= image_tag show.bands.first.photos.first.image.url(:thumb) %>
+          <% end %>
+        </div>
       </div>
     </a>
-  </div>
 </div>

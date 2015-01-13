@@ -1,69 +1,82 @@
-<div data-show-id="<%= @show.id %>">
-  <div class='row'>
-    <div class='border small-12 medium-8 columns'>
-      Bands:
-      <% @show.bands.each do |band| %>
+<div class="show-box" data-show-id="<%= @show.id %>">
+  <div class='show-photo'>
+    <div class="panel" id="band-name">
+      <h2><%= link_to(@show.bands.first.name, band_path(@show.bands.first)) %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class='border small-12 medium-8 panel columns'>
+      <div class="vcard">
+        <h4>Where:</h4>
         <div>
-          <%= link_to(band.name, band_path(band)) %>
+          <%= @show.venue.name %>
         </div>
-      <% end %>
-      <div>
-        <%= @show.venue.name %>
+        <div>
+          <%= @show.venue.street_1 %>
+        </div>
+        <div>
+          <%= @show.venue.street_2 %>
+        </div>
+        <div>
+          <%= @show.venue.address_2 %>
+        </div>
+        <div>
+          <%= @show.venue.details %>
+        </div>
       </div>
-      <div>
-        <%= @show.venue.street_1 %>
+      <div class="vcard">
+        <h4>When:</h4>
+        <div>
+          <%= @show.date_and_time %>
+        </div>
       </div>
-      <div>
-        <%= @show.venue.street_2 %>
-      </div>
-      <div>
-        <%= @show.venue.address_2 %>
-      </div>
-      <div>
-        <%= @show.venue.details %>
-      </div>
-      <div>
-        <%= @show.details %>
-      </div>
-      <div>
-        <%= @show.date_and_time %>
+      <div class="vcard">
+        <h4>Details:</h4>
+        <div>
+          <%= @show.details %>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <% if signed_in? && !current_user.rsvped?(@show) %>
-    <div class='row'>
-      <div class='small-6 medium-2 columns border'>
-        <%= button_to("RSVP", show_rsvps_path(@show), method: :post,
-                                                      form: { data: { 'rsvp-button' => 'create' } }) %>
+<div class="row">
+  <div class="small-12 columns">
+    <% if signed_in? && !current_user.rsvped?(@show) %>
+      <div class='row'>
+        <div class='small-6 medium-2 columns border'>
+          <%= button_to("RSVP", show_rsvps_path(@show), method: :post, class: "button",
+                                                        form: { data: { 'rsvp-button' => 'create' } }) %>
+        </div>
       </div>
-    </div>
-  <% elsif signed_in? && current_user.rsvped?(@show) %>
-    <div class='row'>
-      <div class='small-6 medium-2 columns border'>
-        <p>You're going to this show!</p>
-        <%= button_to "Cancel RSVP", rsvp_path(current_user.rsvps.find_by(show: @show)),
-          method: :delete,
-          form: { data: { 'rsvp-button' => 'delete' } } %>
+    <% elsif signed_in? && current_user.rsvped?(@show) %>
+      <div class='row'>
+        <div class='small-6 medium-4 columns border'>
+          <p>You're going to this show!</p>
+          <%= button_to "Cancel RSVP", rsvp_path(current_user.rsvps.find_by(show: @show)),
+            method: :delete, class: "button",
+            form: { data: { 'rsvp-button' => 'delete' } } %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-   <% if current_user == @show.bands.first.user %>
-    <div class='row'>
-      <div class='small-6 medium-2 columns border'>
-        <%= link_to("Edit show", edit_show_path) %>
+     <% if current_user == @show.bands.first.user %>
+      <div class='row'>
+        <div class='small-6 medium-2 columns border'>
+          <%= link_to("Edit show", edit_show_path) %>
+        </div>
       </div>
-    </div>
-    <div class='row'>
-      <div class='small-6 medium-2 columns border'>
-        <%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
+      <div class='row'>
+        <div class='small-6 medium-2 columns border'>
+          <%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+</div>
 
   <div class='row'>
-    <a href="#" class="post-button" id="comment-button">Post a comment</a>
+    <a href="#" class="button" id="comment-button">Post a comment</a>
   </div>
   <div class='row'>
     <div class='small-12 medium-4 columns border' id="comment-form">
@@ -84,24 +97,35 @@
       <div class='small-12 medium-8 columns border'>
       <h4>Comments</h4>
         <% @show.comments.each do |comment| %>
-          <div>
-            <%= comment.title %>
-          </div>
-          <div>
-            <%= comment.body %>
-          </div>
-          <div>
-            Posted by: <%= comment.user.email %> at <%= comment.time_created %>
-          </div>
-          <% if current_user == comment.user %>
+          <div class="panel">
             <div>
-              <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %> |
-              <%= link_to("Delete comment", show_comment_path(@show, comment), method: :delete, data: { confirm: "Are you sure?" }) %>
+              <%= comment.title %>
             </div>
-          <% end %>
-          ____________________________
+            <div>
+              <%= comment.body %>
+            </div>
+            <div>
+              Posted by: <%= comment.user.email %> at <%= comment.time_created %>
+            </div>
+            <% if current_user == comment.user %>
+              <div>
+                <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %> |
+                <%= link_to("Delete comment", show_comment_path(@show, comment), method: :delete, data: { confirm: "Are you sure?" }) %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
   <% end %>
 </div>
+
+<% if @show.bands.first.photos.any? %>
+  <style>
+    .show-photo {
+      background-image: url(<%= @show.bands.first.photos.first.image.url %>);
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+<% end %>
