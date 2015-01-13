@@ -2,7 +2,7 @@
   <div>
     <a href="/shows/<%= show.id %>">
       <% if !show.bands.first.photos.empty? %>
-        <div class="band-photo">
+        <div class="band-photo small-12 medium-5 columns">
           <%= image_tag show.bands.first.photos.first.image.url(:thumb) %>
         </div>
       <% end %>

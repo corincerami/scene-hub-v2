@@ -19,7 +19,7 @@ feature 'User searches for a show' do
 
     fill_in "Zip code", with: "02145"
     fill_in "Distance", with: "10"
-    click_on "Search"
+    click_on "Find local music"
 
     show_1.bands.each do |band|
       expect(page).to have_content band.name
@@ -36,7 +36,7 @@ feature 'User searches for a show' do
 
     fill_in "Zip code", with: "07110"
     fill_in "Distance", with: "10"
-    click_on "Search"
+    click_on "Find local music"
 
     expect(page).to have_content "No shows found"
     show_1.bands.each do |band|
@@ -55,7 +55,7 @@ feature 'User searches for a show' do
     fill_in "Zip code", with: "02145"
     fill_in "Distance", with: "10"
     fill_in "Genre",    with: "funk"
-    click_on "Search"
+    click_on "Find local music"
 
     expect(page).to have_content "No shows found"
     show_1.bands.each do |band|

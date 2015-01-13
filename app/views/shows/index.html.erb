@@ -4,22 +4,27 @@
 
 <div id="top-section">
   <div class="row">
-    <div class='small-12 medium-4 columns' id="zip-code-form">
-        <form action='/shows' method='get'>
-          <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
-          <label>Distance<input type="text" id="distance" name="radius" /></label>
-          <label>Genre<input type="text" id="genre" name="genre" /></label>
-          <input type='submit' value='Search' class="button">
-        </form>
+    <div class='small-12 medium-6 columns' id="zip-code-form">
+      <h1>Scene Hub</h1>
+      <h3>Listen Locally</h3>
+      <form action='/shows' method='get'>
+        <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
+        <label>Distance<input type="text" id="distance" name="radius" /></label>
+        <label>Genre<input type="text" id="genre" name="genre" /></label>
+        <input type='submit' value='Find local music' class="button">
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div id="title">
+      Scene Hub
     </div>
   </div>
 </div>
 
 <% if @shows.nil? || @shows.empty? %>
-  <div class='row'>
-    <div class='flash-notice small-12 medium-3 columns'>
-      No shows found
-    </div>
+  <div class='flash-notice'>
+    No shows found
   </div>
 <% end %>
 
