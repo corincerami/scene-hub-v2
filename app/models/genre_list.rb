@@ -3,5 +3,5 @@ class GenreList < ActiveRecord::Base
 
 	validates :genres, presence: true
 	validates :band_id, presence: true
-  validates :genres, format: { with: /\A\[\"\w+\"(\, \"\w+\")*\]\Z/, message: "Genres must be entered as a comma separated list" }
+  validates :genres, format: { with: /\A\[\"\w+\"(\, \"\w+\")*\]\Z/, message: "must be entered as a comma separated list" }
 end

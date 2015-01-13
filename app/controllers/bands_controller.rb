@@ -4,7 +4,6 @@ class BandsController < ApplicationController
   def show
     @band = Band.find(params[:id])
     @band_post = BandPost.new
-    @genre_list = GenreList.find_by(band_id: @band.id)
   end
 
   def new
