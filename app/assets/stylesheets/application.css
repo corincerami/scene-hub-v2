@@ -80,7 +80,8 @@ a {
 #band-name {
   float: right;
   margin-right: 10%;
-  margin-top : 300px;
+  margin-top : 200px;
+  margin-bottom: 50px;
 }
 
 /*.sign-in-box {

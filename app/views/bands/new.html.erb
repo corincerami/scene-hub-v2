@@ -29,6 +29,9 @@
         <%= field.text_field :genres %>
       <% end %>
 
+      <%= f.label :spotify_uri, "Spotify URI" %>
+      <%= f.text_field :spotify_uri %>
+
       <%= f.submit "Create band", class: "button" %>
     <% end %>
   </div>
