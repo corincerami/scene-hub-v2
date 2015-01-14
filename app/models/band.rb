@@ -9,6 +9,10 @@ class Band < ActiveRecord::Base
 
   validates :name, presence: true
   validates :user_id, presence: true
+  validates :spotify_uri,
+    format: { with: /\Aspotify:artist:\w{22}\Z/,
+    message: "should be the URI for an artist on Spotify"},
+    allow_blank: true
 
   def has_genre?(genre)
     genre_list.genres.include?(genre)
