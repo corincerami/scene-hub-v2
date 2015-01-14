@@ -25,9 +25,8 @@ ActiveRecord::Schema.define(version: 20150113220522) do
   end
 
   create_table "bands", force: true do |t|
-    t.string  "name",           null: false
-    t.integer "user_id",        null: false
-    t.string  "soundcloud_url"
+    t.string  "name",        null: false
+    t.integer "user_id",     null: false
     t.string  "spotify_uri"
   end
 
