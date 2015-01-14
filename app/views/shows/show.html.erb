@@ -39,42 +39,42 @@
     </div>
     <iframe src="https://embed.spotify.com/?uri=<%= @show.bands.first.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
   </div>
-</div>
-
-<div class="row">
-  <div class="small-12 columns">
-    <% if signed_in? && !current_user.rsvped?(@show) %>
-      <div class='row'>
-        <div class='small-6 medium-2 columns border'>
-          <%= button_to("RSVP", show_rsvps_path(@show), method: :post, class: "button",
-                                                        form: { data: { 'rsvp-button' => 'create' } }) %>
+  <div class="row">
+    <div class="small-12 columns">
+      <% if signed_in? && !current_user.rsvped?(@show) %>
+        <div class='row'>
+          <div class='small-6 medium-2 columns border'>
+            <%= button_to("RSVP", show_rsvps_path(@show),
+              method: :post, class: "button",
+              form: { data: { 'rsvp-button' => 'create' } }) %>
+          </div>
         </div>
-      </div>
-    <% elsif signed_in? && current_user.rsvped?(@show) %>
-      <div class='row'>
-        <div class='small-6 medium-4 columns border'>
-          <p>You're going to this show!</p>
-          <%= button_to "Cancel RSVP", rsvp_path(current_user.rsvps.find_by(show: @show)),
-            method: :delete, class: "button",
-            form: { data: { 'rsvp-button' => 'delete' } } %>
+      <% elsif signed_in? && current_user.rsvped?(@show) %>
+        <div class='row'>
+          <div class='small-6 medium-4 columns border'>
+            <p>You're going to this show!</p>
+            <%= button_to "Cancel RSVP", rsvp_path(current_user.rsvps.find_by(show: @show)),
+              method: :delete, class: "button",
+              form: { data: { 'rsvp-button' => 'delete' } } %>
+          </div>
         </div>
-      </div>
-    <% end %>
-
-     <% if current_user == @show.bands.first.user %>
-      <div class='row'>
-        <div class='small-6 medium-2 columns border'>
-          <%= link_to("Edit show", edit_show_path) %>
-        </div>
-      </div>
-      <div class='row'>
-        <div class='small-6 medium-2 columns border'>
-          <%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
+
+ <% if current_user == @show.bands.first.user %>
+  <div class='row'>
+    <div class='small-6 medium-2 columns border'>
+      <%= link_to("Edit show", edit_show_path) %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-6 medium-2 columns border'>
+      <%= link_to("Delete show", show_path, method: :delete, data: { confirm: "Are you sure?" }) %>
+    </div>
+  </div>
+<% end %>
 
   <div class='row'>
     <a href="#" class="button" id="comment-button">Post a comment</a>

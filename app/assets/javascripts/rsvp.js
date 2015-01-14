@@ -23,7 +23,7 @@ $(document).ready(function() {
         });
 
         // Create the new submit input
-        $rsvpButton = $('<input>').attr({type: 'submit', value: 'Cancel RSVP'});
+        $rsvpButton = $('<input>').attr({type: 'submit', value: 'Cancel RSVP', class: 'button'});
 
         // Append the new submit input to the new form
         $newForm.append($rsvpButton);
@@ -59,7 +59,7 @@ $(document).ready(function() {
       });
 
       // Create the new submit input
-      $rsvpButton = $('<input>').attr({type: 'submit', value: 'RSVP'});
+      $rsvpButton = $('<input>').attr({type: 'submit', value: 'RSVP', class: 'button'});
 
       // Append the new submit input to the new form
       $newForm.append($rsvpButton);
