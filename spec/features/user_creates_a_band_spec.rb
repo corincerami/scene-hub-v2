@@ -28,17 +28,19 @@ feature "User creates a band on their profile" do
     expect(page).to have_content "Band created!"
   end
 
-  it "submits a blank form" do
+  it "fills in invalid information" do
     user = create(:user)
 
     sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"
+    fill_in "Spotify URI", with: "www.spotify.com/screaming-females"
     click_on "Create band"
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Genres can't be blank"
+    expect(page).to have_content "Spotify uri should be the URI for an artist on Spotify"
   end
 
   it "enters a band without genres" do
