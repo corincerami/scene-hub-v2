@@ -30,4 +30,15 @@ describe Band do
       expect(@band.has_genre?("Pop")).to eq(false)
     end
   end
+
+  describe "spotify_uri" do
+    it { should have_valid(:spotify_uri).when("spotify:artist:0v3aI02UKIlboNqYcKrpvr",
+      "spotify:artist:3pZ666b6CyO1KGpVYirY0t",
+      "spotify:artist:3jCDV35GjiUGWYWKgMd9CF")}
+
+    it { should_not have_valid(:spotify_uri).when("https://play.spotify.com/artist/3pZ666b6CyO1KGpVYirY0t",
+      "spotify:user:screamingfemales",
+      "Screaming Females"
+      )}
+  end
 end

@@ -62,7 +62,7 @@ class BandsController < ApplicationController
   private
 
   def band_params
-    band_params = params.require(:band).permit(:name)
+    band_params = params.require(:band).permit(:name, :spotify_uri)
     band_params[:user_id] = current_user.id
     band_params
   end

@@ -29,6 +29,11 @@
         <%= field.text_field :genres %>
       <% end %>
 
+      <p>If you enter your Spotify URI of your band, your fans will be able to preview your music when deciding if they want to RSVP to your shows. To find your Spotify URI, go to your band's Spotify page and click the options button to the right of the follow button. Then click on "Copy Spotify URI"</p>
+
+      <%= f.label :spotify_uri, "Spotify URI" %>
+      <%= f.text_field :spotify_uri %>
+
       <%= f.submit "Create band", class: "button" %>
     <% end %>
   </div>

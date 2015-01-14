@@ -11,15 +11,16 @@ require 'rails_helper'
 feature "User creates a band on their profile" do
   it "enters valid information" do
     user = create(:user)
-    
+
     sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"
     fill_in  "Name", with: "Screaming Females"
     fill_in "Genres", with: "punk, rock, indie"
+    fill_in "Spotify URI", with: "spotify:artist:3pZ666b6CyO1KGpVYirY0t"
     click_on "Create band"
-    
+
     expect(page).to have_content user.bands.first.name
     expect(page).to have_content "punk"
     expect(page).to have_content "rock"
@@ -27,22 +28,24 @@ feature "User creates a band on their profile" do
     expect(page).to have_content "Band created!"
   end
 
-  it "submits a blank form" do
+  it "fills in invalid information" do
     user = create(:user)
-    
+
     sign_in(user)
 
     visit user_path(user)
     click_on "Add a band"
+    fill_in "Spotify URI", with: "www.spotify.com/screaming-females"
     click_on "Create band"
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Genres can't be blank"
+    expect(page).to have_content "Spotify uri should be the URI for an artist on Spotify"
   end
 
   it "enters a band without genres" do
     user = create(:user)
-    
+
     sign_in(user)
 
     visit user_path(user)
@@ -57,7 +60,7 @@ feature "User creates a band on their profile" do
 
   it 'enters invalid input for genres' do
     user = create(:user)
-    
+
     sign_in(user)
 
     visit user_path(user)
