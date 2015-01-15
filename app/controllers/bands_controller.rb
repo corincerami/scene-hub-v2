@@ -4,6 +4,11 @@ class BandsController < ApplicationController
   def show
     @band = Band.find(params[:id])
     @band_post = BandPost.new
+    @geojson = @band.geojson
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
+    end
   end
 
   def new

@@ -12,10 +12,10 @@ end
 
 100.times do
   venue = Venue.new(name: Faker::Company.name,
-                    street_1: Faker::Address.street_address,
-                    city: Faker::Address.city,
-                    state: "MA",
-                    zip_code: Faker::Address.zip_code)
+                    street_1: "66 Kenzel Ave",
+                    city: "Nutley",
+                    state: "NJ",
+                    zip_code: "07110")
   venue.save
   puts "venue created"
 end

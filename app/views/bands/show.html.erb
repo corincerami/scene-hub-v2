@@ -6,12 +6,13 @@
 		<div>
 			<iframe src="https://embed.spotify.com/?uri=<%= @band.spotify_uri %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
 		</div>
+	</div>
 </div>
 
 <div class='row'>
 	<div class='small-12 columns'>
+		<h3>Photos</h3>
 		<ul class="panel small-block-grid-2 medium-block-grid-4">
-			<h3>Photos</h3>
 			<% @band.photos.each do |photo| %>
 				<li>
 					<div>
@@ -46,7 +47,7 @@
 <div class="row">
 	<div class="small-6 columns">
 		<h3>Upcoming Shows:</h3>
-		<% @band.shows.order(:show_date).each do |show| %>
+		<% @band.shows.where("show_date > ?", DateTime.now).order(:show_date).each do |show| %>
 			<a href="<%= show_path(show) %>">
 				<div class="panel">
 					<%= "#{show.date_and_time} at #{show.venue.name}, #{show.venue.city}, #{show.venue.state}" %>
@@ -112,3 +113,10 @@
     }
   </style>
 <% end %>
+
+<div class="row">
+	<h3>Touring History</h3>
+  <div class="columns large-12">
+		<div id='band-map' style="width: 800px; height: 500px;" data-band-id="<%= @band.id %>"></div>
+ 	</div>
+</div>

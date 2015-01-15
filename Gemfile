@@ -14,6 +14,7 @@ gem 'foundation-rails'
 # paperclip for image upoad
 gem 'paperclip'
 gem 'aws-sdk-v1'
+# gem 'mapbox-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use SCSS for stylesheets
@@ -45,6 +46,7 @@ group :development, :test do
   # for capybara js
   gem 'selenium-webdriver'
   gem 'orderly'
+  gem 'faker'
 end
 
 group :test do
