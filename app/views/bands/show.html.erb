@@ -6,12 +6,13 @@
 		<div>
 			<iframe src="https://embed.spotify.com/?uri=<%= @band.spotify_uri %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
 		</div>
+	</div>
 </div>
 
 <div class='row'>
 	<div class='small-12 columns'>
+		<h3>Photos</h3>
 		<ul class="panel small-block-grid-2 medium-block-grid-4">
-			<h3>Photos</h3>
 			<% @band.photos.each do |photo| %>
 				<li>
 					<div>
@@ -112,3 +113,9 @@
     }
   </style>
 <% end %>
+
+<div class="row">
+  <div class="columns large-12">
+		<div id='band-map' style="width: 800px; height: 500px;" data-band-id="<%= @band.id %>"></div>
+ 	</div>
+</div>

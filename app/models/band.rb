@@ -17,4 +17,27 @@ class Band < ActiveRecord::Base
   def has_genre?(genre)
     genre_list.genres.include?(genre)
   end
+
+  def geojson
+    geojson = Array.new
+    shows = self.shows
+    shows.each do |show|
+      venue = show.venue
+      geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [venue.lng, venue.lat]
+        },
+        properties: {
+          name: venue.name,
+          address: venue.street_1,
+          :'marker-color' => "#FF389C",
+          :'marker-symbol' => 'circle',
+          :'marker-size' => 'medium'
+        }
+      }
+    end
+    geojson
+  end
 end
