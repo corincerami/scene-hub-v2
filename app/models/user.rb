@@ -8,8 +8,13 @@ class User < ActiveRecord::Base
   has_many :bands
   has_many :comments
   has_many :rsvps
+  has_many :follows
 
   def rsvped?(show)
     rsvps.find_by(show: show)
+  end
+
+  def following?(band)
+    follows.find_by(band: band)
   end
 end

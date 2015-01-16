@@ -9,6 +9,15 @@
 	</div>
 </div>
 
+<% if signed_in? && !current_user.following?(@band) %>
+<%= button_to "Follow #{@band.name}", band_follows_path(@band),
+							method: :create, class: "button" %>
+<% elsif signed_in? && current_user.following?(@band) %>
+Following
+<%= button_to "Stop following #{@band.name}", follow_path(current_user.follows.find_by(band: @band)),
+							method: :delete, class: "button" %>
+<% end %>
+
 <div class='row'>
 	<div class='small-12 columns'>
 		<h3>Photos</h3>

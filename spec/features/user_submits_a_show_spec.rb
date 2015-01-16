@@ -1,31 +1,40 @@
 require 'rails_helper'
 require 'date'
 
-feature "User submits a show" do
+feature "User creates a show" do
   it "sees the show on the page" do
     user = create(:user_with_bands)
+    follower = create(:user)
+    band = user.bands.first
+    create(:follow, user: follower, band: band)
+    date = DateTime.now
     sign_in(user)
 
     visit new_show_path
-    select  user.bands.first.name, from: "Band"
+    select  band.name, from: "Band"
     fill_in "Venue name", with: "Great Scott"
     fill_in "Street 1", with: "1222 Commonwealth Ave"
     fill_in "City", with: "Allston"
     fill_in "State", with: "MA"
     fill_in "Zip code", with: "02134"
-    fill_in "Show date", with: DateTime.now
+    fill_in "Show date", with: date
     click_on "Post show"
 
     expect(page).to have_content "Show created!"
     expect(page).to have_content "Screaming Females"
     expect(page).to have_content "Great Scott"
     expect(page).to have_content "1222 Commonwealth Ave"
+    expect(ActionMailer::Base.deliveries.size).to eql(1)
+    last_email = ActionMailer::Base.deliveries.last
+    expect(last_email).to have_subject("#{band.name} announced a new show!")
+    expect(last_email).to deliver_to("#{follower.email}")
+    expect(last_email).to have_body_text("#{band.name} is playing at Great Scott")
   end
 
   it "submits a blank form" do
     user = create(:user_with_bands)
     sign_in(user)
-    
+
     visit new_show_path
     select user.bands.first.name, from: "Band"
     click_on "Post show"

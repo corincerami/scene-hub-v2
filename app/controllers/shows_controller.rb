@@ -33,6 +33,9 @@ class ShowsController < ApplicationController
     if !params[:user][:bands].empty? && @show.save
       @band = Band.find(params[:user][:bands])
       @gig = Gig.create(band_id: @band.id, show_id: @show.id)
+      Follow.where(band: @band).each do |follow|
+        ShowNotification.notification(follow, @show).deliver
+      end
       flash[:notice] = "Show created!"
       redirect_to show_path(@show)
     else

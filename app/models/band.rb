@@ -3,6 +3,7 @@ class Band < ActiveRecord::Base
   has_many :shows, through: :gigs
   has_many :band_posts
   has_many :photos
+  has_many :follows
   has_one :genre_list
 
   belongs_to :user
