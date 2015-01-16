@@ -19,7 +19,7 @@ Band profiles
 Each band or musician has their own profile page where they can share photos, music, and news.
 
 Tour history maps
-![Scene Hub band maps](http://i.imgur.com/dyCuuy8.png)
+![Scene Hub band maps](http://i.imgur.com/fAyTMcW.png)
 
 Each band's profile also features a map showing where they have toured in the past. The more a musician performs at a particular venue, the larger the map marker becomes. This can give fans an at-a-glance idea of where their favortie bands play the most often. These map markers are generated automatically based on geocoded location data from each concert's venue.
 
