@@ -72,6 +72,9 @@ GEM
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
+    email_spec (1.6.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -234,6 +237,7 @@ DEPENDENCIES
   coveralls
   devise
   dotenv-rails
+  email_spec
   factory_girl
   factory_girl_rails (~> 4.0)
   faker

@@ -60,6 +60,11 @@ FactoryGirl.define do
     lng      longitude
   end
 
+  factory :follow do
+    band
+    user
+  end
+
   factory :show do
     show_date "2100-02-03T04:05:06+07:00"
     details   "A cool show"

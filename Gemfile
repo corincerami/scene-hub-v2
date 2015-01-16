@@ -53,6 +53,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'shoulda-matchers'
   gem 'valid_attribute'
+  gem 'email_spec'
 end
 
 group :production do
