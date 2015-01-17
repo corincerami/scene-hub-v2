@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
 
-  has_many :bands
+  has_many :bands, dependent: :destroy
   has_many :comments
   has_many :rsvps
   has_many :follows

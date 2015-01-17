@@ -69,7 +69,12 @@ describe Band do
       expect(Follow.count).to eq(follow_count - 1)
       expect(Show.count).to eq(show_count - 1)
     end
+
+    it "should be destroyed if it's user is destroyed" do
+      band_count = Band.count
+      user = @band.user
+      user.destroy
+      expect(Band.count).to eq(band_count - 1)
+    end
   end
 end
-
-    # it { should belong_to :user }
