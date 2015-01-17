@@ -23,5 +23,28 @@ describe User do
     it { should have_many :bands }
     it { should have_many :comments }
     it { should have_many :rsvps }
+    it { should have_many :follows }
+  end
+
+  describe "deleting a user" do
+    it "should destroy its dependencies" do
+      show = create(:show)
+      user = show.bands.first.user
+      create(:rsvp, user: user)
+      create(:follow, user: user)
+      band_count = Band.count
+      comment_count = Comment.count
+      rsvp_count = Rsvp.count
+      show_count = Show.count
+      follow_count = Follow.count
+
+      user.destroy
+
+      expect(Band.count).to eq band_count - 1
+      expect(Comment.count).to eq comment_count - 1
+      expect(Rsvp.count).to eq rsvp_count - 1
+      expect(Show.count).to eq show_count - 1
+      expect(Follow.count).to eq follow_count - 1
+    end
   end
 end

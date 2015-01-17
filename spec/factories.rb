@@ -87,4 +87,9 @@ FactoryGirl.define do
     image_updated_at   DateTime.now
     band
   end
+
+  factory :rsvp do
+    user
+    show
+  end
 end
