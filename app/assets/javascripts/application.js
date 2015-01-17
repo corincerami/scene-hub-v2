@@ -15,3 +15,4 @@
 //= require foundation
 //= require_tree .
 //= require jquery.infinitescroll
+$(document).foundation();
