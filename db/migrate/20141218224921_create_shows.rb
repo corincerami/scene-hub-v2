@@ -4,6 +4,7 @@ class CreateShows < ActiveRecord::Migration
       t.text     :details
       t.datetime :show_date, null: false
       t.integer  :venue_id,  null: false
+      t.integer  :band_id,   null: false
     end
   end
 end

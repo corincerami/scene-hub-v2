@@ -29,10 +29,9 @@ class ShowsController < ApplicationController
 
   def create
     @venue = Venue.find_or_create_by(venue_params)
-    @show = Show.new(show_params)
+    @band = Band.find(params[:user][:bands])
+    @show = @band.shows.build(show_params)
     if !params[:user][:bands].empty? && @show.save
-      @band = Band.find(params[:user][:bands])
-      @gig = Gig.create(band_id: @band.id, show_id: @show.id)
       Follow.where(band: @band).each do |follow|
         ShowNotification.notification(follow, @show).deliver
       end
@@ -46,7 +45,7 @@ class ShowsController < ApplicationController
   def edit
     @show = Show.find(params[:id])
     @venue = @show.venue
-    @band = @show.bands.first
+    @band = @show.band
     if !correct_user?
       flash[:error] = "You don't have permission to do that."
       redirect_to show_path(@show)
@@ -59,9 +58,7 @@ class ShowsController < ApplicationController
       flash[:error] = "You don't have permission to do that."
       redirect_to show_path(@show)
     end
-    @band = @show.bands.first
-    gig = Gig.find_by(show_id: @show.id, band_id: @band.id)
-    gig.update(band_id: params[:user][:bands])
+    @band = @show.band
     @venue = @show.venue
     @venue.update(venue_params)
     if @show.update(show_params)
@@ -104,6 +101,6 @@ class ShowsController < ApplicationController
   end
 
   def correct_user?
-    current_user == @show.bands.first.user
+    current_user == @show.band.user
   end
 end

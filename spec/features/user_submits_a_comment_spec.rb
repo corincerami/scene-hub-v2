@@ -12,8 +12,8 @@ require 'rails_helper'
 feature "User submits a comment" do
 	it "posts a comment with a title and body" do
 		show = create(:show)
-		user = show.bands.first.user
-		band = show.bands.first
+		user = show.band.user
+		band = show.band
 
     sign_in(user)
 
@@ -29,8 +29,8 @@ feature "User submits a comment" do
 
 	it "doesn't provide a body" do
 		show = create(:show)
-		user = show.bands.first.user
-		band = show.bands.first
+		user = show.band.user
+		band = show.band
 
     sign_in(user)
 

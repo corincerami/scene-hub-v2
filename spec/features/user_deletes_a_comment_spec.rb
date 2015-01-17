@@ -3,9 +3,8 @@ require "rails_helper"
 feature "User delete a comment" do
 	it "removes the comment from the show page" do
 		show = create(:show)
-		user = show.bands.first.user
-		band = show.bands.first
 		comment = show.comments.first
+		user = comment.user
 		title = comment.title
 		body = comment.body
 

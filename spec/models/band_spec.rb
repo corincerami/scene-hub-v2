@@ -15,7 +15,6 @@ describe Band do
     it { should belong_to :user }
     it { should have_one :genre_list }
     it { should have_many :band_posts }
-    it { should have_many :gigs }
     it { should have_many :photos }
     it { should have_many :shows }
     it { should have_many :follows }
@@ -47,15 +46,14 @@ describe Band do
     before(:each) do
       @band = create(:band)
       create(:band_post, band: @band)
-      create(:gig, band: @band)
       create(:photo, band: @band)
       create(:follow, band: @band)
+      create(:show, band: @band)
     end
 
     it "should detroy all dependencies" do
       genre_list_count = GenreList.count
       band_post_count = BandPost.count
-      gig_count = Gig.count
       photo_count = Photo.count
       show_count = Show.count
       follow_count = Follow.count
@@ -64,7 +62,6 @@ describe Band do
 
       expect(GenreList.count).to eq(genre_list_count - 1)
       expect(BandPost.count).to eq(band_post_count - 1)
-      expect(Gig.count).to eq(gig_count - 1)
       expect(Photo.count).to eq(photo_count - 1)
       expect(Follow.count).to eq(follow_count - 1)
       expect(Show.count).to eq(show_count - 1)

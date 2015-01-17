@@ -11,15 +11,17 @@ require 'rails_helper'
 feature "User deletes a show" do
   it "removes the show from the index page" do
     show = create(:show)
-    user = show.bands.first.user
-    
+    band = show.band
+    user = band.user
+    venue = show.venue
+
     sign_in(user)
 
     visit show_path(show)
     click_on "Delete show"
-    
-    expect(page).not_to have_content show.venue.name
-    expect(page).not_to have_content show.bands.first.name
+
+    expect(page).not_to have_content venue.name
+    expect(page).not_to have_content band.name
     expect(page).to have_content "Show deleted!"
   end
 end

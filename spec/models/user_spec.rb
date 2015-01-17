@@ -29,7 +29,7 @@ describe User do
   describe "deleting a user" do
     it "should destroy its dependencies" do
       show = create(:show)
-      user = show.bands.first.user
+      user = show.band.user
       create(:rsvp, user: user)
       create(:follow, user: user)
       band_count = Band.count

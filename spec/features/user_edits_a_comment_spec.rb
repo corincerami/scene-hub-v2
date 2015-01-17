@@ -3,9 +3,8 @@ require 'rails_helper'
 feature "User edits a comment" do
 	it 'fills in the title and body' do
 		show = create(:show)
-		user = show.bands.first.user
-		band = show.bands.first
 		comment = show.comments.first
+    user = comment.user
 
     sign_in(user)
 
@@ -22,9 +21,8 @@ feature "User edits a comment" do
 
 	it "leave the comment blank" do
 		show = create(:show)
-		user = show.bands.first.user
-		band = show.bands.first
 		comment = show.comments.first
+    user = comment.user
 
     sign_in(user)
 

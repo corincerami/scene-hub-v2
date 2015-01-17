@@ -1,6 +1,5 @@
 class Band < ActiveRecord::Base
-  has_many :gigs, dependent: :destroy
-  has_many :shows, through: :gigs
+  has_many :shows, dependent: :destroy
   has_many :band_posts, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :follows, dependent: :destroy

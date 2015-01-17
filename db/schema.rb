@@ -51,11 +51,6 @@ ActiveRecord::Schema.define(version: 20150116180852) do
     t.integer "band_id", null: false
   end
 
-  create_table "gigs", force: true do |t|
-    t.integer "show_id"
-    t.integer "band_id"
-  end
-
   create_table "photos", force: true do |t|
     t.string   "image_file_name",    null: false
     t.string   "image_content_type", null: false
@@ -75,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150116180852) do
     t.text     "details"
     t.datetime "show_date", null: false
     t.integer  "venue_id",  null: false
+    t.integer  "band_id",   null: false
   end
 
   create_table "users", force: true do |t|
