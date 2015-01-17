@@ -23,10 +23,6 @@ a {
   float: right;
 }
 
-/*a:visited {
-  color: #961953;
-}*/
-
 #page-buttons {
   display: none;
 }
@@ -51,15 +47,6 @@ a {
 #map {
   width:100%;
 }
-
-/*#title {
-  background-color: rgba(250,158,249,0.7);
-  float: left;
-  font-size: 60px;
-  padding: 30px;
-  margin-bottom: 20px;
-  border: 4px solid #FF389C;
-}*/
 
 #comment-form {
   display: none;
@@ -86,26 +73,6 @@ a {
   margin-top : 175px;
   position: absolute;
 }
-
-/*.sign-in-box {
-  float: right;
-}*/
-
-/*h1 a {
-  font-size: 100px;
-  font-family: Impact;
-}*/
-
-/*h2 {
-  font-size: 50px;
-  font-style: italic;
-  color: #FF389C
-}*/
-
-/*h3 {
-  font-style: italic;
-  color: #FF389C
-}*/
 
 #top-section {
   background-image: url("screaming-females-large.jpg");
