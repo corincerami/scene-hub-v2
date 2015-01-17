@@ -1,33 +1,32 @@
 <div class='row show panel'>
-    <a href="/shows/<%= show.id %>">
-      <div class="page small-12 medium-6 columns">
-        <div id="show-info">
-          Band:
-          <div>
-            <%= show.band.name %>
-          <div>
-            <%= show.venue.name %>
-          </div>
-          <div>
-            <%= show.venue.street_1 %>
-          </div>
-          <div>
-            <%= show.venue.street_2 %>
-          </div>
-          <div>
-            <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
-          </div>
-          <div>
-            <%= show.date_and_time %>
-          </div>
-        </div>
-      </div>
-      <div class="page small-12 medium-6 columns">
-        <div>
-          <% if show.band.photos.any? %>
-            <%= image_tag show.band.photos.first.image.url(:thumb) %>
-          <% end %>
-        </div>
-      </div>
-    </a>
+  <div class="small-12 medium-6 columns">
+    Band:
+    <div>
+      <a href="/shows/<%= show.id %>">
+        <%= show.band.name %>
+      </a>
+    </div>
+    <div>
+      <%= show.venue.name %>
+    </div>
+    <div>
+      <%= show.venue.street_1 %>
+    </div>
+    <div>
+      <%= show.venue.street_2 %>
+    </div>
+    <div>
+      <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
+    </div>
+    <div>
+      <%= show.date_and_time %>
+    </div>
+  </div>
+  <div class="small-12 medium-6 columns band-photo">
+    <div>
+      <% if show.band.photos.any? %>
+        <%= image_tag show.band.photos.first.image.url(:thumb) %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -20,8 +20,10 @@
 <% end %>
 
 <% if @shows %>
-  <div id="page-buttons">
-    <%= paginate @shows %>
+  <div class="row">
+    <div class="small-12 medium-8 columns" id="page-buttons">
+      <%= paginate @shows %>
+     </div>
   </div>
 <% end %>
 
@@ -31,7 +33,7 @@
   <% end %>
   <div class="row" id="shows">
     <h3>Upcoming Shows</h3>
-    <div class='small-12 medium-8 columns'>
+    <div class='small-12 medium-8 columns page'>
       <%= render @shows %>
     </div>
   </div>
