@@ -2,9 +2,7 @@
   <div class="small-12 medium-6 columns">
     Band:
     <div>
-      <a href="/shows/<%= show.id %>">
-        <%= show.band.name %>
-      </a>
+      <%= link_to show.band.name, show %>
     </div>
     <div>
       <%= show.venue.name %>
@@ -25,7 +23,7 @@
   <div class="small-12 medium-6 columns band-photo">
     <div>
       <% if show.band.photos.any? %>
-        <%= image_tag show.band.photos.first.image.url(:thumb) %>
+        <%= link_to (image_tag show.band.photos.first.image.url(:thumb)), show %>
       <% end %>
     </div>
   </div>
