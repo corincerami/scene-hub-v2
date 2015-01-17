@@ -1,5 +1,5 @@
 class Venue < ActiveRecord::Base
-  has_many :shows
+  has_many :shows, dependent: :destroy
 
   validates :name, presence: true
   validates :street_1, presence: true

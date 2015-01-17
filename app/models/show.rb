@@ -1,5 +1,5 @@
 class Show < ActiveRecord::Base
-  belongs_to :venue, dependent: :destroy
+  belongs_to :venue
   belongs_to :band
   accepts_nested_attributes_for :band, :venue
   has_many :comments, dependent: :destroy
