@@ -21,12 +21,8 @@ feature 'User searches for a show' do
     fill_in "Distance", with: "10"
     click_on "Find local music"
 
-    show_1.bands.each do |band|
-      expect(page).to have_content band.name
-    end
-    show_2.bands.each do |band|
-      expect(page).to have_content band.name
-    end
+    expect(page).to have_content show_1.band.name
+    expect(page).to have_content show_2.band.name
   end
 
   it "doesn't see shows that aren't within range" do
@@ -39,12 +35,8 @@ feature 'User searches for a show' do
     click_on "Find local music"
 
     expect(page).to have_content "No shows found"
-    show_1.bands.each do |band|
-      expect(page).not_to have_content band.name
-    end
-    show_2.bands.each do |band|
-      expect(page).not_to have_content band.name
-    end
+    expect(page).not_to have_content show_1.band.name
+    expect(page).not_to have_content show_2.band.name
   end
 
   it "doesn't see shows that don't match the genre" do
@@ -58,11 +50,7 @@ feature 'User searches for a show' do
     click_on "Find local music"
 
     expect(page).to have_content "No shows found"
-    show_1.bands.each do |band|
-      expect(page).not_to have_content band.name
-    end
-    show_2.bands.each do |band|
-      expect(page).not_to have_content band.name
-    end
+    expect(page).not_to have_content show_1.band.name
+    expect(page).not_to have_content show_2.band.name
   end
 end

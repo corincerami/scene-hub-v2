@@ -12,8 +12,8 @@ require 'rails_helper'
 feature "User edits a show" do
   before(:each) do
     @show = create(:show)
-    @user = @show.bands.first.user
-    
+    @user = @show.band.user
+
     sign_in(@user)
 
     visit show_path(@show)
@@ -21,10 +21,10 @@ feature "User edits a show" do
 
   it "fills in valid information" do
     click_on "Edit show"
-    select @show.bands.first.name, from: "Band"
+    select @show.band.name, from: "Band"
     fill_in "Venue name", with: "Knitting Factory"
     click_on "Save changes"
-    expect(page).to have_content @show.bands.first.name
+    expect(page).to have_content @show.band.name
     expect(page).to have_content "Knitting Factory"
     expect(page).to have_content "Show updated!"
   end

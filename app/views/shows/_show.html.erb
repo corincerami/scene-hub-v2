@@ -2,10 +2,9 @@
     <a href="/shows/<%= show.id %>">
       <div class="page small-12 medium-6 columns">
         <div id="show-info">
-          Bands:
-          <% show.bands.each do |band| %>
-            <%= band.name %>
-          <% end%>
+          Band:
+          <div>
+            <%= show.band.name %>
           <div>
             <%= show.venue.name %>
           </div>
@@ -25,8 +24,8 @@
       </div>
       <div class="page small-12 medium-6 columns">
         <div>
-          <% if show.bands.first.photos.any? %>
-            <%= image_tag show.bands.first.photos.first.image.url(:thumb) %>
+          <% if show.band.photos.any? %>
+            <%= image_tag show.band.photos.first.image.url(:thumb) %>
           <% end %>
         </div>
       </div>

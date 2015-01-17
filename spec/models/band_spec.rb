@@ -15,14 +15,14 @@ describe Band do
     it { should belong_to :user }
     it { should have_one :genre_list }
     it { should have_many :band_posts }
-    it { should have_many :gigs }
     it { should have_many :photos }
     it { should have_many :shows }
+    it { should have_many :follows }
   end
 
   describe "band with genres" do
     before(:each) do
-      @band = FactoryGirl.create(:band)
+      @band = create(:band)
     end
 
     it "should have a genre" do
@@ -40,5 +40,38 @@ describe Band do
       "spotify:user:screamingfemales",
       "Screaming Females"
       )}
+  end
+
+  describe "deleting a band" do
+    before(:each) do
+      @band = create(:band)
+      create(:band_post, band: @band)
+      create(:photo, band: @band)
+      create(:follow, band: @band)
+      create(:show, band: @band)
+    end
+
+    it "should detroy all dependencies" do
+      genre_list_count = GenreList.count
+      band_post_count = BandPost.count
+      photo_count = Photo.count
+      show_count = Show.count
+      follow_count = Follow.count
+
+      @band.destroy
+
+      expect(GenreList.count).to eq(genre_list_count - 1)
+      expect(BandPost.count).to eq(band_post_count - 1)
+      expect(Photo.count).to eq(photo_count - 1)
+      expect(Follow.count).to eq(follow_count - 1)
+      expect(Show.count).to eq(show_count - 1)
+    end
+
+    it "should be destroyed if it's user is destroyed" do
+      band_count = Band.count
+      user = @band.user
+      user.destroy
+      expect(Band.count).to eq(band_count - 1)
+    end
   end
 end

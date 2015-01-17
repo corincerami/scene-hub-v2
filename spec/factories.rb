@@ -39,11 +39,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :gig do
-    band
-    show
-  end
-
   factory :venue do
     name     "Great Scott"
     street_1 "1222 Commonwealth Ave"
@@ -69,9 +64,9 @@ FactoryGirl.define do
     show_date "2100-02-03T04:05:06+07:00"
     details   "A cool show"
     venue
+    band
     after(:create) do |show|
       user = FactoryGirl.create(:user_with_bands)
-      show.bands << user.bands.first
       comment = FactoryGirl.build(:comment)
       comment.user_id = user.id
       comment.show_id = show.id
@@ -86,5 +81,10 @@ FactoryGirl.define do
     image_file_size    "30000"
     image_updated_at   DateTime.now
     band
+  end
+
+  factory :rsvp do
+    user
+    show
   end
 end

@@ -26,4 +26,16 @@ describe Venue do
   describe "associations" do
     it { should have_many :shows }
   end
+
+  describe "deleting a venue" do
+    it "should delete its dependencies" do
+      venue = create(:venue)
+      show = create(:show, venue: venue)
+      show_count = Show.count
+
+      venue.destroy
+
+      expect(Show.count).to eq(show_count - 1)
+    end
+  end
 end

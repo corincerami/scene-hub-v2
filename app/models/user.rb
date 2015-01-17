@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
 
-  has_many :bands
-  has_many :comments
-  has_many :rsvps
-  has_many :follows
+  has_many :bands, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :rsvps, dependent: :destroy
+  has_many :follows, dependent: :destroy
 
   def rsvped?(show)
     rsvps.find_by(show: show)

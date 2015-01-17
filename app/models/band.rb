@@ -1,10 +1,9 @@
 class Band < ActiveRecord::Base
-  has_many :gigs
-  has_many :shows, through: :gigs
-  has_many :band_posts
-  has_many :photos
-  has_many :follows
-  has_one :genre_list
+  has_many :shows, dependent: :destroy
+  has_many :band_posts, dependent: :destroy
+  has_many :photos, dependent: :destroy
+  has_many :follows, dependent: :destroy
+  has_one :genre_list, dependent: :destroy
 
   belongs_to :user
 

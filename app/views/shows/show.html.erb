@@ -1,7 +1,7 @@
 <div class="show-box" data-show-id="<%= @show.id %>">
   <div class='show-photo'>
     <div class="panel" id="band-name">
-      <h2><%= link_to(@show.bands.first.name, band_path(@show.bands.first)) %></h2>
+      <h2><%= link_to(@show.band.name, band_path(@show.band)) %></h2>
     </div>
   </div>
   <div class="row">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <iframe src="https://embed.spotify.com/?uri=<%= @show.bands.first.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    <iframe src="https://embed.spotify.com/?uri=<%= @show.band.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
   </div>
   <div class="row">
     <div class="small-12 columns">
@@ -63,7 +63,7 @@
   </div>
 </div>
 
- <% if current_user == @show.bands.first.user %>
+ <% if current_user == @show.band.user %>
   <div class='row'>
     <div class='small-6 medium-2 columns border'>
       <%= link_to("Edit show", edit_show_path) %>
@@ -121,10 +121,10 @@
   <% end %>
 </div>
 
-<% if @show.bands.first.photos.any? %>
+<% if @show.band.photos.any? %>
   <style>
     .show-photo {
-      background-image: url(<%= @show.bands.first.photos.first.image.url %>);
+      background-image: url(<%= @show.band.photos.first.image.url %>);
       background-position: center;
       background-size: cover;
     }

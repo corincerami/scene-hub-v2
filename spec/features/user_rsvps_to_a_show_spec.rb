@@ -29,7 +29,7 @@ feature "User RSVPs to a show" do
   it "sees RSVPed shows on the user profile" do
     visit user_path(@user)
 
-    expect(page).to have_content @show.bands.first.name
+    expect(page).to have_content @show.band.name
     expect(page).to have_content @show.venue.name
     expect(page).to have_content @show.date_and_time
   end
@@ -37,6 +37,6 @@ feature "User RSVPs to a show" do
   it "sees RSVPed shows on the index page" do
     visit shows_path
 
-    expect(page).to have_content "#{@show.bands.first.name} at #{@show.venue.name}"
+    expect(page).to have_content "#{@show.band.name} at #{@show.venue.name}"
   end
 end

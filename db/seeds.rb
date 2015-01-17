@@ -21,14 +21,11 @@ end
 end
 
 Venue.all.each do |venue|
-  show = venue.shows.build(details: Faker::Lorem.sentence,
-                           show_date: DateTime.now + 1.year)
-  show.save
-  puts "show created"
-end
-
-Show.all.each do |show|
-  gig = show.gigs.build(band: Band.find(rand(1..99)))
-  gig.save
-  puts "gig created"
+  Band.all.each do |band|
+    show = venue.shows.build(details: Faker::Lorem.sentence,
+                             show_date: DateTime.now + 1.year,
+                             band: band)
+    show.save
+    puts "show created"
+  end
 end
