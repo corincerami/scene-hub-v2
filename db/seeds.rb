@@ -1,3 +1,5 @@
+include Geokit::Geocoders
+
 if Rails.env.development?
   100.times do
     user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
