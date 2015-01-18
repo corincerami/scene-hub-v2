@@ -35,12 +35,12 @@ class BandsController < ApplicationController
   end
 
   def edit
-    @band = Band.find(params[:id])
+    @band = current_user.bands.find(params[:id])
     @genres = @band.genre_list
   end
 
   def update
-    @band = Band.find(params[:id])
+    @band = current_user.bands.find(params[:id])
     @genres = @band.genre_list
     if @band.update(band_params)
       if @genres.update(genre_list_params)
@@ -55,7 +55,7 @@ class BandsController < ApplicationController
   end
 
   def destroy
-    @band = Band.find(params[:id])
+    @band = current_user.bands.find(params[:id])
     if @band.destroy
       flash[:notice] = "Band deleted!"
       redirect_to user_path(current_user)
