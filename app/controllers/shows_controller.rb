@@ -24,7 +24,6 @@ class ShowsController < ApplicationController
   def new
     @show = Show.new
     @venue = Venue.new
-    @user = current_user
   end
 
   def create
