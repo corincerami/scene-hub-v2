@@ -18,9 +18,9 @@ class BandsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
-    @band = Band.new(band_params)
+    @band = current_user.bands.build(band_params)
     if @band.save
-      @genres = GenreList.new(genre_list_params)
+      @genres = @band.genre_lists.build(genre_list_params)
       if @genres.save
         flash[:notice] = "Band created!"
         redirect_to band_path(@band)
@@ -68,8 +68,6 @@ class BandsController < ApplicationController
 
   def band_params
     band_params = params.require(:band).permit(:name, :spotify_uri)
-    band_params[:user_id] = current_user.id
-    band_params
   end
 
   def genre_list_params
@@ -77,7 +75,6 @@ class BandsController < ApplicationController
     genres.map! { |genre| genre.downcase }
     genre_params = Hash.new
     genre_params[:genres] = genres
-    genre_params[:band_id] = @band.id
     genre_params
   end
 end
