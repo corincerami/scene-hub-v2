@@ -5,12 +5,8 @@ class BandPostsController < ApplicationController
 	end
 
 	def create
-		@band = Band.find(params[:band_id])
-		@band_post = BandPost.new(band_post_params)
-		if !correct_user?
-			flash[:error] = "You don't have permission to do that"
-			redirect_to band_path(@band) and return
-		end
+		@band = current_user.bands.find(params[:band_id])
+		@band_post = @band.band_posts.build(band_post_params)
 		if @band_post.save
 			flash[:notice] = "Status update posted!"
 			redirect_to band_path(@band)
@@ -20,17 +16,13 @@ class BandPostsController < ApplicationController
 	end
 
 	def edit
-		@band = Band.find(params[:band_id])
-		@band_post = BandPost.find(params[:id])
+		@band = current_user.bands.find(params[:band_id])
+		@band_post = @band.band_posts.find(params[:id])
 	end
 
 	def update
-		@band = Band.find(params[:band_id])
-		@band_post = BandPost.find(params[:id])
-		if !correct_user?
-			flash[:error] = "You don't have permission to do that"
-			redirect_to band_path(@band) and return
-		end
+		@band = current_user.bands.find(params[:band_id])
+		@band_post = @band.band_posts.find(params[:id])
 		if @band_post.update(band_post_params)
 			flash[:notice] = "Status updated!"
 			redirect_to band_path(@band)
@@ -40,12 +32,8 @@ class BandPostsController < ApplicationController
 	end
 
 	def destroy
-		@band = Band.find(params[:band_id])
-		@band_post = BandPost.find(params[:id])
-		if !correct_user?
-			flash[:error] = "You don't have permission to do that"
-			redirect_to band_path(@band) and return
-		end
+		@band = current_user.bands.find(params[:band_id])
+		@band_post = @band.band_posts.find(params[:id])
 		if @band_post.destroy
 			flash[:notice] = "Status deleted!"
 			redirect_to band_path(@band)
@@ -58,8 +46,6 @@ class BandPostsController < ApplicationController
 
 	def band_post_params
 		band_post_params = params.require(:band_post).permit(:title, :content)
-		band_post_params[:band_id] = params[:band_id]
-		band_post_params
 	end
 
 	def correct_user?

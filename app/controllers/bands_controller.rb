@@ -20,7 +20,7 @@ class BandsController < ApplicationController
     @user = User.find(current_user.id)
     @band = current_user.bands.build(band_params)
     if @band.save
-      @genres = @band.genre_lists.build(genre_list_params)
+      @genres = GenreList.new(genre_list_params)
       if @genres.save
         flash[:notice] = "Band created!"
         redirect_to band_path(@band)
@@ -75,6 +75,7 @@ class BandsController < ApplicationController
     genres.map! { |genre| genre.downcase }
     genre_params = Hash.new
     genre_params[:genres] = genres
+    genre_params[:band_id] = @band.id
     genre_params
   end
 end
