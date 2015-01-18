@@ -4,41 +4,29 @@
       <h2><%= link_to(@show.band.name, band_path(@show.band)) %></h2>
     </div>
   </div>
+
   <div class="row">
     <div class='border small-12 medium-8 panel columns'>
       <div class="vcard">
         <h4>Where:</h4>
-        <div>
-          <%= @show.venue.name %>
-        </div>
-        <div>
-          <%= @show.venue.street_1 %>
-        </div>
-        <div>
-          <%= @show.venue.street_2 %>
-        </div>
-        <div>
-          <%= @show.venue.address_2 %>
-        </div>
-        <div>
-          <%= @show.venue.details %>
-        </div>
+        <div><%= @show.venue.name %></div>
+        <div><%= @show.venue.street_1 %></div>
+        <div><%= @show.venue.street_2 %></div>
+        <div><%= @show.venue.address_2 %></div>
+        <div><%= @show.venue.details %></div>
       </div>
       <div class="vcard">
         <h4>When:</h4>
-        <div>
-          <%= @show.date_and_time %>
-        </div>
+        <div><%= @show.date_and_time %></div>
       </div>
       <div class="vcard">
         <h4>Details:</h4>
-        <div>
-          <%= @show.details %>
-        </div>
+        <div><%= @show.details %></div>
       </div>
     </div>
     <iframe src="https://embed.spotify.com/?uri=<%= @show.band.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
   </div>
+
   <div class="row">
     <div class="small-12 columns">
       <% if signed_in? && !current_user.rsvped?(@show) %>
@@ -99,15 +87,9 @@
       <h4>Comments</h4>
         <% @show.comments.each do |comment| %>
           <div class="panel">
-            <div>
-              <%= comment.title %>
-            </div>
-            <div>
-              <%= comment.body %>
-            </div>
-            <div>
-              Posted by: <%= comment.user.email %> at <%= comment.time_created %>
-            </div>
+            <div><%= comment.title %></div>
+            <div><%= comment.body %></div>
+            <div>Posted by: <%= comment.user.email %> at <%= comment.time_created %></div>
             <% if current_user == comment.user %>
               <div>
                 <%= link_to("Edit comment", edit_show_comment_path(@show, comment)) %> |
