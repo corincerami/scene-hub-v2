@@ -43,21 +43,13 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    @show = Show.find(params[:id])
+    @show = current_user.shows.find(params[:id])
     @venue = @show.venue
     @band = @show.band
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that."
-      redirect_to show_path(@show)
-    end
   end
 
   def update
-    @show = Show.find(params[:id])
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that."
-      redirect_to show_path(@show)
-    end
+    @show = current_user.shows.find(params[:id])
     @band = @show.band
     @venue = @show.venue
     @venue.update(venue_params)
@@ -70,12 +62,10 @@ class ShowsController < ApplicationController
   end
 
   def destroy
-    @show = Show.find(params[:id])
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that."
-    elsif @show.destroy
+    @show = current_user.shows.find(params[:id])
+    if @show.destroy
       flash[:notice] = "Show deleted!"
-      redirect_to shows_path and return
+      redirect_to shows_path
     end
     render show_path(@show)
   end
@@ -98,9 +88,5 @@ class ShowsController < ApplicationController
       venue_params[:lng] = loc.lng
     end
     venue_params
-  end
-
-  def correct_user?
-    current_user == @show.band.user
   end
 end
