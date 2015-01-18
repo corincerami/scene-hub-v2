@@ -3,12 +3,18 @@
     <div class='small-12 medium-6 columns' id="zip-code-form">
       <h1>Scene Hub</h1>
       <h3>Listen Locally</h3>
-      <form action='/shows' method='get'>
-        <label>Zip code<input type="text" id="user_zip" name="zip_code" /></label>
-        <label>Distance<input type="text" id="distance" name="radius" /></label>
-        <label>Genre<input type="text" id="genre" name="genre" /></label>
-        <input type='submit' value='Find local music' class="button">
-      </form>
+      <%= form_tag shows_path, method: :get do %>
+        <%= label_tag :zip_code %>
+        <%= text_field_tag :zip_code %>
+
+        <%= label_tag :distance %>
+        <%= text_field_tag :distance %>
+
+        <%= label_tag :genre %>
+        <%= text_field_tag :genre %>
+
+        <%= submit_tag "Find local music", class: "button" %>
+      <% end %>
     </div>
   </div>
 </div>

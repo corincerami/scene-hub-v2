@@ -1,6 +1,6 @@
 <% if @comment.errors.any? %>
 	<% @comment.errors.full_messages.each do |msg| %>
-		<div>
+		<div class="flash-error">
 			<%= msg %>
 		</div>
 	<% end %>

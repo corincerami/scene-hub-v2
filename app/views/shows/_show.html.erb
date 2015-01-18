@@ -1,30 +1,16 @@
 <div class='row show panel'>
   <div class="small-12 medium-6 columns">
     Band:
-    <div>
-      <%= link_to show.band.name, show %>
-    </div>
-    <div>
-      <%= show.venue.name %>
-    </div>
-    <div>
-      <%= show.venue.street_1 %>
-    </div>
-    <div>
-      <%= show.venue.street_2 %>
-    </div>
-    <div>
-      <%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %>
-    </div>
-    <div>
-      <%= show.date_and_time %>
-    </div>
+    <div><%= link_to show.band.name, show %></div>
+    <div><%= show.venue.name %></div>
+    <div><%= show.venue.street_1 %></div>
+    <div><%= show.venue.street_2 %></div>
+    <div><%= "#{show.venue.city}, #{show.venue.state} #{show.venue.zip_code}" %></div>
+    <div><%= show.date_and_time %></div>
   </div>
   <div class="small-12 medium-6 columns band-photo">
-    <div>
-      <% if show.band.photos.any? %>
-        <%= link_to (image_tag show.band.photos.first.image.url(:thumb)), show %>
-      <% end %>
-    </div>
+    <% if show.band.photos.any? %>
+      <%= link_to (image_tag show.band.photos.first.image.url(:thumb)), show %>
+    <% end %>
   </div>
 </div>

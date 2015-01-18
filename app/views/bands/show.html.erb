@@ -10,12 +10,12 @@
 </div>
 
 <% if signed_in? && !current_user.following?(@band) %>
-<%= button_to "Follow #{@band.name}", band_follows_path(@band),
-							method: :create, class: "button" %>
+	<%= button_to "Follow #{@band.name}", band_follows_path(@band),
+								method: :create, class: "button" %>
 <% elsif signed_in? && current_user.following?(@band) %>
-Following
-<%= button_to "Stop following #{@band.name}", follow_path(current_user.follows.find_by(band: @band)),
-							method: :delete, class: "button" %>
+	Following
+	<%= button_to "Stop following #{@band.name}", follow_path(current_user.follows.find_by(band: @band)),
+								method: :delete, class: "button" %>
 <% end %>
 
 <div class='row'>
@@ -87,12 +87,8 @@ Following
 			<% @band.band_posts.sort_by { |post| post.created_at }.reverse.each do |post| %>
 				<div class='row'>
 					<div class='small-12 columns panel'>
-						<div>
-							<h4><%= post.title %></h4>
-						</div>
-						<div>
-							<%= post.content %>
-						</div>
+						<div><h4><%= post.title %></h4></div>
+						<div><%= post.content %></div>
 						<% if current_user == @band.user %>
 							<%= link_to("Edit status", edit_band_band_post_path(@band, post), class: "button") %>
 							<%= link_to("Delete status", band_band_post_path(@band, post), method: :delete, data: { confirm: "Are you sure?" }, class: "button") %>
