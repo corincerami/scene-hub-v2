@@ -18,7 +18,7 @@ class BandsController < ApplicationController
 
   def create
     @user = User.find(current_user.id)
-    @band = Band.new(band_params)
+    @band = current_user.bands.build(band_params)
     if @band.save
       @genres = GenreList.new(genre_list_params)
       if @genres.save
@@ -35,12 +35,12 @@ class BandsController < ApplicationController
   end
 
   def edit
-    @band = Band.find(params[:id])
+    @band = current_user.bands.find(params[:id])
     @genres = @band.genre_list
   end
 
   def update
-    @band = Band.find(params[:id])
+    @band = current_user.bands.find(params[:id])
     @genres = @band.genre_list
     if @band.update(band_params)
       if @genres.update(genre_list_params)
@@ -55,7 +55,7 @@ class BandsController < ApplicationController
   end
 
   def destroy
-    @band = Band.find(params[:id])
+    @band = current_user.bands.find(params[:id])
     if @band.destroy
       flash[:notice] = "Band deleted!"
       redirect_to user_path(current_user)
@@ -68,8 +68,6 @@ class BandsController < ApplicationController
 
   def band_params
     band_params = params.require(:band).permit(:name, :spotify_uri)
-    band_params[:user_id] = current_user.id
-    band_params
   end
 
   def genre_list_params

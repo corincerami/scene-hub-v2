@@ -1,7 +1,7 @@
 class FollowsController < ApplicationController
   def create
     @band = Band.find(params[:band_id])
-    follow = Follow.new(band: @band, user: current_user)
+    follow = @band.follows.build(user: current_user)
     if follow.save
       flash[:motice] = "Now following #{@band.name}"
       redirect_to @band
@@ -11,7 +11,7 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    follow = Follow.find(params[:id])
+    follow = current_user.follows.find(params[:id])
     @band = follow.band
     if follow.destroy
       flash[:notice] = "No longer following #{@band.name}"

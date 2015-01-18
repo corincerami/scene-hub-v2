@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :lockable
 
   has_many :bands, dependent: :destroy
+  has_many :shows, through: :bands
   has_many :comments, dependent: :destroy
   has_many :rsvps, dependent: :destroy
   has_many :follows, dependent: :destroy

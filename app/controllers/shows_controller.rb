@@ -24,14 +24,14 @@ class ShowsController < ApplicationController
   def new
     @show = Show.new
     @venue = Venue.new
-    @user = current_user
   end
 
   def create
-    @venue = Venue.find_or_create_by(venue_params)
-    @band = Band.find(params[:user][:bands])
+    @band = current_user.bands.find(params[:user][:bands])
     @show = @band.shows.build(show_params)
-    if !params[:user][:bands].empty? && @show.save
+    @venue = Venue.find_or_create_by(venue_params)
+    @show.venue = @venue
+    if @show.save
       Follow.where(band: @band).each do |follow|
         ShowNotification.notification(follow, @show).deliver
       end
@@ -43,24 +43,14 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    @show = Show.find(params[:id])
+    @show = current_user.shows.find(params[:id])
     @venue = @show.venue
     @band = @show.band
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that."
-      redirect_to show_path(@show)
-    end
   end
 
   def update
-    @show = Show.find(params[:id])
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that."
-      redirect_to show_path(@show)
-    end
-    @band = @show.band
-    @venue = @show.venue
-    @venue.update(venue_params)
+    @show = current_user.shows.find(params[:id])
+    @show.venue.update(venue_params)
     if @show.update(show_params)
       flash[:notice] = "Show updated!"
       redirect_to show_path(@show)
@@ -70,37 +60,24 @@ class ShowsController < ApplicationController
   end
 
   def destroy
-    @show = Show.find(params[:id])
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that."
-    elsif @show.destroy
+    @show = current_user.shows.find(params[:id])
+    if @show.destroy
       flash[:notice] = "Show deleted!"
-      redirect_to shows_path and return
+      redirect_to shows_path
+    else
+      render show_path(@show)
     end
-    render show_path(@show)
   end
 
   private
 
   def show_params
     show_params = params.require(:show).permit(:show_date, :details)
-    show_params[:venue_id] = @venue.id
-    show_params
   end
 
   def venue_params
     venue_params = params.require(:venue).permit(:name, :street_1, :street_2,
                                                  :city, :state, :zip_code, :details)
-    address = "#{params[:venue][:street_1]}, #{params[:venue][:city]}, #{params[:venue][:state]}"
-    loc = MultiGeocoder.geocode(address)
-    if loc.success
-      venue_params[:lat] = loc.lat
-      venue_params[:lng] = loc.lng
-    end
-    venue_params
-  end
-
-  def correct_user?
-    current_user == @show.band.user
+    @show.geocode_venue(venue_params)
   end
 end

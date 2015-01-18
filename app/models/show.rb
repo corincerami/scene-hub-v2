@@ -29,4 +29,14 @@ class Show < ActiveRecord::Base
       order(:show_date).where("show_date > ?", DateTime.now)
     end
   end
+
+  def geocode_venue(params)
+    address = "#{params[:street_1]}, #{params[:city]}, #{params[:state]}"
+    loc = MultiGeocoder.geocode(address)
+    if loc.success
+      params[:lat] = loc.lat
+      params[:lng] = loc.lng
+    end
+    params
+  end
 end

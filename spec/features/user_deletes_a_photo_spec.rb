@@ -6,6 +6,7 @@ feature "User deletes a photo" do
     band = user.bands.first
     band.photos << create(:photo)
     photo = band.photos.first
+    create(:band, user: user)
     sign_in(user)
 
     visit band_path(band)

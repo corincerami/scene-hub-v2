@@ -13,10 +13,9 @@ Rails.application.routes.draw do
 
   resources :bands do
   	resources :band_posts, only: [:new, :create, :destroy, :edit, :update]
-    resources :photos, only: [:new, :create]
+    resources :photos, only: [:new, :create, :destroy]
     resources :follows, only: [:create]
   end
   resources :follows, only: [:destroy]
-  resources :photos, only: [:destroy]
 
 end

@@ -29,7 +29,7 @@ Following
 					</div>
 					<% if current_user == @band.user %>
 						<div>
-							<%= link_to("Delete photo", photo_path(photo), method: :delete, data: { confirm: "Are you sure?" }) %>
+							<%= link_to("Delete photo", band_photo_path(@band, photo), method: :delete, data: { confirm: "Are you sure?" }) %>
 						</div>
 					</li>
 				<% end %>

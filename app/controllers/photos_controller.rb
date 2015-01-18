@@ -2,20 +2,12 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def new
-    @band = Band.find(params[:band_id])
+    @band = current_user.bands.find(params[:band_id])
     @photo = Photo.new
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that"
-      redirect_to band_path(@band)
-    end
   end
 
   def create
-    @band = Band.find(params[:band_id])
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that"
-      redirect_to band_path(@band)
-    end
+    @band = current_user.bands.find(params[:band_id])
     params[:photo] ? @photo = @band.photos.build(photo_params) : @photo = Photo.new
     if @photo.save
       flash[:notice] = "Photo uploaded"
@@ -26,12 +18,8 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
-    @band = @photo.band
-    if !correct_user?
-      flash[:error] = "You don't have permission to do that"
-      redirect_to band_path(@band) and return
-    end
+    @band = current_user.bands.find(params[:band_id])
+    @photo = @band.photos.find(params[:id])
     if @photo.destroy
       flash[:notice] = "Photo deleted"
       redirect_to band_path(@band)
@@ -44,9 +32,5 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:image)
-  end
-
-  def correct_user?
-    current_user == @band.user
   end
 end
