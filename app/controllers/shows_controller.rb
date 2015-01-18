@@ -28,10 +28,11 @@ class ShowsController < ApplicationController
   end
 
   def create
-    @venue = Venue.find_or_create_by(venue_params)
-    @band = Band.find(params[:user][:bands])
+    @band = current_user.bands.find(params[:user][:bands])
     @show = @band.shows.build(show_params)
-    if !params[:user][:bands].empty? && @show.save
+    @venue = Venue.find_or_create_by(venue_params)
+    @show.venue = @venue
+    if @show.save
       Follow.where(band: @band).each do |follow|
         ShowNotification.notification(follow, @show).deliver
       end
@@ -50,9 +51,7 @@ class ShowsController < ApplicationController
 
   def update
     @show = current_user.shows.find(params[:id])
-    @band = @show.band
-    @venue = @show.venue
-    @venue.update(venue_params)
+    @show.venue.update(venue_params)
     if @show.update(show_params)
       flash[:notice] = "Show updated!"
       redirect_to show_path(@show)
@@ -66,27 +65,20 @@ class ShowsController < ApplicationController
     if @show.destroy
       flash[:notice] = "Show deleted!"
       redirect_to shows_path
+    else
+      render show_path(@show)
     end
-    render show_path(@show)
   end
 
   private
 
   def show_params
     show_params = params.require(:show).permit(:show_date, :details)
-    show_params[:venue_id] = @venue.id
-    show_params
   end
 
   def venue_params
     venue_params = params.require(:venue).permit(:name, :street_1, :street_2,
                                                  :city, :state, :zip_code, :details)
-    address = "#{params[:venue][:street_1]}, #{params[:venue][:city]}, #{params[:venue][:state]}"
-    loc = MultiGeocoder.geocode(address)
-    if loc.success
-      venue_params[:lat] = loc.lat
-      venue_params[:lng] = loc.lng
-    end
-    venue_params
+    @show.geocode_venue(venue_params)
   end
 end

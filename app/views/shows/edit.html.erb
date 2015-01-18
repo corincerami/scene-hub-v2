@@ -9,8 +9,8 @@
       <% end %>
     <% end %>
 
-    <% if @venue.errors.any? %>
-      <% @venue.errors.full_messages.each do |msg| %>
+    <% if @show.venue.errors.any? %>
+      <% @show.venue.errors.full_messages.each do |msg| %>
         <div class='row'>
           <div class='flash-error small-12 medium-3 columns'>
             <%= msg %>
