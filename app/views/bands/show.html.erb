@@ -4,7 +4,9 @@
 	    <h2><%= @band.name %></h2>
 	  </div>
 		<div>
-			<iframe src="https://embed.spotify.com/?uri=<%= @band.spotify_uri %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+			<% if @band.spotify_uri %>
+				<iframe src="https://embed.spotify.com/?uri=<%= @band.spotify_uri %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+			<% end %>
 		</div>
 	</div>
 </div>

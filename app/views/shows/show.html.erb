@@ -24,7 +24,9 @@
         <div><%= @show.details %></div>
       </div>
     </div>
-    <iframe src="https://embed.spotify.com/?uri=<%= @show.band.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    <% if @show.band.spotify_uri %>
+      <iframe src="https://embed.spotify.com/?uri=<%= @show.band.spotify_uri %>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    <% end %>
   </div>
 
   <div class="row">

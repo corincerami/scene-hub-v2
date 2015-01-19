@@ -35,7 +35,7 @@ $(document).ready(function() {
 
   });
 
-  $('[data-show-id]').on('submit', '[data-rsvp-button="delete"]', function(event) {
+  $('[data-show-id] [data-rsvp-button="delete"]').on('submit', function(event) {
     event.preventDefault();
 
     $form = $(event.currentTarget);
