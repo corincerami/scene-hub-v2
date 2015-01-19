@@ -1,7 +1,7 @@
 $(function(){ $(document).foundation(); });
 
 $(document).ready(function() {
-  $('[data-show-id]').on('submit', '[data-rsvp-button="create"]', function(event) {
+  $('[data-show-id] [data-rsvp-button="create"]').on('submit', function(event) {
     // prevents default controller action of submitting an rsvp create
     event.preventDefault();
     // saves form params to jquery var
