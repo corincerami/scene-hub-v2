@@ -15,21 +15,15 @@ $(document).ready(function() {
         // Create the String version of the form action
         action = '/rsvps/' + rsvp.id;
 
-        // Create the new form
-        $newForm = $('<form>').attr({
+        // Change the form attributes
+        $form.attr({
           action: action,
-          method: 'delete',
           'data-rsvp-button': 'delete'
         });
-
-        // Create the new submit input
-        $rsvpButton = $('<input>').attr({type: 'submit', value: 'Cancel RSVP', class: 'button'});
-
-        // Append the new submit input to the new form
-        $newForm.append($rsvpButton);
-
-        // Replace the old create form with the new remove form
-        $form.replaceWith($newForm);
+        $hidden = $('<input>').attr({name: '_method', type: 'hidden', value: 'delete'});
+        $form.prepend($hidden);
+        $button = $('[value="RSVP"]');
+        $button.attr({value: "Cancel RSVP"});
       }
     });
 
@@ -52,20 +46,15 @@ $(document).ready(function() {
       action = '/shows/' + $show.data('show-id') + '/rsvps';
 
       // Create the new form for creating a RSVP
-      $newForm = $('<form>').attr({
+      $form.attr({
         action: action,
         method: 'post',
         'data-rsvp-button': 'create'
       });
-
-      // Create the new submit input
-      $rsvpButton = $('<input>').attr({type: 'submit', value: 'RSVP', class: 'button'});
-
-      // Append the new submit input to the new form
-      $newForm.append($rsvpButton);
-
-      // Replace the old create form with the new remove form
-      $form.replaceWith($newForm);
+      $button = $('[value]');
+      $button.attr({value: "RSVP"});
+      $hidden = $('[name="_method"]')
+      $hidden.remove()
       }
     });
   });
