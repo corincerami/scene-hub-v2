@@ -21,7 +21,7 @@ feature "User creates a band on their profile" do
     fill_in "Spotify URI", with: "spotify:artist:3pZ666b6CyO1KGpVYirY0t"
     click_on "Create band"
 
-    expect(page).to have_content user.bands.first.name
+    expect(page).to have_content "Screaming Females"
     expect(page).to have_content "punk"
     expect(page).to have_content "rock"
     expect(page).to have_content "indie"

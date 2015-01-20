@@ -47,9 +47,4 @@ class BandPostsController < ApplicationController
 	def band_post_params
 		band_post_params = params.require(:band_post).permit(:title, :content)
 	end
-
-	def correct_user?
-    	@band = Band.find(params[:band_id])
-    	current_user == @band.user
-  	end
 end
