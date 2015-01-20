@@ -16,4 +16,11 @@ $ ->
       success: (data) ->
         geojson = $.parseJSON(data)
         map.featureLayer.setGeoJSON(geojson)
+        map.featureLayer.on "mouseover", (e) ->
+          e.layer.openPopup()
+          return
+
+        map.featureLayer.on "mouseout", (e) ->
+          e.layer.closePopup()
+          return
 

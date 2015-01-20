@@ -18,19 +18,23 @@ class Band < ActiveRecord::Base
     genre_list.genres.include?(genre)
   end
 
+  def find_marker_size(venue)
+    show_count = self.shows.where(venue: venue).count
+    if show_count < 10
+      marker_size = "small"
+    elsif show_count >=10 && show_count < 30
+      marker_size = "medium"
+    else
+      marker_size = "large"
+    end
+  end
+
   def geojson
     geojson = Array.new
     shows = self.shows
     shows.each do |show|
       venue = show.venue
-      show_count = self.shows.where(venue: venue).count
-      if show_count < 10
-        marker_size = "small"
-      elsif show_count >=10 && show_count < 30
-        marker_size = "medium"
-      else
-        marker_size = "large"
-      end
+      marker_size = find_marker_size(venue)
       geojson << {
         type: 'Feature',
         geometry: {
@@ -38,12 +42,11 @@ class Band < ActiveRecord::Base
           coordinates: [venue.lng, venue.lat]
         },
         properties: {
-          name: venue.name,
-          address: venue.street_1,
+          title: "#{venue.name} | #{venue.street_1}, #{venue.address_2}",
           :'marker-color' => "#FF389C",
           :'marker-line-color' => "#FF389C",
           :'marker-fill' => "#FF389C",
-          :'marker-symbol' => 'circle',
+          :'marker-symbol' => 'music',
           :'marker-size' => "#{marker_size}"
         }
       }
