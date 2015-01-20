@@ -43,4 +43,10 @@ class Show < ActiveRecord::Base
     end
     params
   end
+
+  def mail_followers
+    Follow.where(band: band).each do |follow|
+      ShowNotification.notification(follow, self).deliver
+    end
+  end
 end

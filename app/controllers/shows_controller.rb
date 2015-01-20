@@ -27,9 +27,7 @@ class ShowsController < ApplicationController
     @venue = Venue.find_or_create_by(venue_params)
     @show.venue = @venue
     if @show.save
-      Follow.where(band: @band).each do |follow|
-        ShowNotification.notification(follow, @show).deliver
-      end
+      @show.mail_followers
       flash[:notice] = "Show created!"
       redirect_to show_path(@show)
     else
