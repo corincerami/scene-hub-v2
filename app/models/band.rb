@@ -42,10 +42,7 @@ class Band < ActiveRecord::Base
           coordinates: [venue.lng, venue.lat]
         },
         properties: {
-          title: "#{venue.name}
-                  #{venue.street_1}
-                  #{venue.address_2}",
-          address: venue.street_1,
+          title: "#{venue.name} | #{venue.street_1}, #{venue.address_2}",
           :'marker-color' => "#FF389C",
           :'marker-line-color' => "#FF389C",
           :'marker-fill' => "#FF389C",
