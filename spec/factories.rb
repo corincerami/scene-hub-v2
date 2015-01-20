@@ -12,7 +12,7 @@ FactoryGirl.define do
   end
 
   factory :genre_list do
-    genres ["Punk", "Rock"]
+    genre "Punk"
   end
 
   factory :band_post do

@@ -10,13 +10,12 @@ feature "User edits a band" do
     visit band_path(band)
     click_on "Edit band"
     fill_in  "Name", with: "NEW BAND"
-    fill_in "Genres", with: "classical, mariacchi"
+    fill_in "Genre", with: "classical"
     fill_in "Spotify URI", with: "spotify:artist:3pZ666b6CyO1KGpVYirY0t"
     click_on "Update band"
 
-    expect(page).to have_content user.bands.first.name
+    expect(page).to have_content "NEW BAND"
     expect(page).to have_content "classical"
-    expect(page).to have_content "mariacchi"
     expect(page).to have_content "Band updated!"
   end
 
@@ -34,20 +33,6 @@ feature "User edits a band" do
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Spotify uri should be the URI for an artist on Spotify"
-  end
-
-  it "enters genres in an invalid format" do
-    user = create(:user_with_bands)
-    band = user.bands.first
-
-    sign_in(user)
-
-    visit band_path(band)
-    click_on "Edit band"
-    fill_in  "Genres", with: "classical and mariacchi"
-    click_on "Update band"
-
-    expect(page).to have_content "Genres must be entered as a comma separated list"
   end
 
   it "attempts to edit a band the user did not create" do
