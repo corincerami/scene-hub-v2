@@ -1,6 +1,7 @@
 class Show < ActiveRecord::Base
   belongs_to :venue
   belongs_to :band
+  has_one :genre_list, through: :band
   accepts_nested_attributes_for :band, :venue
   has_many :comments, dependent: :destroy
   has_many :rsvps, dependent: :destroy
@@ -17,15 +18,18 @@ class Show < ActiveRecord::Base
 
   def self.search(zip_code, radius, genre)
     if !zip_code.nil? && !zip_code.empty?
-      shows = self.joins(:venue).joins(:band).within(radius.to_i, origin: zip_code).order(:show_date).where("show_date > ?", DateTime.now)
+      shows = self.joins(:venue).joins(:band).joins(:genre_list).
+                  within(radius.to_i, origin: zip_code).
+                  order(:show_date).
+                  where("show_date > ?", DateTime.now)
+      # if genre is included in search, find only shows which match genre
       if !genre.empty? && !genre.nil?
-        # only return shows whose bands match the supplied genre
-        shows = shows.order(:show_date).to_a.select { |show| show.band.has_genre?(genre) }
-        shows
+        shows.where("genre ILIKE ?", genre)
       else
         shows
       end
     else
+      # return all future shows
       order(:show_date).where("show_date > ?", DateTime.now)
     end
   end
@@ -38,5 +42,11 @@ class Show < ActiveRecord::Base
       params[:lng] = loc.lng
     end
     params
+  end
+
+  def mail_followers
+    Follow.where(band: band).each do |follow|
+      ShowNotification.notification(follow, self).deliver
+    end
   end
 end

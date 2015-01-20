@@ -15,7 +15,7 @@ class Band < ActiveRecord::Base
     allow_blank: true
 
   def has_genre?(genre)
-    genre_list.genres.include?(genre)
+    genre_list.genre.downcase == genre.downcase
   end
 
   def find_marker_size(venue)

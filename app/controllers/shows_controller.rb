@@ -7,12 +7,7 @@ class ShowsController < ApplicationController
     @zip_code = params[:zip_code]
     params[:radius].nil? || params[:radius].empty? ? @radius = 25 : @radius = params[:radius]
     @genre = params[:genre]
-    if @genre
-      @shows = Show.search(@zip_code, @radius, @genre)
-      @shows = Kaminari.paginate_array(@shows).page params[:page]
-    else
-      @shows = Show.search(@zip_code, @radius, @genre).page params[:page]
-    end
+    @shows = Show.search(@zip_code, @radius, @genre).page params[:page]
   end
 
   def show
@@ -32,9 +27,7 @@ class ShowsController < ApplicationController
     @venue = Venue.find_or_create_by(venue_params)
     @show.venue = @venue
     if @show.save
-      Follow.where(band: @band).each do |follow|
-        ShowNotification.notification(follow, @show).deliver
-      end
+      @show.mail_followers
       flash[:notice] = "Show created!"
       redirect_to show_path(@show)
     else
