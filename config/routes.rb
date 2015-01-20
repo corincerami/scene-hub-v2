@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :shows do
   	resources :comments, only: [:new, :create, :destroy, :edit, :update]
-    resources :rsvps, only: [:new, :create]
+    resources :rsvps, only: [:create]
   end
   resources :rsvps, only: :destroy
   resources :users, only: [:show]
