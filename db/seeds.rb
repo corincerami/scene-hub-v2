@@ -20,7 +20,7 @@ if Rails.env.development?
     end
   end
 
-  30.times do
+  10.times do
     street = "66 Kenzel Ave"
     city = "Nutley"
     state = "NJ"
