@@ -1,6 +1,4 @@
 class ShowsController < ApplicationController
-  include Geokit::Geocoders
-
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index

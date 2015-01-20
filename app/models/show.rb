@@ -1,4 +1,5 @@
 class Show < ActiveRecord::Base
+  include Geokit::Geocoders
   belongs_to :venue
   belongs_to :band
   has_one :genre_list, through: :band
