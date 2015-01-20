@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chrisccerami/scene-hub-v2.svg?branch=infinite-scroll)](https://travis-ci.org/chrisccerami/scene-hub-v2)[![Coverage Status](https://coveralls.io/repos/chrisccerami/scene-hub-v2/badge.svg)](https://coveralls.io/r/chrisccerami/scene-hub-v2)
+[![Build Status](https://travis-ci.org/chrisccerami/scene-hub-v2.svg?branch=infinite-scroll)](https://travis-ci.org/chrisccerami/scene-hub-v2)[![Coverage Status](https://coveralls.io/repos/chrisccerami/scene-hub-v2/badge.svg)](https://coveralls.io/r/chrisccerami/scene-hub-v2)[![Code Climate](https://codeclimate.com/repos/54becb596956803bed0005e9/badges/517f5b3de475c718bf2d/gpa.svg)](https://codeclimate.com/repos/54becb596956803bed0005e9/feed)
 
 # Scene Hub
 
