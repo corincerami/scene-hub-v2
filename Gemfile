@@ -57,6 +57,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'valid_attribute'
   gem 'email_spec'
+  gem 'database_cleaner'
 end
 
 group :production do
