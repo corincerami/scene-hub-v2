@@ -30,7 +30,7 @@ class Band < ActiveRecord::Base
   end
 
   def geojson
-    geojson = []
+    geojson = Array.new
     shows = self.shows
     shows.each do |show|
       venue = show.venue
@@ -46,7 +46,7 @@ class Band < ActiveRecord::Base
           :'marker-line-color' => '#FF389C',
           :'marker-fill' => '#FF389C',
           :'marker-symbol' => 'music',
-          :'marker-size' => '#{find_marker_size(venue)}'
+          :'marker-size' => "#{find_marker_size(venue)}"
         }
       }
     end
