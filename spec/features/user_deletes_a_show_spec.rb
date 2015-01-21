@@ -20,7 +20,6 @@ feature "User deletes a show" do
     visit show_path(show)
     click_on "Delete show"
 
-    expect(page).not_to have_content venue.name
     expect(page).not_to have_content band.name
     expect(page).to have_content "Show deleted!"
   end

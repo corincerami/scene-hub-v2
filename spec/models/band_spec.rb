@@ -74,4 +74,14 @@ describe Band do
       expect(Band.count).to eq(band_count - 1)
     end
   end
+
+  describe "find_marker_size" do
+    band = FactoryGirl.create(:band)
+    venue = FactoryGirl.create(:venue)
+    show = FactoryGirl.create(:show, band: band, venue: venue)
+    subject { band.find_marker_size(venue) }
+    it "should have a small marker when 1 show exists" do
+      should eq("small")
+    end
+  end
 end
