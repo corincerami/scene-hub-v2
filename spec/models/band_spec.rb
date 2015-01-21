@@ -26,8 +26,8 @@ describe Band do
     end
 
     it "should have a genre" do
-      expect(@band.has_genre?("Punk")).to eq(true)
-      expect(@band.has_genre?("Pop")).to eq(false)
+      expect(@band.genre?("Punk")).to eq(true)
+      expect(@band.genre?("Pop")).to eq(false)
     end
   end
 
@@ -82,6 +82,14 @@ describe Band do
     subject { band.find_marker_size(venue) }
     it "should have a small marker when 1 show exists" do
       should eq("small")
+    end
+    it "should have a medium marker when 10-29 shows exist" do
+      10.times { FactoryGirl.create(:show, band: band, venue: venue) }
+      should eq("medium")
+    end
+    it "should have a large marker when more than 30 shows exists" do
+      30.times { FactoryGirl.create(:show, band: band, venue: venue) }
+      should eq("large")
     end
   end
 end
