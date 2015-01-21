@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit,
+                                            :update, :destroy]
 
   def show
     @band = Band.find(params[:id])
@@ -23,7 +24,7 @@ class BandsController < ApplicationController
       @genre = GenreList.new(genre_list_params)
       @genre.band = @band
       if @genre.save
-        flash[:notice] = "Band created!"
+        flash[:notice] = 'Band created!'
         redirect_to band_path(@band)
       else
         @band.destroy
@@ -44,7 +45,7 @@ class BandsController < ApplicationController
     @band = current_user.bands.find(params[:id])
     @genre = @band.genre_list
     if @band.update(band_params) && @genre.update(genre_list_params)
-      flash[:notice] = "Band updated!"
+      flash[:notice] = 'Band updated!'
       redirect_to band_path(@band)
     else
       render :edit
@@ -54,7 +55,7 @@ class BandsController < ApplicationController
   def destroy
     @band = current_user.bands.find(params[:id])
     if @band.destroy
-      flash[:notice] = "Band deleted!"
+      flash[:notice] = 'Band deleted!'
       redirect_to user_path(current_user)
     else
       render :show

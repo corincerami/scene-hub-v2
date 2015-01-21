@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
     @band = current_user.bands.find(params[:band_id])
     params[:photo] ? @photo = @band.photos.build(photo_params) : @photo = Photo.new
     if @photo.save
-      flash[:notice] = "Photo uploaded"
+      flash[:notice] = 'Photo uploaded'
       redirect_to band_path(@band)
     else
       render :new
@@ -21,10 +21,10 @@ class PhotosController < ApplicationController
     @band = current_user.bands.find(params[:band_id])
     @photo = @band.photos.find(params[:id])
     if @photo.destroy
-      flash[:notice] = "Photo deleted"
+      flash[:notice] = 'Photo deleted'
       redirect_to band_path(@band)
     else
-      render band_path(@band)
+      render @band
     end
   end
 

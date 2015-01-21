@@ -5,7 +5,7 @@ class RsvpsController < ApplicationController
       @rsvp = @show.rsvps.build(user: current_user)
       if @rsvp.save
         format.html do
-          flash[:notice] = "RSVPed successfully!"
+          flash[:notice] = 'RSVPed successfully!'
           redirect_to show_path(@show)
         end
         format.json { render json: @rsvp }
@@ -13,8 +13,7 @@ class RsvpsController < ApplicationController
         format.html do
           render show_path(@show)
         end
-        format.json { render json: @rsvp.errors,
-                             status: :unprocessable_entity }
+        format.json { render json: @rsvp.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -25,7 +24,7 @@ class RsvpsController < ApplicationController
       @show = rsvp.show
       if rsvp.destroy
         format.html do
-          flash[:notice] = "RSVP cancelled"
+          flash[:notice] = 'RSVP cancelled'
           redirect_to show_path(@show)
         end
         format.json { head :no_content }

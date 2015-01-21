@@ -14,24 +14,17 @@ class Show < ActiveRecord::Base
   acts_as_mappable through: :venue
 
   def date_and_time
-    show_date.strftime("%B %d, %Y at %I:%M%p")
+    show_date.strftime('%B %d, %Y at %I:%M%p')
   end
 
   def self.search(zip_code, radius, genre)
     if !zip_code.nil? && !zip_code.empty?
-      shows = self.joins(:venue).joins(:band).joins(:genre_list).
-                  within(radius.to_i, origin: zip_code).
-                  order(:show_date).
-                  where("show_date > ?", DateTime.now)
-      # if genre is included in search, find only shows which match genre
-      if !genre.empty? && !genre.nil?
-        shows.where("genre ILIKE ?", genre)
-      else
-        shows
-      end
+      shows = joins(:venue).joins(:band).joins(:genre_list)
+                  .within(radius.to_i, origin: zip_code).order(:show_date)
+                  .where('show_date > ?', DateTime.now)
+      !genre.empty? && !genre.nil? ? shows.where('genre ILIKE ?', genre) : shows
     else
-      # return all future shows
-      order(:show_date).where("show_date > ?", DateTime.now)
+      order(:show_date).where('show_date > ?', DateTime.now)
     end
   end
 
