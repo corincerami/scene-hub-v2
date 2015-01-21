@@ -1,54 +1,54 @@
 include Geokit::Geocoders
 
-# if Rails.env.development?
-#   10.times do
-#     user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
-#     user.save
-#     puts "user #{user.email} created"
-#   end
+if Rails.env.development?
+  10.times do
+    user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
+    user.save
+    puts "user #{user.email} created"
+  end
 
-#   User.all.each do |user|
-#     band = user.bands.build(name: Faker::App.name)
-#     band.save
-#     puts "band #{band.name} created"
-#   end
+  User.all.each do |user|
+    band = user.bands.build(name: Faker::App.name)
+    band.save
+    puts "band #{band.name} created"
+  end
 
-#   Band.all.each do |band|
-#     if band.id != 502
-#       GenreList.create!(band: band, genres: ["punk", "rock"])
-#       puts "genre list for #{band.name} created"
-#     end
-#   end
+  Band.all.each do |band|
+    if band.id != 502
+      GenreList.create!(band: band, genre: "punk")
+      puts "genre list for #{band.name} created"
+    end
+  end
 
-#   10.times do
-#     street = "66 Kenzel Ave"
-#     city = "Nutley"
-#     state = "NJ"
-#     address = "#{street}, #{city}, #{state}"
-#     loc = MultiGeocoder.geocode(address)
-#     venue = Venue.new(name: Faker::Company.name,
-#                       street_1: street,
-#                       city: city,
-#                       state: state,
-#                       zip_code: "07110",
-#                       lat: loc.lat,
-#                       lng: loc.lng)
-#     venue.save
-#     puts "venue created"
-#   end
+  10.times do
+    street = "66 Kenzel Ave"
+    city = "Nutley"
+    state = "NJ"
+    address = "#{street}, #{city}, #{state}"
+    loc = MultiGeocoder.geocode(address)
+    venue = Venue.new(name: Faker::Company.name,
+                      street_1: street,
+                      city: city,
+                      state: state,
+                      zip_code: "07110",
+                      lat: loc.lat,
+                      lng: loc.lng)
+    venue.save
+    puts "venue created"
+  end
 
-#   Venue.all.each do |venue|
-#     Band.all.each do |band|
-#       if band.id != 502
-#         show = venue.shows.build(details: Faker::Lorem.sentence,
-#                                  show_date: DateTime.now + 1.year,
-#                                  band: band)
-#         show.save
-#         puts "show created"
-#       end
-#     end
-#   end
-# end
+  Venue.all.each do |venue|
+    Band.all.each do |band|
+      if band.id != 502
+        show = venue.shows.build(details: Faker::Lorem.sentence,
+                                 show_date: DateTime.now + 1.year,
+                                 band: band)
+        show.save
+        puts "show created"
+      end
+    end
+  end
+end
 
 months = {
   "01" => "Jan",

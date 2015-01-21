@@ -16,36 +16,44 @@
   </head>
 
   <body>
-
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><%= link_to "Scene Hub | Listen Locally", root_path %></h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-      </ul>
-      <section class='top-bar-section'>
-        <ul class='right'>
-          <li><%= link_to("Tell us about your show!", new_show_path) %></li>
-          <% if !user_signed_in? %>
-            <li><%= link_to("Sign in", new_user_session_path) %></li>
-            <li><%= link_to("Sign up", new_user_registration_path) %></li>
-          <% end %>
-          <% if user_signed_in? %>
-            <li><%= link_to(current_user.email, user_path(current_user)) %></li>
-            <li><%= link_to("Sign out", destroy_user_session_path, method: :delete) %></li>
-          <% end %>
+    <div id="wrapper">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><%= link_to "Scene Hub | Listen Locally", root_path %></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
         </ul>
-      </section>
-    </nav>
+        <section class='top-bar-section'>
+          <ul class='right'>
+            <li><%= link_to("Tell us about your show!", new_show_path) %></li>
+            <% if !user_signed_in? %>
+              <li><%= link_to("Sign in", new_user_session_path) %></li>
+              <li><%= link_to("Sign up", new_user_registration_path) %></li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li><%= link_to(current_user.email, user_path(current_user)) %></li>
+              <li><%= link_to("Sign out", destroy_user_session_path, method: :delete) %></li>
+            <% end %>
+          </ul>
+        </section>
+      </nav>
 
-    <% flash.each do |key, value| %>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
+      <% flash.each do |key, value| %>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
 
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+      <%= yield %>
+      <%= javascript_include_tag "application" %>
+      <div id="push"></div>
+    </div>
+    <div id="footer">
+      <p id="bottom-bar">Built by Chris Cerami  |
+                         GitHub: <%= link_to "chrisccerami", "https://github.com/chrisccerami" %> |
+                         Email: <%= mail_to "chrisccerami@gmail.com" %>  |
+                         Twitter: <%= link_to "@chrisccerami", "https://twitter.com/chrisccerami" %></p>
+    </div>
   </body>
 </html>

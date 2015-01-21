@@ -42,10 +42,8 @@ a {
 
 #rsvps {
   float: right;
-}
-
-#map {
-  width:100%;
+  border-left: 2px solid #000;
+  margin-top: 10px;
 }
 
 #comment-form {
@@ -79,4 +77,43 @@ a {
   background-repeat:repeat;
   background-position: center;
   background-size: cover;
+}
+
+#band-map {
+  margin-bottom: 50px;
+}
+
+#shows {
+  margin-top: 10px;
+}
+
+* {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-weight: bold;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
+#footer, #push {
+  height: 4em;
+  background-color: #333333;
+}
+
+#bottom-bar {
+  color: #fff;
+  text-align: center;
+}
+
+#bottom-bar a {
+  color: #FF389C;
 }

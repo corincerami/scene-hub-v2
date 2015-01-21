@@ -42,7 +42,7 @@
       <% elsif signed_in? && current_user.rsvped?(@show) %>
         <div class='row'>
           <div class='small-6 medium-4 columns border'>
-            <p>You're going to this show!</p>
+            <div class="flash-notice">You're going to this show!</div><br/>
             <%= button_to "Cancel RSVP", rsvp_path(current_user.rsvps.find_by(show: @show)),
               method: :delete, class: "button",
               form: { data: { 'rsvp-button' => 'delete' } } %>
