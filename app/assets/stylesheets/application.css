@@ -104,9 +104,10 @@ html, body {
   margin: 0 auto -4em;
 }
 
+#footer { background-color: #333333; }
+
 #footer, #push {
   height: 4em;
-  background-color: #333333;
 }
 
 #bottom-bar {
